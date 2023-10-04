@@ -381,8 +381,8 @@ void UpdateEnvironmentAnimations(void) {
 }
 
 // Updates a map columns or rows based on scroll direction
-void UpdateMapScroll(unsigned char dir) {
-    switch (dir)
+void UpdateMapScroll(void) {
+    switch (ScrollDir)
     {
         case DIRECTION_RIGHT:
             ScrollIndex = ScrollIndex + 1;
@@ -465,7 +465,7 @@ bool PollNextState(unsigned char game_state) {
 // Test map layout using directional keys
 void TestScroll(void) {
     if (ScrollIndex != 0) {
-        UpdateMapScroll(ScrollDir);
+        UpdateMapScroll();
         return;
     }
 
