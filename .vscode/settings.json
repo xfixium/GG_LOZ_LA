@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "bank2.h": "c",
+        "bank4.h": "c",
+        "psglib.h": "c",
+        "bank10.h": "c",
+        "resources.h": "c",
+        "bank3.h": "c"
+    }
+}
