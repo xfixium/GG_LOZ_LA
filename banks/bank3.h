@@ -1,12 +1,12 @@
+extern const unsigned char	overworld_cemetary_tiles_bin[5120];
+#define				overworld_cemetary_tiles_bin_size 5120
+#define				overworld_cemetary_tiles_bin_bank 3
+extern const unsigned char	overworld_desert_tiles_bin[5120];
+#define				overworld_desert_tiles_bin_size 5120
+#define				overworld_desert_tiles_bin_bank 3
 extern const unsigned char	overworld_eagles_tower_tiles_bin[5120];
 #define				overworld_eagles_tower_tiles_bin_size 5120
 #define				overworld_eagles_tower_tiles_bin_bank 3
-extern const unsigned char	overworld_egg_tiles_bin[5120];
-#define				overworld_egg_tiles_bin_size 5120
-#define				overworld_egg_tiles_bin_bank 3
-extern const unsigned char	overworld_forest_tiles_bin[5120];
-#define				overworld_forest_tiles_bin_size 5120
-#define				overworld_forest_tiles_bin_bank 3
 extern const unsigned char	inventory_map_bin[720];
 #define				inventory_map_bin_size 720
 #define				inventory_map_bin_bank 3
