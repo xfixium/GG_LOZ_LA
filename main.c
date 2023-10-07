@@ -13,6 +13,12 @@
 #include ".\banks\bank9.h"
 #include ".\banks\bank10.h"
 #include ".\banks\bank11.h"
+#include ".\banks\bank12.h"
+#include ".\banks\bank13.h"
+#include ".\banks\bank14.h"
+#include ".\banks\bank15.h"
+#include ".\banks\bank16.h"
+#include ".\banks\bank17.h"
 
 // Event types
 #define EVENT_BEFORE_VBLANK 0
@@ -27,19 +33,23 @@
 #define DIRECTION_DOWN 4
 
 // Map types
-#define MAP_TYPE_NONE 1
-#define MAP_TYPE_TURTLE_ROCK 2
-#define MAP_TYPE_SWAMP 3
-#define MAP_TYPE_VILLAGE 4
-#define MAP_TYPE_FOREST 5
-#define MAP_TYPE_CEMETARY 6
-#define MAP_TYPE_TAIL_CAVE 7
-#define MAP_TYPE_BOTTLE_GROTTO 8
-#define MAP_TYPE_BEACH 9
-#define MAP_TYPE_DESERT 10
-#define MAP_TYPE_CATFISH_MAW 11
-#define MAP_TYPE_EAGLES_TOWER 12
-#define MAP_TYPE_EGG 13
+#define MAP_TYPE_BASE 1
+#define MAP_TYPE_ANGLERS_TUNNEL 2
+#define MAP_TYPE_ANIMAL_VILLAGE 3
+#define MAP_TYPE_BEACH 4
+#define MAP_TYPE_BOTTLE_GROTTO 5
+#define MAP_TYPE_CATFISH_MAW 6
+#define MAP_TYPE_CEMETARY 7
+#define MAP_TYPE_DESERT 8
+#define MAP_TYPE_EAGLES_TOWER 9
+#define MAP_TYPE_EGG 10
+#define MAP_TYPE_FOREST 11
+#define MAP_TYPE_MABE_VILLAGE 12
+#define MAP_TYPE_MANSION 13
+#define MAP_TYPE_SHOPS 14
+#define MAP_TYPE_SWAMP 15
+#define MAP_TYPE_TAIL_CAVE 16
+#define MAP_TYPE_TURTLE_ROCK 17
 
 // Game states
 #define GAME_STATE_TITLE 1
@@ -70,81 +80,41 @@ unsigned int KeysHeld;           // Keys held down
 // Overworld map bin banks (Temp)
 unsigned char OverworldMapBanks[256] = {
     overworld_00_00_map_bin_bank, overworld_01_00_map_bin_bank, overworld_02_00_map_bin_bank, overworld_03_00_map_bin_bank, overworld_04_00_map_bin_bank, overworld_05_00_map_bin_bank, overworld_06_00_map_bin_bank, overworld_07_00_map_bin_bank, overworld_08_00_map_bin_bank, overworld_09_00_map_bin_bank, overworld_10_00_map_bin_bank, overworld_11_00_map_bin_bank, overworld_12_00_map_bin_bank, overworld_13_00_map_bin_bank, overworld_14_00_map_bin_bank, overworld_15_00_map_bin_bank,
-    overworld_00_01_map_bin_bank, overworld_01_01_map_bin_bank, overworld_02_01_map_bin_bank, overworld_03_01_map_bin_bank, overworld_04_01_map_bin_bank, overworld_05_01_map_bin_bank, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_00_02_map_bin_bank, overworld_01_02_map_bin_bank, overworld_02_02_map_bin_bank, overworld_03_02_map_bin_bank, overworld_04_02_map_bin_bank, overworld_05_02_map_bin_bank, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_00_03_map_bin_bank, overworld_01_03_map_bin_bank, overworld_02_03_map_bin_bank, overworld_03_03_map_bin_bank, overworld_04_03_map_bin_bank, overworld_05_03_map_bin_bank, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_00_04_map_bin_bank, overworld_01_04_map_bin_bank, overworld_02_04_map_bin_bank, overworld_03_04_map_bin_bank, overworld_04_04_map_bin_bank, overworld_05_04_map_bin_bank, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_00_05_map_bin_bank, overworld_01_05_map_bin_bank, overworld_02_05_map_bin_bank, overworld_03_05_map_bin_bank, overworld_04_05_map_bin_bank, overworld_05_05_map_bin_bank, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_00_06_map_bin_bank, overworld_01_06_map_bin_bank, overworld_02_06_map_bin_bank, overworld_03_06_map_bin_bank, overworld_04_06_map_bin_bank, overworld_05_06_map_bin_bank, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_00_07_map_bin_bank, overworld_01_07_map_bin_bank, overworld_02_07_map_bin_bank, overworld_03_07_map_bin_bank, overworld_04_07_map_bin_bank, overworld_05_07_map_bin_bank, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_00_08_map_bin_bank, overworld_01_08_map_bin_bank, overworld_02_08_map_bin_bank, overworld_03_08_map_bin_bank, overworld_04_08_map_bin_bank, overworld_05_08_map_bin_bank, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_00_09_map_bin_bank, overworld_01_09_map_bin_bank, overworld_02_09_map_bin_bank, overworld_03_09_map_bin_bank, overworld_04_09_map_bin_bank, overworld_05_09_map_bin_bank, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_00_10_map_bin_bank, overworld_01_10_map_bin_bank, overworld_02_10_map_bin_bank, overworld_03_10_map_bin_bank, overworld_04_10_map_bin_bank, overworld_05_10_map_bin_bank, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_00_11_map_bin_bank, overworld_01_11_map_bin_bank, overworld_02_11_map_bin_bank, overworld_03_11_map_bin_bank, overworld_04_11_map_bin_bank, overworld_05_11_map_bin_bank, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_00_12_map_bin_bank, overworld_01_12_map_bin_bank, overworld_02_12_map_bin_bank, overworld_03_12_map_bin_bank, overworld_04_12_map_bin_bank, overworld_05_12_map_bin_bank, 0, 0, 0, 0, 0, 0, 0, 0, overworld_14_12_map_bin_bank, overworld_15_12_map_bin_bank,
-    overworld_00_13_map_bin_bank, overworld_01_13_map_bin_bank, overworld_02_13_map_bin_bank, overworld_03_13_map_bin_bank, overworld_04_13_map_bin_bank, overworld_05_13_map_bin_bank, 0, 0, 0, 0, 0, 0, 0, 0, overworld_14_13_map_bin_bank, overworld_15_13_map_bin_bank,
-    overworld_00_14_map_bin_bank, overworld_01_14_map_bin_bank, overworld_02_14_map_bin_bank, overworld_03_14_map_bin_bank, overworld_04_14_map_bin_bank, overworld_05_14_map_bin_bank, overworld_06_14_map_bin_bank, 0, 0, 0, 0, 0, 0, 0, overworld_14_14_map_bin_bank, overworld_15_14_map_bin_bank,
+    overworld_00_01_map_bin_bank, overworld_01_01_map_bin_bank, overworld_02_01_map_bin_bank, overworld_03_01_map_bin_bank, overworld_04_01_map_bin_bank, overworld_05_01_map_bin_bank, overworld_06_01_map_bin_bank, overworld_07_01_map_bin_bank, overworld_08_01_map_bin_bank, overworld_09_01_map_bin_bank, overworld_10_01_map_bin_bank, overworld_11_01_map_bin_bank, overworld_12_01_map_bin_bank, overworld_13_01_map_bin_bank, overworld_14_01_map_bin_bank, overworld_15_01_map_bin_bank,
+    overworld_00_02_map_bin_bank, overworld_01_02_map_bin_bank, overworld_02_02_map_bin_bank, overworld_03_02_map_bin_bank, overworld_04_02_map_bin_bank, overworld_05_02_map_bin_bank, overworld_06_02_map_bin_bank, overworld_07_02_map_bin_bank, overworld_08_02_map_bin_bank, overworld_09_02_map_bin_bank, overworld_10_02_map_bin_bank, overworld_11_02_map_bin_bank, overworld_12_02_map_bin_bank, overworld_13_02_map_bin_bank, overworld_14_02_map_bin_bank, overworld_15_02_map_bin_bank,
+    overworld_00_03_map_bin_bank, overworld_01_03_map_bin_bank, overworld_02_03_map_bin_bank, overworld_03_03_map_bin_bank, overworld_04_03_map_bin_bank, overworld_05_03_map_bin_bank, overworld_06_03_map_bin_bank, overworld_07_03_map_bin_bank, overworld_08_03_map_bin_bank, overworld_09_03_map_bin_bank, overworld_10_03_map_bin_bank, overworld_11_03_map_bin_bank, overworld_12_03_map_bin_bank, overworld_13_03_map_bin_bank, overworld_14_03_map_bin_bank, overworld_15_03_map_bin_bank,
+    overworld_00_04_map_bin_bank, overworld_01_04_map_bin_bank, overworld_02_04_map_bin_bank, overworld_03_04_map_bin_bank, overworld_04_04_map_bin_bank, overworld_05_04_map_bin_bank, overworld_06_04_map_bin_bank, overworld_07_04_map_bin_bank, overworld_08_04_map_bin_bank, overworld_09_04_map_bin_bank, overworld_10_04_map_bin_bank, overworld_11_04_map_bin_bank, overworld_12_04_map_bin_bank, overworld_13_04_map_bin_bank, overworld_14_04_map_bin_bank, overworld_15_04_map_bin_bank,
+    overworld_00_05_map_bin_bank, overworld_01_05_map_bin_bank, overworld_02_05_map_bin_bank, overworld_03_05_map_bin_bank, overworld_04_05_map_bin_bank, overworld_05_05_map_bin_bank, overworld_06_05_map_bin_bank, overworld_07_05_map_bin_bank, overworld_08_05_map_bin_bank, overworld_09_05_map_bin_bank, overworld_10_05_map_bin_bank, overworld_11_05_map_bin_bank, overworld_12_05_map_bin_bank, overworld_13_05_map_bin_bank, overworld_14_05_map_bin_bank, overworld_15_05_map_bin_bank,
+    overworld_00_06_map_bin_bank, overworld_01_06_map_bin_bank, overworld_02_06_map_bin_bank, overworld_03_06_map_bin_bank, overworld_04_06_map_bin_bank, overworld_05_06_map_bin_bank, overworld_06_06_map_bin_bank, overworld_07_06_map_bin_bank, overworld_08_06_map_bin_bank, overworld_09_06_map_bin_bank, overworld_10_06_map_bin_bank, overworld_11_06_map_bin_bank, overworld_12_06_map_bin_bank, overworld_13_06_map_bin_bank, overworld_14_06_map_bin_bank, overworld_15_06_map_bin_bank,
+    overworld_00_07_map_bin_bank, overworld_01_07_map_bin_bank, overworld_02_07_map_bin_bank, overworld_03_07_map_bin_bank, overworld_04_07_map_bin_bank, overworld_05_07_map_bin_bank, overworld_06_07_map_bin_bank, overworld_07_07_map_bin_bank, overworld_08_07_map_bin_bank, overworld_09_07_map_bin_bank, overworld_10_07_map_bin_bank, overworld_11_07_map_bin_bank, overworld_12_07_map_bin_bank, overworld_13_07_map_bin_bank, overworld_14_07_map_bin_bank, overworld_15_07_map_bin_bank,
+    overworld_00_08_map_bin_bank, overworld_01_08_map_bin_bank, overworld_02_08_map_bin_bank, overworld_03_08_map_bin_bank, overworld_04_08_map_bin_bank, overworld_05_08_map_bin_bank, overworld_06_08_map_bin_bank, overworld_07_08_map_bin_bank, overworld_08_08_map_bin_bank, overworld_09_08_map_bin_bank, overworld_10_08_map_bin_bank, overworld_11_08_map_bin_bank, overworld_12_08_map_bin_bank, overworld_13_08_map_bin_bank, overworld_14_08_map_bin_bank, overworld_15_08_map_bin_bank,
+    overworld_00_09_map_bin_bank, overworld_01_09_map_bin_bank, overworld_02_09_map_bin_bank, overworld_03_09_map_bin_bank, overworld_04_09_map_bin_bank, overworld_05_09_map_bin_bank, overworld_06_09_map_bin_bank, overworld_07_09_map_bin_bank, overworld_08_09_map_bin_bank, overworld_09_09_map_bin_bank, overworld_10_09_map_bin_bank, overworld_11_09_map_bin_bank, overworld_12_09_map_bin_bank, overworld_13_09_map_bin_bank, overworld_14_09_map_bin_bank, overworld_15_09_map_bin_bank,
+    overworld_00_10_map_bin_bank, overworld_01_10_map_bin_bank, overworld_02_10_map_bin_bank, overworld_03_10_map_bin_bank, overworld_04_10_map_bin_bank, overworld_05_10_map_bin_bank, overworld_06_10_map_bin_bank, overworld_07_10_map_bin_bank, overworld_08_10_map_bin_bank, overworld_09_10_map_bin_bank, overworld_10_10_map_bin_bank, overworld_11_10_map_bin_bank, overworld_12_10_map_bin_bank, overworld_13_10_map_bin_bank, overworld_14_10_map_bin_bank, overworld_15_10_map_bin_bank,
+    overworld_00_11_map_bin_bank, overworld_01_11_map_bin_bank, overworld_02_11_map_bin_bank, overworld_03_11_map_bin_bank, overworld_04_11_map_bin_bank, overworld_05_11_map_bin_bank, overworld_06_11_map_bin_bank, overworld_07_11_map_bin_bank, overworld_08_11_map_bin_bank, overworld_09_11_map_bin_bank, overworld_10_11_map_bin_bank, overworld_11_11_map_bin_bank, overworld_12_11_map_bin_bank, overworld_13_11_map_bin_bank, overworld_14_11_map_bin_bank, overworld_15_11_map_bin_bank,
+    overworld_00_12_map_bin_bank, overworld_01_12_map_bin_bank, overworld_02_12_map_bin_bank, overworld_03_12_map_bin_bank, overworld_04_12_map_bin_bank, overworld_05_12_map_bin_bank, overworld_06_12_map_bin_bank, overworld_07_12_map_bin_bank, overworld_08_12_map_bin_bank, overworld_09_12_map_bin_bank, overworld_10_12_map_bin_bank, overworld_11_12_map_bin_bank, overworld_12_12_map_bin_bank, overworld_13_12_map_bin_bank, overworld_14_12_map_bin_bank, overworld_15_12_map_bin_bank,
+    overworld_00_13_map_bin_bank, overworld_01_13_map_bin_bank, overworld_02_13_map_bin_bank, overworld_03_13_map_bin_bank, overworld_04_13_map_bin_bank, overworld_05_13_map_bin_bank, overworld_06_13_map_bin_bank, overworld_07_13_map_bin_bank, overworld_08_13_map_bin_bank, overworld_09_13_map_bin_bank, overworld_10_13_map_bin_bank, overworld_11_13_map_bin_bank, overworld_12_13_map_bin_bank, overworld_13_13_map_bin_bank, overworld_14_13_map_bin_bank, overworld_15_13_map_bin_bank,
+    overworld_00_14_map_bin_bank, overworld_01_14_map_bin_bank, overworld_02_14_map_bin_bank, overworld_03_14_map_bin_bank, overworld_04_14_map_bin_bank, overworld_05_14_map_bin_bank, overworld_06_14_map_bin_bank, overworld_07_14_map_bin_bank, overworld_08_14_map_bin_bank, overworld_09_14_map_bin_bank, overworld_10_14_map_bin_bank, overworld_11_14_map_bin_bank, overworld_12_14_map_bin_bank, overworld_13_14_map_bin_bank, overworld_14_14_map_bin_bank, overworld_15_14_map_bin_bank,
     overworld_00_15_map_bin_bank, overworld_01_15_map_bin_bank, overworld_02_15_map_bin_bank, overworld_03_15_map_bin_bank, overworld_04_15_map_bin_bank, overworld_05_15_map_bin_bank, overworld_06_15_map_bin_bank, overworld_07_15_map_bin_bank, overworld_08_15_map_bin_bank, overworld_09_15_map_bin_bank, overworld_10_15_map_bin_bank, overworld_11_15_map_bin_bank, overworld_12_15_map_bin_bank, overworld_13_15_map_bin_bank, overworld_14_15_map_bin_bank, overworld_15_15_map_bin_bank
 };
 
 // Overworld map bin pointers (Temp)
 const unsigned char* OverworldMapBins[256] = {
     overworld_00_00_map_bin, overworld_01_00_map_bin, overworld_02_00_map_bin, overworld_03_00_map_bin, overworld_04_00_map_bin, overworld_05_00_map_bin, overworld_06_00_map_bin, overworld_07_00_map_bin, overworld_08_00_map_bin, overworld_09_00_map_bin, overworld_10_00_map_bin, overworld_11_00_map_bin, overworld_12_00_map_bin, overworld_13_00_map_bin, overworld_14_00_map_bin, overworld_15_00_map_bin,
-    overworld_00_01_map_bin, overworld_01_01_map_bin, overworld_02_01_map_bin, overworld_03_01_map_bin, overworld_04_01_map_bin, overworld_05_01_map_bin, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_00_02_map_bin, overworld_01_02_map_bin, overworld_02_02_map_bin, overworld_03_02_map_bin, overworld_04_02_map_bin, overworld_05_02_map_bin, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_00_03_map_bin, overworld_01_03_map_bin, overworld_02_03_map_bin, overworld_03_03_map_bin, overworld_04_03_map_bin, overworld_05_03_map_bin, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_00_04_map_bin, overworld_01_04_map_bin, overworld_02_04_map_bin, overworld_03_04_map_bin, overworld_04_04_map_bin, overworld_05_04_map_bin, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_00_05_map_bin, overworld_01_05_map_bin, overworld_02_05_map_bin, overworld_03_05_map_bin, overworld_04_05_map_bin, overworld_05_05_map_bin, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_00_06_map_bin, overworld_01_06_map_bin, overworld_02_06_map_bin, overworld_03_06_map_bin, overworld_04_06_map_bin, overworld_05_06_map_bin, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_00_07_map_bin, overworld_01_07_map_bin, overworld_02_07_map_bin, overworld_03_07_map_bin, overworld_04_07_map_bin, overworld_05_07_map_bin, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_00_08_map_bin, overworld_01_08_map_bin, overworld_02_08_map_bin, overworld_03_08_map_bin, overworld_04_08_map_bin, overworld_05_08_map_bin, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_00_09_map_bin, overworld_01_09_map_bin, overworld_02_09_map_bin, overworld_03_09_map_bin, overworld_04_09_map_bin, overworld_05_09_map_bin, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_00_10_map_bin, overworld_01_10_map_bin, overworld_02_10_map_bin, overworld_03_10_map_bin, overworld_04_10_map_bin, overworld_05_10_map_bin, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_00_11_map_bin, overworld_01_11_map_bin, overworld_02_11_map_bin, overworld_03_11_map_bin, overworld_04_11_map_bin, overworld_05_11_map_bin, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_00_12_map_bin, overworld_01_12_map_bin, overworld_02_12_map_bin, overworld_03_12_map_bin, overworld_04_12_map_bin, overworld_05_12_map_bin, 0, 0, 0, 0, 0, 0, 0, 0, overworld_14_12_map_bin, overworld_15_12_map_bin,
-    overworld_00_13_map_bin, overworld_01_13_map_bin, overworld_02_13_map_bin, overworld_03_13_map_bin, overworld_04_13_map_bin, overworld_05_13_map_bin, 0, 0, 0, 0, 0, 0, 0, 0, overworld_14_13_map_bin, overworld_15_13_map_bin,
-    overworld_00_14_map_bin, overworld_01_14_map_bin, overworld_02_14_map_bin, overworld_03_14_map_bin, overworld_04_14_map_bin, overworld_05_14_map_bin, overworld_06_14_map_bin, 0, 0, 0, 0, 0, 0, 0, overworld_14_14_map_bin, overworld_15_14_map_bin,
+    overworld_00_01_map_bin, overworld_01_01_map_bin, overworld_02_01_map_bin, overworld_03_01_map_bin, overworld_04_01_map_bin, overworld_05_01_map_bin, overworld_06_01_map_bin, overworld_07_01_map_bin, overworld_08_01_map_bin, overworld_09_01_map_bin, overworld_10_01_map_bin, overworld_11_01_map_bin, overworld_12_01_map_bin, overworld_13_01_map_bin, overworld_14_01_map_bin, overworld_15_01_map_bin,
+    overworld_00_02_map_bin, overworld_01_02_map_bin, overworld_02_02_map_bin, overworld_03_02_map_bin, overworld_04_02_map_bin, overworld_05_02_map_bin, overworld_06_02_map_bin, overworld_07_02_map_bin, overworld_08_02_map_bin, overworld_09_02_map_bin, overworld_10_02_map_bin, overworld_11_02_map_bin, overworld_12_02_map_bin, overworld_13_02_map_bin, overworld_14_02_map_bin, overworld_15_02_map_bin,
+    overworld_00_03_map_bin, overworld_01_03_map_bin, overworld_02_03_map_bin, overworld_03_03_map_bin, overworld_04_03_map_bin, overworld_05_03_map_bin, overworld_06_03_map_bin, overworld_07_03_map_bin, overworld_08_03_map_bin, overworld_09_03_map_bin, overworld_10_03_map_bin, overworld_11_03_map_bin, overworld_12_03_map_bin, overworld_13_03_map_bin, overworld_14_03_map_bin, overworld_15_03_map_bin,
+    overworld_00_04_map_bin, overworld_01_04_map_bin, overworld_02_04_map_bin, overworld_03_04_map_bin, overworld_04_04_map_bin, overworld_05_04_map_bin, overworld_06_04_map_bin, overworld_07_04_map_bin, overworld_08_04_map_bin, overworld_09_04_map_bin, overworld_10_04_map_bin, overworld_11_04_map_bin, overworld_12_04_map_bin, overworld_13_04_map_bin, overworld_14_04_map_bin, overworld_15_04_map_bin,
+    overworld_00_05_map_bin, overworld_01_05_map_bin, overworld_02_05_map_bin, overworld_03_05_map_bin, overworld_04_05_map_bin, overworld_05_05_map_bin, overworld_06_05_map_bin, overworld_07_05_map_bin, overworld_08_05_map_bin, overworld_09_05_map_bin, overworld_10_05_map_bin, overworld_11_05_map_bin, overworld_12_05_map_bin, overworld_13_05_map_bin, overworld_14_05_map_bin, overworld_15_05_map_bin,
+    overworld_00_06_map_bin, overworld_01_06_map_bin, overworld_02_06_map_bin, overworld_03_06_map_bin, overworld_04_06_map_bin, overworld_05_06_map_bin, overworld_06_06_map_bin, overworld_07_06_map_bin, overworld_08_06_map_bin, overworld_09_06_map_bin, overworld_10_06_map_bin, overworld_11_06_map_bin, overworld_12_06_map_bin, overworld_13_06_map_bin, overworld_14_06_map_bin, overworld_15_06_map_bin,
+    overworld_00_07_map_bin, overworld_01_07_map_bin, overworld_02_07_map_bin, overworld_03_07_map_bin, overworld_04_07_map_bin, overworld_05_07_map_bin, overworld_06_07_map_bin, overworld_07_07_map_bin, overworld_08_07_map_bin, overworld_09_07_map_bin, overworld_10_07_map_bin, overworld_11_07_map_bin, overworld_12_07_map_bin, overworld_13_07_map_bin, overworld_14_07_map_bin, overworld_15_07_map_bin,
+    overworld_00_08_map_bin, overworld_01_08_map_bin, overworld_02_08_map_bin, overworld_03_08_map_bin, overworld_04_08_map_bin, overworld_05_08_map_bin, overworld_06_08_map_bin, overworld_07_08_map_bin, overworld_08_08_map_bin, overworld_09_08_map_bin, overworld_10_08_map_bin, overworld_11_08_map_bin, overworld_12_08_map_bin, overworld_13_08_map_bin, overworld_14_08_map_bin, overworld_15_08_map_bin,
+    overworld_00_09_map_bin, overworld_01_09_map_bin, overworld_02_09_map_bin, overworld_03_09_map_bin, overworld_04_09_map_bin, overworld_05_09_map_bin, overworld_06_09_map_bin, overworld_07_09_map_bin, overworld_08_09_map_bin, overworld_09_09_map_bin, overworld_10_09_map_bin, overworld_11_09_map_bin, overworld_12_09_map_bin, overworld_13_09_map_bin, overworld_14_09_map_bin, overworld_15_09_map_bin,
+    overworld_00_10_map_bin, overworld_01_10_map_bin, overworld_02_10_map_bin, overworld_03_10_map_bin, overworld_04_10_map_bin, overworld_05_10_map_bin, overworld_06_10_map_bin, overworld_07_10_map_bin, overworld_08_10_map_bin, overworld_09_10_map_bin, overworld_10_10_map_bin, overworld_11_10_map_bin, overworld_12_10_map_bin, overworld_13_10_map_bin, overworld_14_10_map_bin, overworld_15_10_map_bin,
+    overworld_00_11_map_bin, overworld_01_11_map_bin, overworld_02_11_map_bin, overworld_03_11_map_bin, overworld_04_11_map_bin, overworld_05_11_map_bin, overworld_06_11_map_bin, overworld_07_11_map_bin, overworld_08_11_map_bin, overworld_09_11_map_bin, overworld_10_11_map_bin, overworld_11_11_map_bin, overworld_12_11_map_bin, overworld_13_11_map_bin, overworld_14_11_map_bin, overworld_15_11_map_bin,
+    overworld_00_12_map_bin, overworld_01_12_map_bin, overworld_02_12_map_bin, overworld_03_12_map_bin, overworld_04_12_map_bin, overworld_05_12_map_bin, overworld_06_12_map_bin, overworld_07_12_map_bin, overworld_08_12_map_bin, overworld_09_12_map_bin, overworld_10_12_map_bin, overworld_11_12_map_bin, overworld_12_12_map_bin, overworld_13_12_map_bin, overworld_14_12_map_bin, overworld_15_12_map_bin,
+    overworld_00_13_map_bin, overworld_01_13_map_bin, overworld_02_13_map_bin, overworld_03_13_map_bin, overworld_04_13_map_bin, overworld_05_13_map_bin, overworld_06_13_map_bin, overworld_07_13_map_bin, overworld_08_13_map_bin, overworld_09_13_map_bin, overworld_10_13_map_bin, overworld_11_13_map_bin, overworld_12_13_map_bin, overworld_13_13_map_bin, overworld_14_13_map_bin, overworld_15_13_map_bin,
+    overworld_00_14_map_bin, overworld_01_14_map_bin, overworld_02_14_map_bin, overworld_03_14_map_bin, overworld_04_14_map_bin, overworld_05_14_map_bin, overworld_06_14_map_bin, overworld_07_14_map_bin, overworld_08_14_map_bin, overworld_09_14_map_bin, overworld_10_14_map_bin, overworld_11_14_map_bin, overworld_12_14_map_bin, overworld_13_14_map_bin, overworld_14_14_map_bin, overworld_15_14_map_bin,
     overworld_00_15_map_bin, overworld_01_15_map_bin, overworld_02_15_map_bin, overworld_03_15_map_bin, overworld_04_15_map_bin, overworld_05_15_map_bin, overworld_06_15_map_bin, overworld_07_15_map_bin, overworld_08_15_map_bin, overworld_09_15_map_bin, overworld_10_15_map_bin, overworld_11_15_map_bin, overworld_12_15_map_bin, overworld_13_15_map_bin, overworld_14_15_map_bin, overworld_15_15_map_bin
-};
-
-// Overworld tileset bin banks (Temp)
-unsigned char OverworldTilesetBanks[256] = {
-    overworld_turtle_rock_tiles_bin_bank, overworld_turtle_rock_tiles_bin_bank, overworld_turtle_rock_tiles_bin_bank, overworld_turtle_rock_tiles_bin_bank, overworld_turtle_rock_tiles_bin_bank, overworld_turtle_rock_tiles_bin_bank, overworld_egg_tiles_bin_bank, overworld_turtle_rock_tiles_bin_bank, overworld_turtle_rock_tiles_bin_bank, overworld_turtle_rock_tiles_bin_bank, overworld_turtle_rock_tiles_bin_bank, overworld_turtle_rock_tiles_bin_bank, overworld_turtle_rock_tiles_bin_bank, overworld_turtle_rock_tiles_bin_bank, overworld_eagles_tower_tiles_bin_bank, overworld_eagles_tower_tiles_bin_bank,
-    overworld_turtle_rock_tiles_bin_bank, overworld_turtle_rock_tiles_bin_bank, overworld_turtle_rock_tiles_bin_bank, overworld_turtle_rock_tiles_bin_bank, overworld_turtle_rock_tiles_bin_bank, overworld_turtle_rock_tiles_bin_bank, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_village_tiles_bin_bank, overworld_village_tiles_bin_bank, overworld_swamp_tiles_bin_bank, overworld_swamp_tiles_bin_bank, overworld_swamp_tiles_bin_bank, overworld_swamp_tiles_bin_bank, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_forest_tiles_bin_bank, overworld_village_tiles_bin_bank, overworld_swamp_tiles_bin_bank, overworld_swamp_tiles_bin_bank, overworld_swamp_tiles_bin_bank, overworld_swamp_tiles_bin_bank, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_forest_tiles_bin_bank, overworld_forest_tiles_bin_bank, overworld_forest_tiles_bin_bank, overworld_forest_tiles_bin_bank, overworld_village_tiles_bin_bank, overworld_village_tiles_bin_bank, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_forest_tiles_bin_bank, overworld_forest_tiles_bin_bank, overworld_forest_tiles_bin_bank, overworld_forest_tiles_bin_bank, overworld_cemetary_tiles_bin_bank, overworld_cemetary_tiles_bin_bank, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_forest_tiles_bin_bank, overworld_forest_tiles_bin_bank, overworld_forest_tiles_bin_bank, overworld_forest_tiles_bin_bank, overworld_cemetary_tiles_bin_bank, overworld_cemetary_tiles_bin_bank, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_forest_tiles_bin_bank, overworld_forest_tiles_bin_bank, overworld_forest_tiles_bin_bank, overworld_forest_tiles_bin_bank, overworld_cemetary_tiles_bin_bank, overworld_cemetary_tiles_bin_bank, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_forest_tiles_bin_bank, overworld_village_tiles_bin_bank, overworld_village_tiles_bin_bank, overworld_village_tiles_bin_bank, overworld_village_tiles_bin_bank, overworld_village_tiles_bin_bank, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_village_tiles_bin_bank, overworld_village_tiles_bin_bank, overworld_village_tiles_bin_bank, overworld_village_tiles_bin_bank, overworld_village_tiles_bin_bank, overworld_village_tiles_bin_bank, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_village_tiles_bin_bank, overworld_village_tiles_bin_bank, overworld_village_tiles_bin_bank, overworld_village_tiles_bin_bank, overworld_village_tiles_bin_bank, overworld_village_tiles_bin_bank, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_village_tiles_bin_bank, overworld_village_tiles_bin_bank, overworld_village_tiles_bin_bank, overworld_village_tiles_bin_bank, overworld_bottle_grotto_tiles_bin_bank, overworld_bottle_grotto_tiles_bin_bank, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_village_tiles_bin_bank, overworld_village_tiles_bin_bank, overworld_village_tiles_bin_bank, overworld_village_tiles_bin_bank, overworld_bottle_grotto_tiles_bin_bank, overworld_bottle_grotto_tiles_bin_bank, 0, 0, 0, 0, 0, 0, 0, 0, overworld_desert_tiles_bin_bank, overworld_desert_tiles_bin_bank,
-    overworld_beach_tiles_bin_bank, overworld_village_tiles_bin_bank, overworld_tail_cave_tiles_bin_bank, overworld_tail_cave_tiles_bin_bank, overworld_bottle_grotto_tiles_bin_bank, overworld_bottle_grotto_tiles_bin_bank, 0, 0, 0, 0, 0, 0, 0, 0, overworld_desert_tiles_bin_bank, overworld_desert_tiles_bin_bank,
-    overworld_beach_tiles_bin_bank, overworld_beach_tiles_bin_bank, overworld_beach_tiles_bin_bank, overworld_beach_tiles_bin_bank, overworld_beach_tiles_bin_bank, overworld_beach_tiles_bin_bank, overworld_village_tiles_bin_bank, 0, 0, 0, 0, 0, 0, 0, overworld_desert_tiles_bin_bank, overworld_desert_tiles_bin_bank,
-    overworld_beach_tiles_bin_bank, overworld_beach_tiles_bin_bank, overworld_beach_tiles_bin_bank, overworld_beach_tiles_bin_bank, overworld_beach_tiles_bin_bank, overworld_beach_tiles_bin_bank, overworld_village_tiles_bin_bank, overworld_village_tiles_bin_bank, overworld_catfish_maw_tiles_bin_bank, overworld_catfish_maw_tiles_bin_bank, overworld_catfish_maw_tiles_bin_bank, overworld_catfish_maw_tiles_bin_bank, overworld_village_tiles_bin_bank, overworld_village_tiles_bin_bank, overworld_desert_tiles_bin_bank, overworld_desert_tiles_bin_bank
-};
-
-// Overworld tileset bin pointers (Temp)
-const unsigned char* OverworldTilesetBins[256] = {
-    overworld_turtle_rock_tiles_bin, overworld_turtle_rock_tiles_bin, overworld_turtle_rock_tiles_bin, overworld_turtle_rock_tiles_bin, overworld_turtle_rock_tiles_bin, overworld_turtle_rock_tiles_bin, overworld_egg_tiles_bin, overworld_turtle_rock_tiles_bin, overworld_turtle_rock_tiles_bin, overworld_turtle_rock_tiles_bin, overworld_turtle_rock_tiles_bin, overworld_turtle_rock_tiles_bin, overworld_turtle_rock_tiles_bin, overworld_turtle_rock_tiles_bin, overworld_eagles_tower_tiles_bin, overworld_eagles_tower_tiles_bin,
-    overworld_turtle_rock_tiles_bin, overworld_turtle_rock_tiles_bin, overworld_turtle_rock_tiles_bin, overworld_turtle_rock_tiles_bin, overworld_turtle_rock_tiles_bin, overworld_turtle_rock_tiles_bin, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_village_tiles_bin, overworld_village_tiles_bin, overworld_swamp_tiles_bin, overworld_swamp_tiles_bin, overworld_swamp_tiles_bin, overworld_swamp_tiles_bin, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_forest_tiles_bin, overworld_village_tiles_bin, overworld_swamp_tiles_bin, overworld_swamp_tiles_bin, overworld_swamp_tiles_bin, overworld_swamp_tiles_bin, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_forest_tiles_bin, overworld_forest_tiles_bin, overworld_forest_tiles_bin, overworld_forest_tiles_bin, overworld_village_tiles_bin, overworld_village_tiles_bin, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_forest_tiles_bin, overworld_forest_tiles_bin, overworld_forest_tiles_bin, overworld_forest_tiles_bin, overworld_cemetary_tiles_bin, overworld_cemetary_tiles_bin, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_forest_tiles_bin, overworld_forest_tiles_bin, overworld_forest_tiles_bin, overworld_forest_tiles_bin, overworld_cemetary_tiles_bin, overworld_cemetary_tiles_bin, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_forest_tiles_bin, overworld_forest_tiles_bin, overworld_forest_tiles_bin, overworld_forest_tiles_bin, overworld_cemetary_tiles_bin, overworld_cemetary_tiles_bin, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_forest_tiles_bin, overworld_village_tiles_bin, overworld_village_tiles_bin, overworld_village_tiles_bin, overworld_village_tiles_bin, overworld_village_tiles_bin, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_village_tiles_bin, overworld_village_tiles_bin, overworld_village_tiles_bin, overworld_village_tiles_bin, overworld_village_tiles_bin, overworld_village_tiles_bin, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_village_tiles_bin, overworld_village_tiles_bin, overworld_village_tiles_bin, overworld_village_tiles_bin, overworld_village_tiles_bin, overworld_village_tiles_bin, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_village_tiles_bin, overworld_village_tiles_bin, overworld_village_tiles_bin, overworld_village_tiles_bin, overworld_bottle_grotto_tiles_bin, overworld_bottle_grotto_tiles_bin, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    overworld_village_tiles_bin, overworld_village_tiles_bin, overworld_village_tiles_bin, overworld_village_tiles_bin, overworld_bottle_grotto_tiles_bin, overworld_bottle_grotto_tiles_bin, 0, 0, 0, 0, 0, 0, 0, 0, overworld_desert_tiles_bin, overworld_desert_tiles_bin,
-    overworld_beach_tiles_bin, overworld_village_tiles_bin, overworld_tail_cave_tiles_bin, overworld_tail_cave_tiles_bin, overworld_bottle_grotto_tiles_bin, overworld_bottle_grotto_tiles_bin, 0, 0, 0, 0, 0, 0, 0, 0, overworld_desert_tiles_bin, overworld_desert_tiles_bin,
-    overworld_beach_tiles_bin, overworld_beach_tiles_bin, overworld_beach_tiles_bin, overworld_beach_tiles_bin, overworld_beach_tiles_bin, overworld_beach_tiles_bin, overworld_village_tiles_bin, 0, 0, 0, 0, 0, 0, 0, overworld_desert_tiles_bin, overworld_desert_tiles_bin,
-    overworld_beach_tiles_bin, overworld_beach_tiles_bin, overworld_beach_tiles_bin, overworld_beach_tiles_bin, overworld_beach_tiles_bin, overworld_beach_tiles_bin, overworld_village_tiles_bin, overworld_village_tiles_bin, overworld_catfish_maw_tiles_bin, overworld_catfish_maw_tiles_bin, overworld_catfish_maw_tiles_bin, overworld_catfish_maw_tiles_bin, overworld_village_tiles_bin, overworld_village_tiles_bin, overworld_desert_tiles_bin, overworld_desert_tiles_bin
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -201,7 +171,7 @@ void UpdatePalette(void) {
     switch (GameState)
     {
         case GAME_STATE_OVERWORLD:
-            if (MapType == MAP_TYPE_NONE) {
+            if (MapType == MAP_TYPE_BASE) {
                 return;
             } else if (MapType == MAP_TYPE_BEACH || MapType == MAP_TYPE_DESERT) {
                 SMS_mapROMBank(overworld_02_bg_pal_bin_bank);
@@ -231,37 +201,76 @@ void UpdateGameStateGraphics(void) {
             MapType = overworld_map_types_bin[MapId];
             UpdatePalette();
             if (MapType != PrevMapType) {
+                SubStateMax = 3;
+                TimerMax = 10;
                 PrevMapType = MapType;
                 switch (MapType) {
-                    case MAP_TYPE_TURTLE_ROCK:
-                        SubStateMax = 3;
-                        TimerMax = 10;
+                    case MAP_TYPE_ANGLERS_TUNNEL:
+                        SMS_mapROMBank(overworld_anglers_tunnel_tiles_bin_bank);
+                        SMS_loadTiles(overworld_anglers_tunnel_tiles_bin, 256, 5120);
                     break;
-                    case MAP_TYPE_SWAMP:
-                        SubStateMax = 3;
-                        TimerMax = 10;
-                    break;
-                    case MAP_TYPE_FOREST:
-                        SubStateMax = 3;
-                        TimerMax = 10;
-                    break;
-                    case MAP_TYPE_NONE:
-                    case MAP_TYPE_DESERT:
-                    case MAP_TYPE_CATFISH_MAW:
-                    case MAP_TYPE_BOTTLE_GROTTO:
-                    case MAP_TYPE_VILLAGE:
-                        SubStateMax = 3;
-                        TimerMax = 10;
+                    case MAP_TYPE_ANIMAL_VILLAGE:
+                        SMS_mapROMBank(overworld_animal_village_tiles_bin_bank);
+                        SMS_loadTiles(overworld_animal_village_tiles_bin, 256, 5120);
                     break;
                     case MAP_TYPE_BEACH:
                         SubState = 0;
                         SubStateMax = 8;
-                        TimerMax = 10;
+                        SMS_mapROMBank(overworld_beach_tiles_bin_bank);
+                        SMS_loadTiles(overworld_beach_tiles_bin, 256, 5120);
                     break;
-                }
-                if (MapType != MAP_TYPE_NONE) {
-                    SMS_mapROMBank(OverworldTilesetBanks[MapId]);
-                    SMS_loadTiles(OverworldTilesetBins[MapId], 256, 5120);
+                    case MAP_TYPE_BOTTLE_GROTTO:
+                        SMS_mapROMBank(overworld_bottle_grotto_tiles_bin_bank);
+                        SMS_loadTiles(overworld_bottle_grotto_tiles_bin, 256, 5120);
+                    break;
+                    case MAP_TYPE_CATFISH_MAW:
+                        SMS_mapROMBank(overworld_catfish_maw_tiles_bin_bank);
+                        SMS_loadTiles(overworld_catfish_maw_tiles_bin, 256, 5120);
+                    break;
+                    case MAP_TYPE_CEMETARY:
+                        SMS_mapROMBank(overworld_cemetary_tiles_bin_bank);
+                        SMS_loadTiles(overworld_cemetary_tiles_bin, 256, 5120);
+                    break;
+                    case MAP_TYPE_DESERT:
+                        SMS_mapROMBank(overworld_desert_tiles_bin_bank);
+                        SMS_loadTiles(overworld_desert_tiles_bin, 256, 5120);
+                    break;
+                    case MAP_TYPE_EAGLES_TOWER:
+                        SMS_mapROMBank(overworld_eagles_tower_tiles_bin_bank);
+                        SMS_loadTiles(overworld_eagles_tower_tiles_bin, 256, 5120);
+                    break;
+                    case MAP_TYPE_EGG:
+                        SMS_mapROMBank(overworld_egg_tiles_bin_bank);
+                        SMS_loadTiles(overworld_egg_tiles_bin, 256, 5120);
+                    break;
+                    case MAP_TYPE_FOREST:
+                        SMS_mapROMBank(overworld_forest_tiles_bin_bank);
+                        SMS_loadTiles(overworld_forest_tiles_bin, 256, 5120);
+                    break;
+                    case MAP_TYPE_MABE_VILLAGE:
+                        SMS_mapROMBank(overworld_mabe_village_tiles_bin_bank);
+                        SMS_loadTiles(overworld_mabe_village_tiles_bin, 256, 5120);
+                    break;
+                    case MAP_TYPE_MANSION:
+                        SMS_mapROMBank(overworld_mansion_tiles_bin_bank);
+                        SMS_loadTiles(overworld_mansion_tiles_bin, 256, 5120);
+                    break;
+                    case MAP_TYPE_SHOPS:
+                        SMS_mapROMBank(overworld_shops_tiles_bin_bank);
+                        SMS_loadTiles(overworld_shops_tiles_bin, 256, 5120);
+                    break;
+                    case MAP_TYPE_SWAMP:
+                        SMS_mapROMBank(overworld_swamp_tiles_bin_bank);
+                        SMS_loadTiles(overworld_swamp_tiles_bin, 256, 5120);
+                    break;
+                    case MAP_TYPE_TAIL_CAVE:
+                        SMS_mapROMBank(overworld_tail_cave_tiles_bin_bank);
+                        SMS_loadTiles(overworld_tail_cave_tiles_bin, 256, 5120);
+                    break;
+                    case MAP_TYPE_TURTLE_ROCK:
+                        SMS_mapROMBank(overworld_turtle_rock_tiles_bin_bank);
+                        SMS_loadTiles(overworld_turtle_rock_tiles_bin, 256, 5120);
+                    break;
                 }
             }
         break;
@@ -342,35 +351,9 @@ void UpdateEnvironmentAnimations(void) {
         case GAME_STATE_OVERWORLD:
             switch (MapType)
             {
-                case MAP_TYPE_NONE:
+                case MAP_TYPE_BASE:
                     SMS_mapROMBank(animation_flower_tiles_bin_bank);
                     UNSAFE_SMS_VRAMmemcpy32(8384, &animation_flower_tiles_bin[SubState << 5]);
-                    SubState++;
-                break;
-                case MAP_TYPE_TURTLE_ROCK:
-                    SMS_mapROMBank(animation_big_gem_tiles_bin_bank);
-                    UNSAFE_SMS_VRAMmemcpy32(12384, &animation_big_gem_tiles_bin[SubState << 5]);
-                    SMS_mapROMBank(animation_small_gem_tiles_bin_bank);
-                    UNSAFE_SMS_VRAMmemcpy32(12896, &animation_small_gem_tiles_bin[SubState << 5]);
-                    SubState++;
-                break;
-                case MAP_TYPE_VILLAGE:
-                    SMS_mapROMBank(animation_flower_tiles_bin_bank);
-                    UNSAFE_SMS_VRAMmemcpy32(8384, &animation_flower_tiles_bin[SubState << 5]);
-                    SMS_mapROMBank(animation_rooster_tiles_bin_bank);
-                    UNSAFE_SMS_VRAMmemcpy64(8704, &animation_rooster_tiles_bin[SubState << 6]);
-                    SubState++;
-                break;
-                case MAP_TYPE_FOREST:
-                    SMS_mapROMBank(animation_flower_tiles_bin_bank);
-                    UNSAFE_SMS_VRAMmemcpy32(8384, &animation_flower_tiles_bin[SubState << 5]);
-                    SMS_mapROMBank(animation_forest_flower_tiles_bin_bank);
-                    UNSAFE_SMS_VRAMmemcpy32(10176, &animation_forest_flower_tiles_bin[SubState << 5]);
-                    SubState++;
-                break;
-                case MAP_TYPE_SWAMP:
-                    SMS_mapROMBank(animation_swamp_flower_tiles_bin_bank);
-                    UNSAFE_SMS_VRAMmemcpy32(10176, &animation_swamp_flower_tiles_bin[SubState << 5]);
                     SubState++;
                 break;
                 case MAP_TYPE_BOTTLE_GROTTO:
@@ -381,6 +364,32 @@ void UpdateEnvironmentAnimations(void) {
                 case MAP_TYPE_BEACH:
                     SMS_mapROMBank(animation_shore_tiles_bin_bank);
                     UNSAFE_SMS_VRAMmemcpy128(10112, &animation_shore_tiles_bin[SubState << 7]);
+                    SubState++;
+                break;
+                case MAP_TYPE_FOREST:
+                    SMS_mapROMBank(animation_flower_tiles_bin_bank);
+                    UNSAFE_SMS_VRAMmemcpy32(8384, &animation_flower_tiles_bin[SubState << 5]);
+                    SMS_mapROMBank(animation_forest_flower_tiles_bin_bank);
+                    UNSAFE_SMS_VRAMmemcpy32(10176, &animation_forest_flower_tiles_bin[SubState << 5]);
+                    SubState++;
+                break;
+                case MAP_TYPE_MABE_VILLAGE:
+                    SMS_mapROMBank(animation_flower_tiles_bin_bank);
+                    UNSAFE_SMS_VRAMmemcpy32(8384, &animation_flower_tiles_bin[SubState << 5]);
+                    SMS_mapROMBank(animation_rooster_tiles_bin_bank);
+                    UNSAFE_SMS_VRAMmemcpy64(8704, &animation_rooster_tiles_bin[SubState << 6]);
+                    SubState++;
+                break;
+                case MAP_TYPE_SWAMP:
+                    SMS_mapROMBank(animation_swamp_flower_tiles_bin_bank);
+                    UNSAFE_SMS_VRAMmemcpy32(10176, &animation_swamp_flower_tiles_bin[SubState << 5]);
+                    SubState++;
+                break;
+                case MAP_TYPE_TURTLE_ROCK:
+                    SMS_mapROMBank(animation_big_gem_tiles_bin_bank);
+                    UNSAFE_SMS_VRAMmemcpy32(12384, &animation_big_gem_tiles_bin[SubState << 5]);
+                    SMS_mapROMBank(animation_small_gem_tiles_bin_bank);
+                    UNSAFE_SMS_VRAMmemcpy32(12896, &animation_small_gem_tiles_bin[SubState << 5]);
                     SubState++;
                 break;
             }
