@@ -1,21 +1,21 @@
-extern const unsigned char	overworld_desert_tiles_bin[5120];
-#define				overworld_desert_tiles_bin_size 5120
-#define				overworld_desert_tiles_bin_bank 4
-extern const unsigned char	overworld_eagles_tower_tiles_bin[5120];
-#define				overworld_eagles_tower_tiles_bin_size 5120
-#define				overworld_eagles_tower_tiles_bin_bank 4
-extern const unsigned char	overworld_egg_tiles_bin[5120];
-#define				overworld_egg_tiles_bin_size 5120
-#define				overworld_egg_tiles_bin_bank 4
-extern const unsigned char	house_marin_map_bin[640];
-#define				house_marin_map_bin_size 640
-#define				house_marin_map_bin_bank 4
-extern const unsigned char	animation_rooster_tiles_bin[192];
-#define				animation_rooster_tiles_bin_size 192
-#define				animation_rooster_tiles_bin_bank 4
+extern const unsigned char	a01_desert_tiles_bin[5120];
+#define				a01_desert_tiles_bin_size 5120
+#define				a01_desert_tiles_bin_bank 4
+extern const unsigned char	a01_eagles_tower_tiles_bin[5120];
+#define				a01_eagles_tower_tiles_bin_size 5120
+#define				a01_eagles_tower_tiles_bin_bank 4
+extern const unsigned char	a01_egg_tiles_bin[5120];
+#define				a01_egg_tiles_bin_size 5120
+#define				a01_egg_tiles_bin_bank 4
+extern const unsigned char	a01_00_00_map_bin[640];
+#define				a01_00_00_map_bin_size 640
+#define				a01_00_00_map_bin_bank 4
+extern const unsigned char	a02_map_types_bin[256];
+#define				a02_map_types_bin_size 256
+#define				a02_map_types_bin_bank 4
 extern const unsigned char	animation_big_gem_tiles_bin[96];
 #define				animation_big_gem_tiles_bin_size 96
 #define				animation_big_gem_tiles_bin_bank 4
-extern const unsigned char	animation_flower_tiles_bin[96];
-#define				animation_flower_tiles_bin_size 96
-#define				animation_flower_tiles_bin_bank 4
+extern const unsigned char	a01_02_bg_pal_bin[32];
+#define				a01_02_bg_pal_bin_size 32
+#define				a01_02_bg_pal_bin_bank 4

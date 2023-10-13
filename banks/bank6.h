@@ -1,36 +1,24 @@
-extern const unsigned char	overworld_shops_tiles_bin[5120];
-#define				overworld_shops_tiles_bin_size 5120
-#define				overworld_shops_tiles_bin_bank 6
-extern const unsigned char	overworld_swamp_tiles_bin[5120];
-#define				overworld_swamp_tiles_bin_size 5120
-#define				overworld_swamp_tiles_bin_bank 6
-extern const unsigned char	overworld_tail_cave_tiles_bin[5120];
-#define				overworld_tail_cave_tiles_bin_size 5120
-#define				overworld_tail_cave_tiles_bin_bank 6
-extern const unsigned char	overworld_00_00_map_bin[640];
-#define				overworld_00_00_map_bin_size 640
-#define				overworld_00_00_map_bin_bank 6
-extern const unsigned char	house_zora_bg_pal_bin[32];
-#define				house_zora_bg_pal_bin_size 32
-#define				house_zora_bg_pal_bin_bank 6
-extern const unsigned char	inventory_bg_pal_bin[32];
-#define				inventory_bg_pal_bin_size 32
-#define				inventory_bg_pal_bin_bank 6
-extern const unsigned char	inventory_spr_pal_bin[32];
-#define				inventory_spr_pal_bin_size 32
-#define				inventory_spr_pal_bin_bank 6
-extern const unsigned char	main_spr_pal_bin[32];
-#define				main_spr_pal_bin_size 32
-#define				main_spr_pal_bin_bank 6
-extern const unsigned char	overworld_01_bg_pal_bin[32];
-#define				overworld_01_bg_pal_bin_size 32
-#define				overworld_01_bg_pal_bin_bank 6
-extern const unsigned char	overworld_02_bg_pal_bin[32];
-#define				overworld_02_bg_pal_bin_size 32
-#define				overworld_02_bg_pal_bin_bank 6
-extern const unsigned char	overworld_03_bg_pal_bin[32];
-#define				overworld_03_bg_pal_bin_size 32
-#define				overworld_03_bg_pal_bin_bank 6
-extern const unsigned char	overworld_04_bg_pal_bin[32];
-#define				overworld_04_bg_pal_bin_size 32
-#define				overworld_04_bg_pal_bin_bank 6
+extern const unsigned char	a01_shops_tiles_bin[5120];
+#define				a01_shops_tiles_bin_size 5120
+#define				a01_shops_tiles_bin_bank 6
+extern const unsigned char	a01_swamp_tiles_bin[5120];
+#define				a01_swamp_tiles_bin_size 5120
+#define				a01_swamp_tiles_bin_bank 6
+extern const unsigned char	a01_tail_cave_tiles_bin[5120];
+#define				a01_tail_cave_tiles_bin_size 5120
+#define				a01_tail_cave_tiles_bin_bank 6
+extern const unsigned char	a01_00_02_map_bin[640];
+#define				a01_00_02_map_bin_size 640
+#define				a01_00_02_map_bin_bank 6
+extern const unsigned char	animation_forest_flower_tiles_bin[96];
+#define				animation_forest_flower_tiles_bin_size 96
+#define				animation_forest_flower_tiles_bin_bank 6
+extern const unsigned char	animation_small_gem_tiles_bin[96];
+#define				animation_small_gem_tiles_bin_size 96
+#define				animation_small_gem_tiles_bin_bank 6
+extern const unsigned char	animation_swamp_flower_tiles_bin[96];
+#define				animation_swamp_flower_tiles_bin_size 96
+#define				animation_swamp_flower_tiles_bin_bank 6
+extern const unsigned char	animation_wall_torch_02_tiles_bin[96];
+#define				animation_wall_torch_02_tiles_bin_size 96
+#define				animation_wall_torch_02_tiles_bin_bank 6
