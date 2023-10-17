@@ -244,8 +244,7 @@ bool IncrementTimer(unsigned short threshold) {
 
 // Updates map palette based on map type
 void UpdatePalette(void) {
-    switch (GameState)
-    {
+    switch (GameState) {
         case GAME_STATE_AREA_01:
             if (MapType == MAP_TYPE_A1_BASE) {
                 return;
@@ -541,8 +540,7 @@ void UpdateEnvironmentAnimations(void) {
 
     switch (GameState) {
         case GAME_STATE_AREA_01:
-            switch (MapType)
-            {
+            switch (MapType) {
                 case MAP_TYPE_A1_BASE:
                     SMS_mapROMBank(animation_flower_tiles_bin_bank);
                     UNSAFE_SMS_VRAMmemcpy32(8384, &animation_flower_tiles_bin[SubState << 5]);
@@ -587,24 +585,20 @@ void UpdateEnvironmentAnimations(void) {
             }
         break;
         case GAME_STATE_AREA_02:
-            switch (MapType)
-            {
+            switch (MapType) {
                 case MAP_TYPE_A2_KEY_CAVERN_01:
+                    SMS_mapROMBank(animation_belt_tiles_bin_bank);
+                    UNSAFE_SMS_VRAMmemcpy64(9408, &animation_belt_tiles_bin[SubState << 6]);
                 case MAP_TYPE_A2_BOTTLE_GROTTO_01:
                 case MAP_TYPE_A2_TAIL_CAVE_01:
-                    SMS_mapROMBank(animation_floor_torch_tiles_bin_bank);
-                    UNSAFE_SMS_VRAMmemcpy32(8224, &animation_floor_torch_tiles_bin[SubState << 5]);
-                    SMS_mapROMBank(animation_wall_torch_02_tiles_bin_bank);
-                    UNSAFE_SMS_VRAMmemcpy32(8288, &animation_wall_torch_02_tiles_bin[SubState << 5]);
-                    SMS_mapROMBank(animation_wall_torch_tiles_bin_bank);
-                    UNSAFE_SMS_VRAMmemcpy32(8352, &animation_wall_torch_tiles_bin[SubState << 5]);
+                    SMS_mapROMBank(animation_torches_tiles_bin_bank);
+                    UNSAFE_SMS_VRAMmemcpy128(8224, &animation_torches_tiles_bin[SubState << 7]);
                     SubState++;
                 break;
             }
         break;
         case GAME_STATE_AREA_03:
-            switch (MapType)
-            {
+            switch (MapType) {
                 case MAP_TYPE_A2_TAIL_CAVE_01:
                     SMS_mapROMBank(animation_flower_tiles_bin_bank);
                     UNSAFE_SMS_VRAMmemcpy32(8384, &animation_flower_tiles_bin[SubState << 5]);
@@ -617,8 +611,7 @@ void UpdateEnvironmentAnimations(void) {
 
 // Updates a map columns or rows based on scroll direction
 void UpdateMapScroll(void) {
-    switch (ScrollDir)
-    {
+    switch (ScrollDir) {
         case DIRECTION_RIGHT:
             ScrollIndex = ScrollIndex + 1;
             for (unsigned char i = 0; i < 20; i++) {

@@ -1,3 +1,9 @@
+extern const unsigned char	a01_08_04_map_bin[640];
+#define				a01_08_04_map_bin_size 640
+#define				a01_08_04_map_bin_bank 14
+extern const unsigned char	a01_08_05_map_bin[640];
+#define				a01_08_05_map_bin_size 640
+#define				a01_08_05_map_bin_bank 14
 extern const unsigned char	a01_08_06_map_bin[640];
 #define				a01_08_06_map_bin_size 640
 #define				a01_08_06_map_bin_bank 14
@@ -67,9 +73,3 @@ extern const unsigned char	a01_09_11_map_bin[640];
 extern const unsigned char	a01_09_12_map_bin[640];
 #define				a01_09_12_map_bin_size 640
 #define				a01_09_12_map_bin_bank 14
-extern const unsigned char	a01_09_13_map_bin[640];
-#define				a01_09_13_map_bin_size 640
-#define				a01_09_13_map_bin_bank 14
-extern const unsigned char	a01_09_14_map_bin[640];
-#define				a01_09_14_map_bin_size 640
-#define				a01_09_14_map_bin_bank 14

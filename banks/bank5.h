@@ -10,12 +10,12 @@ extern const unsigned char	a01_mansion_tiles_bin[5120];
 extern const unsigned char	a01_00_01_map_bin[640];
 #define				a01_00_01_map_bin_size 640
 #define				a01_00_01_map_bin_bank 5
-extern const unsigned char	animation_rooster_tiles_bin[192];
-#define				animation_rooster_tiles_bin_size 192
-#define				animation_rooster_tiles_bin_bank 5
-extern const unsigned char	animation_floor_torch_tiles_bin[96];
-#define				animation_floor_torch_tiles_bin_size 96
-#define				animation_floor_torch_tiles_bin_bank 5
-extern const unsigned char	animation_flower_tiles_bin[96];
-#define				animation_flower_tiles_bin_size 96
-#define				animation_flower_tiles_bin_bank 5
+extern const unsigned char	a02_map_types_bin[256];
+#define				a02_map_types_bin_size 256
+#define				a02_map_types_bin_bank 5
+extern const unsigned char	animation_big_gem_tiles_bin[96];
+#define				animation_big_gem_tiles_bin_size 96
+#define				animation_big_gem_tiles_bin_bank 5
+extern const unsigned char	a01_02_bg_pal_bin[32];
+#define				a01_02_bg_pal_bin_size 32
+#define				a01_02_bg_pal_bin_bank 5
