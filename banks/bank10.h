@@ -73,3 +73,18 @@ extern const unsigned char	a01_03_07_map_bin[640];
 extern const unsigned char	a01_03_08_map_bin[640];
 #define				a01_03_08_map_bin_size 640
 #define				a01_03_08_map_bin_bank 10
+extern const unsigned char	house_marin_bg_pal_bin[32];
+#define				house_marin_bg_pal_bin_size 32
+#define				house_marin_bg_pal_bin_bank 10
+extern const unsigned char	house_zora_bg_pal_bin[32];
+#define				house_zora_bg_pal_bin_size 32
+#define				house_zora_bg_pal_bin_bank 10
+extern const unsigned char	inventory_bg_pal_bin[32];
+#define				inventory_bg_pal_bin_size 32
+#define				inventory_bg_pal_bin_bank 10
+extern const unsigned char	inventory_spr_pal_bin[32];
+#define				inventory_spr_pal_bin_size 32
+#define				inventory_spr_pal_bin_bank 10
+extern const unsigned char	main_spr_pal_bin[32];
+#define				main_spr_pal_bin_size 32
+#define				main_spr_pal_bin_bank 10

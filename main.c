@@ -82,9 +82,13 @@ unsigned char GameState;            // Overall program flow
 unsigned char PrevGameState;        // Previous loaded state
 unsigned char SubState;             // A game state's sub state, for managed flow of a game state
 unsigned char SubStateMax;          // Substate threshold
+unsigned char SubState2;             // A game state's sub state, for managed flow of a game state
+unsigned char SubStateMax2;          // Substate threshold
 unsigned char FrameCounter;         // Frame counter, used for various things
 unsigned short Timer;               // General timer
 unsigned short TimerMax;            // Timer threshold
+unsigned short Timer2;               // General timer
+unsigned short TimerMax2;            // Timer threshold
 unsigned char AudioCurrentBank;     // Current audio bank
 unsigned int KeysPressed;           // Keys pressed
 unsigned int KeysHeld;              // Keys held down
@@ -213,8 +217,10 @@ void ResetGlobalVariables(void) {
     SMS_setBGScrollX(0);
     SMS_setBGScrollY(0);
     SubState = 0;
-	FrameCounter = 0;
+    SubState2 = 0;
 	Timer = 0;
+    Timer2 = 0;
+    FrameCounter = 0;
 }
 
 // Sets game state, resets global variables
@@ -231,6 +237,17 @@ bool IncrementTimer(unsigned short threshold) {
     Timer++;
     if (Timer >= threshold) {
         Timer = 0;
+        return true;
+    }
+    return false;
+}
+
+// Increments timer to the given threshold, then resets it
+// Returns true, if timer hit threshold
+bool IncrementTimer2(unsigned short threshold) {
+    Timer2++;
+    if (Timer2 >= threshold) {
+        Timer2 = 0;
         return true;
     }
     return false;
@@ -380,6 +397,8 @@ void UpdateGameStateGraphics(void) {
             if (MapType != PrevMapType) {
                 SubStateMax = 3;
                 TimerMax = 10;
+                SubStateMax2 = 8;
+                TimerMax2 = 3;
                 PrevMapType = MapType;
                 switch (MapType) {
                     case MAP_TYPE_A2_TAIL_CAVE_01:
@@ -399,6 +418,7 @@ void UpdateGameStateGraphics(void) {
                         SMS_loadTiles(a02_bottle_grotto_02_tiles_bin, 256, a02_bottle_grotto_02_tiles_bin_size);
                     break;
                     case MAP_TYPE_A2_KEY_CAVERN_01:
+
                         SMS_mapROMBank(a02_key_cavern_01_tiles_bin_bank);
                         SMS_loadTiles(a02_key_cavern_01_tiles_bin, 256, a02_key_cavern_01_tiles_bin_size);
                     break;
@@ -532,14 +552,20 @@ void LoadGameStateGraphics(void) {
 
 // Updates game state environmental animations
 void UpdateEnvironmentAnimations(void) {
-    if (IncrementTimer(TimerMax) == false || ScrollIndex != 0)
+    if (ScrollIndex != 0)
         return;
 
     if (SubState >= SubStateMax)
         SubState = 0;
 
+    if (SubState2 >= SubStateMax2)
+        SubState2 = 0;
+
     switch (GameState) {
         case GAME_STATE_AREA_01:
+            if (IncrementTimer(TimerMax) == false)
+                return;
+
             switch (MapType) {
                 case MAP_TYPE_A1_BASE:
                     SMS_mapROMBank(animation_flower_tiles_bin_bank);
@@ -587,13 +613,18 @@ void UpdateEnvironmentAnimations(void) {
         case GAME_STATE_AREA_02:
             switch (MapType) {
                 case MAP_TYPE_A2_KEY_CAVERN_01:
-                    SMS_mapROMBank(animation_belt_tiles_bin_bank);
-                    UNSAFE_SMS_VRAMmemcpy64(9408, &animation_belt_tiles_bin[SubState << 6]);
+                    if (IncrementTimer2(TimerMax2) == true) {
+                        SMS_mapROMBank(animation_belt_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy64(9408, &animation_belt_tiles_bin[SubState2 << 6]);
+                        SubState2++;
+                    }
                 case MAP_TYPE_A2_BOTTLE_GROTTO_01:
                 case MAP_TYPE_A2_TAIL_CAVE_01:
-                    SMS_mapROMBank(animation_torches_tiles_bin_bank);
-                    UNSAFE_SMS_VRAMmemcpy128(8224, &animation_torches_tiles_bin[SubState << 7]);
-                    SubState++;
+                    if (IncrementTimer(TimerMax) == true) {
+                        SMS_mapROMBank(animation_torches_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy128(8224, &animation_torches_tiles_bin[SubState << 7]);
+                        SubState++;
+                    }
                 break;
             }
         break;
