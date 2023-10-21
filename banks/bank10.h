@@ -1,96 +1,87 @@
-extern const unsigned char	a01_01_10_map_bin[640];
-#define				a01_01_10_map_bin_size 640
-#define				a01_01_10_map_bin_bank 10
-extern const unsigned char	a01_01_11_map_bin[640];
-#define				a01_01_11_map_bin_size 640
-#define				a01_01_11_map_bin_bank 10
-extern const unsigned char	a01_01_12_map_bin[640];
-#define				a01_01_12_map_bin_size 640
-#define				a01_01_12_map_bin_bank 10
-extern const unsigned char	a01_01_13_map_bin[640];
-#define				a01_01_13_map_bin_size 640
-#define				a01_01_13_map_bin_bank 10
-extern const unsigned char	a01_01_14_map_bin[640];
-#define				a01_01_14_map_bin_size 640
-#define				a01_01_14_map_bin_bank 10
-extern const unsigned char	a01_01_15_map_bin[640];
-#define				a01_01_15_map_bin_size 640
-#define				a01_01_15_map_bin_bank 10
-extern const unsigned char	a01_02_00_map_bin[640];
-#define				a01_02_00_map_bin_size 640
-#define				a01_02_00_map_bin_bank 10
-extern const unsigned char	a01_02_01_map_bin[640];
-#define				a01_02_01_map_bin_size 640
-#define				a01_02_01_map_bin_bank 10
-extern const unsigned char	a01_02_02_map_bin[640];
-#define				a01_02_02_map_bin_size 640
-#define				a01_02_02_map_bin_bank 10
-extern const unsigned char	a01_02_03_map_bin[640];
-#define				a01_02_03_map_bin_size 640
-#define				a01_02_03_map_bin_bank 10
-extern const unsigned char	a01_02_04_map_bin[640];
-#define				a01_02_04_map_bin_size 640
-#define				a01_02_04_map_bin_bank 10
-extern const unsigned char	a01_02_05_map_bin[640];
-#define				a01_02_05_map_bin_size 640
-#define				a01_02_05_map_bin_bank 10
-extern const unsigned char	a01_02_06_map_bin[640];
-#define				a01_02_06_map_bin_size 640
-#define				a01_02_06_map_bin_bank 10
-extern const unsigned char	a01_02_07_map_bin[640];
-#define				a01_02_07_map_bin_size 640
-#define				a01_02_07_map_bin_bank 10
-extern const unsigned char	a01_02_08_map_bin[640];
-#define				a01_02_08_map_bin_size 640
-#define				a01_02_08_map_bin_bank 10
-extern const unsigned char	a01_02_09_map_bin[640];
-#define				a01_02_09_map_bin_size 640
-#define				a01_02_09_map_bin_bank 10
-extern const unsigned char	a01_02_10_map_bin[640];
-#define				a01_02_10_map_bin_size 640
-#define				a01_02_10_map_bin_bank 10
-extern const unsigned char	a01_02_11_map_bin[640];
-#define				a01_02_11_map_bin_size 640
-#define				a01_02_11_map_bin_bank 10
-extern const unsigned char	a01_02_12_map_bin[640];
-#define				a01_02_12_map_bin_size 640
-#define				a01_02_12_map_bin_bank 10
-extern const unsigned char	a01_02_13_map_bin[640];
-#define				a01_02_13_map_bin_size 640
-#define				a01_02_13_map_bin_bank 10
-extern const unsigned char	a01_02_14_map_bin[640];
-#define				a01_02_14_map_bin_size 640
-#define				a01_02_14_map_bin_bank 10
-extern const unsigned char	a01_02_15_map_bin[640];
-#define				a01_02_15_map_bin_size 640
-#define				a01_02_15_map_bin_bank 10
-extern const unsigned char	a01_03_00_map_bin[640];
-#define				a01_03_00_map_bin_size 640
-#define				a01_03_00_map_bin_bank 10
-extern const unsigned char	a01_03_01_map_bin[640];
-#define				a01_03_01_map_bin_size 640
-#define				a01_03_01_map_bin_bank 10
-extern const unsigned char	a01_03_02_map_bin[640];
-#define				a01_03_02_map_bin_size 640
-#define				a01_03_02_map_bin_bank 10
-extern const unsigned char	a02_05_bg_pal_bin[32];
-#define				a02_05_bg_pal_bin_size 32
-#define				a02_05_bg_pal_bin_bank 10
-extern const unsigned char	a02_07_bg_pal_bin[32];
-#define				a02_07_bg_pal_bin_size 32
-#define				a02_07_bg_pal_bin_bank 10
-extern const unsigned char	house_marin_bg_pal_bin[32];
-#define				house_marin_bg_pal_bin_size 32
-#define				house_marin_bg_pal_bin_bank 10
-extern const unsigned char	house_zora_bg_pal_bin[32];
-#define				house_zora_bg_pal_bin_size 32
-#define				house_zora_bg_pal_bin_bank 10
-extern const unsigned char	inventory_bg_pal_bin[32];
-#define				inventory_bg_pal_bin_size 32
-#define				inventory_bg_pal_bin_bank 10
-extern const unsigned char	inventory_spr_pal_bin[32];
-#define				inventory_spr_pal_bin_size 32
-#define				inventory_spr_pal_bin_bank 10
-extern const unsigned char	main_spr_pal_bin[32];
-#define				main_spr_pal_bin_size 32
-#define				main_spr_pal_bin_bank 10
+extern const unsigned char	a01_06_06_map_bin[640];
+#define				a01_06_06_map_bin_size 640
+#define				a01_06_06_map_bin_bank 10
+extern const unsigned char	a01_06_07_map_bin[640];
+#define				a01_06_07_map_bin_size 640
+#define				a01_06_07_map_bin_bank 10
+extern const unsigned char	a01_06_08_map_bin[640];
+#define				a01_06_08_map_bin_size 640
+#define				a01_06_08_map_bin_bank 10
+extern const unsigned char	a01_06_09_map_bin[640];
+#define				a01_06_09_map_bin_size 640
+#define				a01_06_09_map_bin_bank 10
+extern const unsigned char	a01_06_10_map_bin[640];
+#define				a01_06_10_map_bin_size 640
+#define				a01_06_10_map_bin_bank 10
+extern const unsigned char	a01_06_11_map_bin[640];
+#define				a01_06_11_map_bin_size 640
+#define				a01_06_11_map_bin_bank 10
+extern const unsigned char	a01_06_12_map_bin[640];
+#define				a01_06_12_map_bin_size 640
+#define				a01_06_12_map_bin_bank 10
+extern const unsigned char	a01_06_13_map_bin[640];
+#define				a01_06_13_map_bin_size 640
+#define				a01_06_13_map_bin_bank 10
+extern const unsigned char	a01_06_14_map_bin[640];
+#define				a01_06_14_map_bin_size 640
+#define				a01_06_14_map_bin_bank 10
+extern const unsigned char	a01_06_15_map_bin[640];
+#define				a01_06_15_map_bin_size 640
+#define				a01_06_15_map_bin_bank 10
+extern const unsigned char	a01_07_00_map_bin[640];
+#define				a01_07_00_map_bin_size 640
+#define				a01_07_00_map_bin_bank 10
+extern const unsigned char	a01_07_01_map_bin[640];
+#define				a01_07_01_map_bin_size 640
+#define				a01_07_01_map_bin_bank 10
+extern const unsigned char	a01_07_02_map_bin[640];
+#define				a01_07_02_map_bin_size 640
+#define				a01_07_02_map_bin_bank 10
+extern const unsigned char	a01_07_03_map_bin[640];
+#define				a01_07_03_map_bin_size 640
+#define				a01_07_03_map_bin_bank 10
+extern const unsigned char	a01_07_04_map_bin[640];
+#define				a01_07_04_map_bin_size 640
+#define				a01_07_04_map_bin_bank 10
+extern const unsigned char	a01_07_05_map_bin[640];
+#define				a01_07_05_map_bin_size 640
+#define				a01_07_05_map_bin_bank 10
+extern const unsigned char	a01_07_06_map_bin[640];
+#define				a01_07_06_map_bin_size 640
+#define				a01_07_06_map_bin_bank 10
+extern const unsigned char	a01_07_07_map_bin[640];
+#define				a01_07_07_map_bin_size 640
+#define				a01_07_07_map_bin_bank 10
+extern const unsigned char	a01_07_08_map_bin[640];
+#define				a01_07_08_map_bin_size 640
+#define				a01_07_08_map_bin_bank 10
+extern const unsigned char	a01_07_09_map_bin[640];
+#define				a01_07_09_map_bin_size 640
+#define				a01_07_09_map_bin_bank 10
+extern const unsigned char	a01_07_10_map_bin[640];
+#define				a01_07_10_map_bin_size 640
+#define				a01_07_10_map_bin_bank 10
+extern const unsigned char	a01_07_11_map_bin[640];
+#define				a01_07_11_map_bin_size 640
+#define				a01_07_11_map_bin_bank 10
+extern const unsigned char	a01_07_12_map_bin[640];
+#define				a01_07_12_map_bin_size 640
+#define				a01_07_12_map_bin_bank 10
+extern const unsigned char	a01_07_13_map_bin[640];
+#define				a01_07_13_map_bin_size 640
+#define				a01_07_13_map_bin_bank 10
+extern const unsigned char	a01_07_14_map_bin[640];
+#define				a01_07_14_map_bin_size 640
+#define				a01_07_14_map_bin_bank 10
+extern const unsigned char	animation_forest_flower_tiles_bin[96];
+#define				animation_forest_flower_tiles_bin_size 96
+#define				animation_forest_flower_tiles_bin_bank 10
+extern const unsigned char	animation_small_gem_tiles_bin[96];
+#define				animation_small_gem_tiles_bin_size 96
+#define				animation_small_gem_tiles_bin_bank 10
+extern const unsigned char	animation_swamp_flower_tiles_bin[96];
+#define				animation_swamp_flower_tiles_bin_size 96
+#define				animation_swamp_flower_tiles_bin_bank 10
+extern const unsigned char	hud_map_bin[80];
+#define				hud_map_bin_size 80
+#define				hud_map_bin_bank 10

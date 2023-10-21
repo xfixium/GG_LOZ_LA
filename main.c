@@ -25,7 +25,6 @@
 #include ".\banks\bank21.h"
 #include ".\banks\bank22.h"
 #include ".\banks\bank23.h"
-#include ".\banks\bank24.h"
 
 // Event types
 #define EVENT_BEFORE_VBLANK 0
@@ -62,7 +61,10 @@
 #define MAP_TYPE_A2_BOTTLE_GROTTO_01 20
 #define MAP_TYPE_A2_BOTTLE_GROTTO_02 21
 #define MAP_TYPE_A2_KEY_CAVERN_01 22
+#define MAP_TYPE_A2_KEY_CAVERN_02 23
 #define MAP_TYPE_A2_ANGLERS_TUNNEL_01 24
+#define MAP_TYPE_A2_ANGLERS_TUNNEL_02 25
+#define MAP_TYPE_A2_CATFISHS_MAW_01 26
 
 // Game states
 #define GAME_STATE_TITLE 1
@@ -141,7 +143,7 @@ const unsigned char* Area01MapBins[256] = {
 };
 
 // Area 02 map bin banks (Temp)
-unsigned char Area02MapBanks[128] = {
+unsigned char Area02MapBanks[176] = {
     a02_00_00_map_bin_bank, a02_00_01_map_bin_bank, a02_00_02_map_bin_bank, a02_00_03_map_bin_bank, a02_00_04_map_bin_bank, a02_00_05_map_bin_bank, a02_00_06_map_bin_bank, a02_00_07_map_bin_bank, a02_00_08_map_bin_bank, a02_00_09_map_bin_bank, a02_00_10_map_bin_bank, a02_00_11_map_bin_bank, a02_00_12_map_bin_bank, a02_00_13_map_bin_bank, a02_00_14_map_bin_bank, a02_00_15_map_bin_bank,
     a02_01_00_map_bin_bank, a02_01_01_map_bin_bank, a02_01_02_map_bin_bank, a02_01_03_map_bin_bank, a02_01_04_map_bin_bank, a02_01_05_map_bin_bank, a02_01_06_map_bin_bank, a02_01_07_map_bin_bank, a02_01_08_map_bin_bank, a02_01_09_map_bin_bank, a02_01_10_map_bin_bank, a02_01_11_map_bin_bank, a02_01_12_map_bin_bank, a02_01_13_map_bin_bank, a02_01_14_map_bin_bank, a02_01_15_map_bin_bank,
     a02_02_00_map_bin_bank, a02_02_01_map_bin_bank, a02_02_02_map_bin_bank, a02_02_03_map_bin_bank, a02_02_04_map_bin_bank, a02_02_05_map_bin_bank, a02_02_06_map_bin_bank, a02_02_07_map_bin_bank, a02_02_08_map_bin_bank, a02_02_09_map_bin_bank, a02_02_10_map_bin_bank, a02_02_11_map_bin_bank, a02_02_12_map_bin_bank, a02_02_13_map_bin_bank, a02_02_14_map_bin_bank, a02_02_15_map_bin_bank,
@@ -150,10 +152,13 @@ unsigned char Area02MapBanks[128] = {
     a02_05_00_map_bin_bank, a02_05_01_map_bin_bank, a02_05_02_map_bin_bank, a02_05_03_map_bin_bank, a02_05_04_map_bin_bank, a02_05_05_map_bin_bank, a02_05_06_map_bin_bank, a02_05_07_map_bin_bank, a02_05_08_map_bin_bank, a02_05_09_map_bin_bank, a02_05_10_map_bin_bank, a02_05_11_map_bin_bank, a02_05_12_map_bin_bank, a02_05_13_map_bin_bank, a02_05_14_map_bin_bank, a02_05_15_map_bin_bank,
     a02_06_00_map_bin_bank, a02_06_01_map_bin_bank, a02_06_02_map_bin_bank, a02_06_03_map_bin_bank, a02_06_04_map_bin_bank, a02_06_05_map_bin_bank, a02_06_06_map_bin_bank, a02_06_07_map_bin_bank, a02_06_08_map_bin_bank, a02_06_09_map_bin_bank, a02_06_10_map_bin_bank, a02_06_11_map_bin_bank, a02_06_12_map_bin_bank, a02_06_13_map_bin_bank, a02_06_14_map_bin_bank, a02_06_15_map_bin_bank,
     a02_07_00_map_bin_bank, a02_07_01_map_bin_bank, a02_07_02_map_bin_bank, a02_07_03_map_bin_bank, a02_07_04_map_bin_bank, a02_07_05_map_bin_bank, a02_07_06_map_bin_bank, a02_07_07_map_bin_bank, a02_07_08_map_bin_bank, a02_07_09_map_bin_bank, a02_07_10_map_bin_bank, a02_07_11_map_bin_bank, a02_07_12_map_bin_bank, a02_07_13_map_bin_bank, a02_07_14_map_bin_bank, a02_07_15_map_bin_bank,
+    a02_08_00_map_bin_bank, a02_08_01_map_bin_bank, a02_08_02_map_bin_bank, a02_08_03_map_bin_bank, a02_08_04_map_bin_bank, a02_08_05_map_bin_bank, a02_08_06_map_bin_bank, a02_08_07_map_bin_bank, a02_08_08_map_bin_bank, a02_08_09_map_bin_bank, a02_08_10_map_bin_bank, a02_08_11_map_bin_bank, a02_08_12_map_bin_bank, a02_08_13_map_bin_bank, a02_08_14_map_bin_bank, a02_08_15_map_bin_bank,
+    a02_09_00_map_bin_bank, a02_09_01_map_bin_bank, a02_09_02_map_bin_bank, a02_09_03_map_bin_bank, a02_09_04_map_bin_bank, a02_09_05_map_bin_bank, a02_09_06_map_bin_bank, a02_09_07_map_bin_bank, a02_09_08_map_bin_bank, a02_09_09_map_bin_bank, a02_09_10_map_bin_bank, a02_09_11_map_bin_bank, a02_09_12_map_bin_bank, a02_09_13_map_bin_bank, a02_09_14_map_bin_bank, a02_09_15_map_bin_bank,
+    a02_10_00_map_bin_bank, a02_10_01_map_bin_bank, a02_10_02_map_bin_bank, a02_10_03_map_bin_bank, a02_10_04_map_bin_bank, a02_10_05_map_bin_bank, a02_10_06_map_bin_bank, a02_10_07_map_bin_bank, a02_10_08_map_bin_bank, a02_10_09_map_bin_bank, a02_10_10_map_bin_bank, a02_10_11_map_bin_bank, a02_10_12_map_bin_bank, a02_10_13_map_bin_bank, a02_10_14_map_bin_bank, a02_10_15_map_bin_bank,
 };
 
 // Area 02 map bin pointers (Temp)
-const unsigned char* Area02MapBins[128] = {
+const unsigned char* Area02MapBins[176] = {
     a02_00_00_map_bin, a02_00_01_map_bin, a02_00_02_map_bin, a02_00_03_map_bin, a02_00_04_map_bin, a02_00_05_map_bin, a02_00_06_map_bin, a02_00_07_map_bin, a02_00_08_map_bin, a02_00_09_map_bin, a02_00_10_map_bin, a02_00_11_map_bin, a02_00_12_map_bin, a02_00_13_map_bin, a02_00_14_map_bin, a02_00_15_map_bin,
     a02_01_00_map_bin, a02_01_01_map_bin, a02_01_02_map_bin, a02_01_03_map_bin, a02_01_04_map_bin, a02_01_05_map_bin, a02_01_06_map_bin, a02_01_07_map_bin, a02_01_08_map_bin, a02_01_09_map_bin, a02_01_10_map_bin, a02_01_11_map_bin, a02_01_12_map_bin, a02_01_13_map_bin, a02_01_14_map_bin, a02_01_15_map_bin,
     a02_02_00_map_bin, a02_02_01_map_bin, a02_02_02_map_bin, a02_02_03_map_bin, a02_02_04_map_bin, a02_02_05_map_bin, a02_02_06_map_bin, a02_02_07_map_bin, a02_02_08_map_bin, a02_02_09_map_bin, a02_02_10_map_bin, a02_02_11_map_bin, a02_02_12_map_bin, a02_02_13_map_bin, a02_02_14_map_bin, a02_02_15_map_bin,
@@ -162,6 +167,9 @@ const unsigned char* Area02MapBins[128] = {
     a02_05_00_map_bin, a02_05_01_map_bin, a02_05_02_map_bin, a02_05_03_map_bin, a02_05_04_map_bin, a02_05_05_map_bin, a02_05_06_map_bin, a02_05_07_map_bin, a02_05_08_map_bin, a02_05_09_map_bin, a02_05_10_map_bin, a02_05_11_map_bin, a02_05_12_map_bin, a02_05_13_map_bin, a02_05_14_map_bin, a02_05_15_map_bin,
     a02_06_00_map_bin, a02_06_01_map_bin, a02_06_02_map_bin, a02_06_03_map_bin, a02_06_04_map_bin, a02_06_05_map_bin, a02_06_06_map_bin, a02_06_07_map_bin, a02_06_08_map_bin, a02_06_09_map_bin, a02_06_10_map_bin, a02_06_11_map_bin, a02_06_12_map_bin, a02_06_13_map_bin, a02_06_14_map_bin, a02_06_15_map_bin,
     a02_07_00_map_bin, a02_07_01_map_bin, a02_07_02_map_bin, a02_07_03_map_bin, a02_07_04_map_bin, a02_07_05_map_bin, a02_07_06_map_bin, a02_07_07_map_bin, a02_07_08_map_bin, a02_07_09_map_bin, a02_07_10_map_bin, a02_07_11_map_bin, a02_07_12_map_bin, a02_07_13_map_bin, a02_07_14_map_bin, a02_07_15_map_bin,
+    a02_08_00_map_bin, a02_08_01_map_bin, a02_08_02_map_bin, a02_08_03_map_bin, a02_08_04_map_bin, a02_08_05_map_bin, a02_08_06_map_bin, a02_08_07_map_bin, a02_08_08_map_bin, a02_08_09_map_bin, a02_08_10_map_bin, a02_08_11_map_bin, a02_08_12_map_bin, a02_08_13_map_bin, a02_08_14_map_bin, a02_08_15_map_bin,
+    a02_09_00_map_bin, a02_09_01_map_bin, a02_09_02_map_bin, a02_09_03_map_bin, a02_09_04_map_bin, a02_09_05_map_bin, a02_09_06_map_bin, a02_09_07_map_bin, a02_09_08_map_bin, a02_09_09_map_bin, a02_09_10_map_bin, a02_09_11_map_bin, a02_09_12_map_bin, a02_09_13_map_bin, a02_09_14_map_bin, a02_09_15_map_bin,
+    a02_10_00_map_bin, a02_10_01_map_bin, a02_10_02_map_bin, a02_10_03_map_bin, a02_10_04_map_bin, a02_10_05_map_bin, a02_10_06_map_bin, a02_10_07_map_bin, a02_10_08_map_bin, a02_10_09_map_bin, a02_10_10_map_bin, a02_10_11_map_bin, a02_10_12_map_bin, a02_10_13_map_bin, a02_10_14_map_bin, a02_10_15_map_bin,
 };
 
 // Area 03 map bin banks (Temp)
@@ -273,47 +281,58 @@ void UpdatePalette(void) {
             if (MapType == MAP_TYPE_A1_BASE) {
                 return;
             } else if (MapType == MAP_TYPE_A1_BEACH || MapType == MAP_TYPE_A1_DESERT) {
-                SMS_mapROMBank(a01_02_bg_pal_bin_bank);
-                GG_loadBGPalette(a01_02_bg_pal_bin);
+                SMS_mapROMBank(a01_overworld_02_bg_pal_bin_bank);
+                GG_loadBGPalette(a01_overworld_02_bg_pal_bin);
             } else if (MapType == MAP_TYPE_A1_CEMETARY) {
-                SMS_mapROMBank(a01_04_bg_pal_bin_bank);
-                GG_loadBGPalette(a01_04_bg_pal_bin);
+                SMS_mapROMBank(a01_overworld_04_bg_pal_bin_bank);
+                GG_loadBGPalette(a01_overworld_04_bg_pal_bin);
             } else {
                 // Purple village building maps
                 if (MapId == 32 || MapId == 48 || MapId == 49 || MapId == 64 || MapId == 129 || MapId == 179) {
-                    SMS_mapROMBank(a01_03_bg_pal_bin_bank);
-                    GG_loadBGPalette(a01_03_bg_pal_bin);
+                    SMS_mapROMBank(a01_overworld_03_bg_pal_bin_bank);
+                    GG_loadBGPalette(a01_overworld_03_bg_pal_bin);
                 } else {
-                    SMS_mapROMBank(a01_01_bg_pal_bin_bank);
-                    GG_loadBGPalette(a01_01_bg_pal_bin);
+                    SMS_mapROMBank(a01_overworld_01_bg_pal_bin_bank);
+                    GG_loadBGPalette(a01_overworld_01_bg_pal_bin);
                 }
             }
         break;
         case GAME_STATE_AREA_02:
-            if (MapType == MAP_TYPE_A2_TAIL_CAVE_01) {
-                SMS_mapROMBank(a02_01_bg_pal_bin_bank);
-                GG_loadBGPalette(a02_01_bg_pal_bin);
-            } else if (MapType == MAP_TYPE_A2_TAIL_CAVE_02) {
-                SMS_mapROMBank(a02_02_bg_pal_bin_bank);
-                GG_loadBGPalette(a02_02_bg_pal_bin);
-            } else if (MapType == MAP_TYPE_A2_BOTTLE_GROTTO_01) {
-                SMS_mapROMBank(a02_03_bg_pal_bin_bank);
-                GG_loadBGPalette(a02_03_bg_pal_bin);
-            } else if (MapType == MAP_TYPE_A2_BOTTLE_GROTTO_02) {
-                SMS_mapROMBank(a02_04_bg_pal_bin_bank);
-                GG_loadBGPalette(a02_04_bg_pal_bin);
-            } else if (MapType == MAP_TYPE_A2_KEY_CAVERN_01) {
-                SMS_mapROMBank(a02_05_bg_pal_bin_bank);
-                GG_loadBGPalette(a02_05_bg_pal_bin);
-            } else if (MapType == MAP_TYPE_A2_ANGLERS_TUNNEL_01) {
-                SMS_mapROMBank(a02_07_bg_pal_bin_bank);
-                GG_loadBGPalette(a02_07_bg_pal_bin);
+            switch (MapType) {
+                case MAP_TYPE_A2_TAIL_CAVE_01:
+                    SMS_mapROMBank(a02_tail_cave_01_bg_pal_bin_bank);
+                    GG_loadBGPalette(a02_tail_cave_01_bg_pal_bin);
+                break;
+                case MAP_TYPE_A2_TAIL_CAVE_02:
+                    SMS_mapROMBank(a02_tail_cave_02_bg_pal_bin_bank);
+                    GG_loadBGPalette(a02_tail_cave_02_bg_pal_bin);
+                break;
+                case MAP_TYPE_A2_BOTTLE_GROTTO_01:
+                    SMS_mapROMBank(a02_bottle_grotto_01_bg_pal_bin_bank);
+                    GG_loadBGPalette(a02_bottle_grotto_01_bg_pal_bin);
+                break;
+                case MAP_TYPE_A2_BOTTLE_GROTTO_02:
+                    SMS_mapROMBank(a02_bottle_grotto_02_bg_pal_bin_bank);
+                    GG_loadBGPalette(a02_bottle_grotto_02_bg_pal_bin);
+                break;
+                case MAP_TYPE_A2_KEY_CAVERN_01:
+                    SMS_mapROMBank(a02_key_cavern_01_bg_pal_bin_bank);
+                    GG_loadBGPalette(a02_key_cavern_01_bg_pal_bin);
+                break;
+                case MAP_TYPE_A2_ANGLERS_TUNNEL_01:
+                    SMS_mapROMBank(a02_anglers_tunnel_01_bg_pal_bin_bank);
+                    GG_loadBGPalette(a02_anglers_tunnel_01_bg_pal_bin);
+                break;
+                case MAP_TYPE_A2_CATFISHS_MAW_01:
+                    SMS_mapROMBank(a02_catfishs_maw_01_bg_pal_bin_bank);
+                    GG_loadBGPalette(a02_catfishs_maw_01_bg_pal_bin);
+                break;
             }
         break;
         case GAME_STATE_AREA_03:
             if (MapType == MAP_TYPE_A2_TAIL_CAVE_01) {
-                SMS_mapROMBank(a02_01_bg_pal_bin_bank);
-                GG_loadBGPalette(a02_01_bg_pal_bin);
+                SMS_mapROMBank(a01_overworld_01_bg_pal_bin_bank);
+                GG_loadBGPalette(a01_overworld_01_bg_pal_bin);
             }
         break;
     }
@@ -330,72 +349,74 @@ void UpdateGameStateGraphics(void) {
                 SubStateMax = 3;
                 TimerMax = 10;
                 PrevMapType = MapType;
+                SMS_mapROMBank(a01_base_tiles_bin_bank);
+                SMS_loadTiles(a01_base_tiles_bin, 304, 3584);
                 switch (MapType) {
                     case MAP_TYPE_A1_ANGLERS_TUNNEL:
                         SMS_mapROMBank(a01_anglers_tunnel_tiles_bin_bank);
-                        SMS_loadTiles(a01_anglers_tunnel_tiles_bin, 256, 5120);
+                        SMS_loadTiles(a01_anglers_tunnel_tiles_bin, 256, 1536);
                     break;
                     case MAP_TYPE_A1_ANIMAL_VILLAGE:
                         SMS_mapROMBank(a01_animal_village_tiles_bin_bank);
-                        SMS_loadTiles(a01_animal_village_tiles_bin, 256, 5120);
+                        SMS_loadTiles(a01_animal_village_tiles_bin, 256, 1536);
                     break;
                     case MAP_TYPE_A1_BEACH:
                         SubState = 0;
                         SubStateMax = 8;
                         SMS_mapROMBank(a01_beach_tiles_bin_bank);
-                        SMS_loadTiles(a01_beach_tiles_bin, 256, 5120);
+                        SMS_loadTiles(a01_beach_tiles_bin, 256, 1536);
                     break;
                     case MAP_TYPE_A1_BOTTLE_GROTTO:
                         SMS_mapROMBank(a01_bottle_grotto_tiles_bin_bank);
-                        SMS_loadTiles(a01_bottle_grotto_tiles_bin, 256, 5120);
+                        SMS_loadTiles(a01_bottle_grotto_tiles_bin, 256, 1536);
                     break;
                     case MAP_TYPE_A1_CATFISH_MAW:
                         SMS_mapROMBank(a01_catfish_maw_tiles_bin_bank);
-                        SMS_loadTiles(a01_catfish_maw_tiles_bin, 256, 5120);
+                        SMS_loadTiles(a01_catfish_maw_tiles_bin, 256, 1536);
                     break;
                     case MAP_TYPE_A1_CEMETARY:
                         SMS_mapROMBank(a01_cemetary_tiles_bin_bank);
-                        SMS_loadTiles(a01_cemetary_tiles_bin, 256, 5120);
+                        SMS_loadTiles(a01_cemetary_tiles_bin, 256, 1536);
                     break;
                     case MAP_TYPE_A1_DESERT:
                         SMS_mapROMBank(a01_desert_tiles_bin_bank);
-                        SMS_loadTiles(a01_desert_tiles_bin, 256, 5120);
+                        SMS_loadTiles(a01_desert_tiles_bin, 256, 1536);
                     break;
                     case MAP_TYPE_A1_EAGLES_TOWER:
                         SMS_mapROMBank(a01_eagles_tower_tiles_bin_bank);
-                        SMS_loadTiles(a01_eagles_tower_tiles_bin, 256, 5120);
+                        SMS_loadTiles(a01_eagles_tower_tiles_bin, 256, 1536);
                     break;
                     case MAP_TYPE_A1_EGG:
                         SMS_mapROMBank(a01_egg_tiles_bin_bank);
-                        SMS_loadTiles(a01_egg_tiles_bin, 256, 5120);
+                        SMS_loadTiles(a01_egg_tiles_bin, 256, 1536);
                     break;
                     case MAP_TYPE_A1_FOREST:
                         SMS_mapROMBank(a01_forest_tiles_bin_bank);
-                        SMS_loadTiles(a01_forest_tiles_bin, 256, 5120);
+                        SMS_loadTiles(a01_forest_tiles_bin, 256, 1536);
                     break;
                     case MAP_TYPE_A1_MABE_VILLAGE:
                         SMS_mapROMBank(a01_mabe_village_tiles_bin_bank);
-                        SMS_loadTiles(a01_mabe_village_tiles_bin, 256, 5120);
+                        SMS_loadTiles(a01_mabe_village_tiles_bin, 256, 1536);
                     break;
                     case MAP_TYPE_A1_MANSION:
                         SMS_mapROMBank(a01_mansion_tiles_bin_bank);
-                        SMS_loadTiles(a01_mansion_tiles_bin, 256, 5120);
+                        SMS_loadTiles(a01_mansion_tiles_bin, 256, 1536);
                     break;
                     case MAP_TYPE_A1_SHOPS:
                         SMS_mapROMBank(a01_shops_tiles_bin_bank);
-                        SMS_loadTiles(a01_shops_tiles_bin, 256, 5120);
+                        SMS_loadTiles(a01_shops_tiles_bin, 256, 1536);
                     break;
                     case MAP_TYPE_A1_SWAMP:
                         SMS_mapROMBank(a01_swamp_tiles_bin_bank);
-                        SMS_loadTiles(a01_swamp_tiles_bin, 256, 5120);
+                        SMS_loadTiles(a01_swamp_tiles_bin, 256, 1536);
                     break;
                     case MAP_TYPE_A1_TAIL_CAVE:
                         SMS_mapROMBank(a01_tail_cave_tiles_bin_bank);
-                        SMS_loadTiles(a01_tail_cave_tiles_bin, 256, 5120);
+                        SMS_loadTiles(a01_tail_cave_tiles_bin, 256, 1536);
                     break;
                     case MAP_TYPE_A1_TURTLE_ROCK:
                         SMS_mapROMBank(a01_turtle_rock_tiles_bin_bank);
-                        SMS_loadTiles(a01_turtle_rock_tiles_bin, 256, 5120);
+                        SMS_loadTiles(a01_turtle_rock_tiles_bin, 256, 1536);
                     break;
                 }
             }
@@ -432,8 +453,16 @@ void UpdateGameStateGraphics(void) {
                         SMS_loadTiles(a02_key_cavern_01_tiles_bin, 256, a02_key_cavern_01_tiles_bin_size);
                     break;
                     case MAP_TYPE_A2_ANGLERS_TUNNEL_01:
+                        TimerMax2 = 15;
+                        SubStateMax2 = 3;
                         SMS_mapROMBank(a02_anglers_tunnel_01_tiles_bin_bank);
                         SMS_loadTiles(a02_anglers_tunnel_01_tiles_bin, 256, a02_anglers_tunnel_01_tiles_bin_size);
+                    break;
+                    case MAP_TYPE_A2_CATFISHS_MAW_01:
+                        TimerMax2 = 15;
+                        SubStateMax2 = 3;
+                        SMS_mapROMBank(a02_catfishs_maw_01_tiles_bin_bank);
+                        SMS_loadTiles(a02_catfishs_maw_01_tiles_bin, 256, a02_catfishs_maw_01_tiles_bin_size);
                     break;
                 }
             }
@@ -625,13 +654,46 @@ void UpdateEnvironmentAnimations(void) {
         break;
         case GAME_STATE_AREA_02:
             switch (MapType) {
+                case MAP_TYPE_A2_ANGLERS_TUNNEL_01:
+                    if (IncrementTimer(TimerMax) == true) {
+                        SMS_mapROMBank(animation_torches_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy64(8224, &animation_torches_tiles_bin[SubState << 7]);
+                        SMS_mapROMBank(animation_torches_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy32(8288, &animation_torches_tiles_bin[(SubState << 7) + 64]);
+                        SubState++;
+                    }
+                    if (IncrementTimer2(TimerMax2) == true) {
+                        SMS_mapROMBank(animation_torches_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy32(8320, &animation_torches_tiles_bin[(SubState2 << 7) + 96]);
+                        SMS_mapROMBank(animation_water_01_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy128(9280, &animation_water_01_tiles_bin[SubState2 << 7]);
+                        SubState2++;
+                    }
+                break;
                 case MAP_TYPE_A2_KEY_CAVERN_01:
                     if (IncrementTimer2(TimerMax2) == true) {
                         SMS_mapROMBank(animation_belt_tiles_bin_bank);
                         UNSAFE_SMS_VRAMmemcpy64(9408, &animation_belt_tiles_bin[SubState2 << 6]);
                         SubState2++;
                     }
-                case MAP_TYPE_A2_ANGLERS_TUNNEL_01:
+                    if (IncrementTimer(TimerMax) == true) {
+                        SMS_mapROMBank(animation_torches_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy128(8224, &animation_torches_tiles_bin[SubState << 7]);
+                        SubState++;
+                    }
+                break;
+                case MAP_TYPE_A2_CATFISHS_MAW_01:
+                    if (IncrementTimer2(TimerMax2) == true) {
+                        SMS_mapROMBank(animation_water_02_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy64(9280, &animation_water_02_tiles_bin[SubState2 << 6]);
+                        SubState2++;
+                    }
+                    if (IncrementTimer(TimerMax) == true) {
+                        SMS_mapROMBank(animation_torches_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy128(8224, &animation_torches_tiles_bin[SubState << 7]);
+                        SubState++;
+                    }
+                break;
                 case MAP_TYPE_A2_BOTTLE_GROTTO_01:
                 case MAP_TYPE_A2_TAIL_CAVE_01:
                     if (IncrementTimer(TimerMax) == true) {
