@@ -25,6 +25,8 @@
 #include ".\banks\bank21.h"
 #include ".\banks\bank22.h"
 #include ".\banks\bank23.h"
+#include ".\banks\bank24.h"
+#include ".\banks\bank25.h"
 
 // Event types
 #define EVENT_BEFORE_VBLANK 0
@@ -65,6 +67,9 @@
 #define MAP_TYPE_A2_ANGLERS_TUNNEL_01 24
 #define MAP_TYPE_A2_ANGLERS_TUNNEL_02 25
 #define MAP_TYPE_A2_CATFISHS_MAW_01 26
+#define MAP_TYPE_A2_CATFISHS_MAW_02 27
+#define MAP_TYPE_A2_FACE_SHRINE_01 28
+#define MAP_TYPE_A2_FACE_SHRINE_02 29
 
 // Game states
 #define GAME_STATE_TITLE 1
@@ -143,7 +148,7 @@ const unsigned char* Area01MapBins[256] = {
 };
 
 // Area 02 map bin banks (Temp)
-unsigned char Area02MapBanks[176] = {
+unsigned char Area02MapBanks[224] = {
     a02_00_00_map_bin_bank, a02_00_01_map_bin_bank, a02_00_02_map_bin_bank, a02_00_03_map_bin_bank, a02_00_04_map_bin_bank, a02_00_05_map_bin_bank, a02_00_06_map_bin_bank, a02_00_07_map_bin_bank, a02_00_08_map_bin_bank, a02_00_09_map_bin_bank, a02_00_10_map_bin_bank, a02_00_11_map_bin_bank, a02_00_12_map_bin_bank, a02_00_13_map_bin_bank, a02_00_14_map_bin_bank, a02_00_15_map_bin_bank,
     a02_01_00_map_bin_bank, a02_01_01_map_bin_bank, a02_01_02_map_bin_bank, a02_01_03_map_bin_bank, a02_01_04_map_bin_bank, a02_01_05_map_bin_bank, a02_01_06_map_bin_bank, a02_01_07_map_bin_bank, a02_01_08_map_bin_bank, a02_01_09_map_bin_bank, a02_01_10_map_bin_bank, a02_01_11_map_bin_bank, a02_01_12_map_bin_bank, a02_01_13_map_bin_bank, a02_01_14_map_bin_bank, a02_01_15_map_bin_bank,
     a02_02_00_map_bin_bank, a02_02_01_map_bin_bank, a02_02_02_map_bin_bank, a02_02_03_map_bin_bank, a02_02_04_map_bin_bank, a02_02_05_map_bin_bank, a02_02_06_map_bin_bank, a02_02_07_map_bin_bank, a02_02_08_map_bin_bank, a02_02_09_map_bin_bank, a02_02_10_map_bin_bank, a02_02_11_map_bin_bank, a02_02_12_map_bin_bank, a02_02_13_map_bin_bank, a02_02_14_map_bin_bank, a02_02_15_map_bin_bank,
@@ -155,10 +160,13 @@ unsigned char Area02MapBanks[176] = {
     a02_08_00_map_bin_bank, a02_08_01_map_bin_bank, a02_08_02_map_bin_bank, a02_08_03_map_bin_bank, a02_08_04_map_bin_bank, a02_08_05_map_bin_bank, a02_08_06_map_bin_bank, a02_08_07_map_bin_bank, a02_08_08_map_bin_bank, a02_08_09_map_bin_bank, a02_08_10_map_bin_bank, a02_08_11_map_bin_bank, a02_08_12_map_bin_bank, a02_08_13_map_bin_bank, a02_08_14_map_bin_bank, a02_08_15_map_bin_bank,
     a02_09_00_map_bin_bank, a02_09_01_map_bin_bank, a02_09_02_map_bin_bank, a02_09_03_map_bin_bank, a02_09_04_map_bin_bank, a02_09_05_map_bin_bank, a02_09_06_map_bin_bank, a02_09_07_map_bin_bank, a02_09_08_map_bin_bank, a02_09_09_map_bin_bank, a02_09_10_map_bin_bank, a02_09_11_map_bin_bank, a02_09_12_map_bin_bank, a02_09_13_map_bin_bank, a02_09_14_map_bin_bank, a02_09_15_map_bin_bank,
     a02_10_00_map_bin_bank, a02_10_01_map_bin_bank, a02_10_02_map_bin_bank, a02_10_03_map_bin_bank, a02_10_04_map_bin_bank, a02_10_05_map_bin_bank, a02_10_06_map_bin_bank, a02_10_07_map_bin_bank, a02_10_08_map_bin_bank, a02_10_09_map_bin_bank, a02_10_10_map_bin_bank, a02_10_11_map_bin_bank, a02_10_12_map_bin_bank, a02_10_13_map_bin_bank, a02_10_14_map_bin_bank, a02_10_15_map_bin_bank,
+    a02_11_00_map_bin_bank, a02_11_01_map_bin_bank, a02_11_02_map_bin_bank, a02_11_03_map_bin_bank, a02_11_04_map_bin_bank, a02_11_05_map_bin_bank, a02_11_06_map_bin_bank, a02_11_07_map_bin_bank, a02_11_08_map_bin_bank, a02_11_09_map_bin_bank, a02_11_10_map_bin_bank, a02_11_11_map_bin_bank, a02_11_12_map_bin_bank, a02_11_13_map_bin_bank, a02_11_14_map_bin_bank, a02_11_15_map_bin_bank,
+    a02_12_00_map_bin_bank, a02_12_01_map_bin_bank, a02_12_02_map_bin_bank, a02_12_03_map_bin_bank, a02_12_04_map_bin_bank, a02_12_05_map_bin_bank, a02_12_06_map_bin_bank, a02_12_07_map_bin_bank, a02_12_08_map_bin_bank, a02_12_09_map_bin_bank, a02_12_10_map_bin_bank, a02_12_11_map_bin_bank, a02_12_12_map_bin_bank, a02_12_13_map_bin_bank, a02_12_14_map_bin_bank, a02_12_15_map_bin_bank,
+    a02_13_00_map_bin_bank, a02_13_01_map_bin_bank, a02_13_02_map_bin_bank, a02_13_03_map_bin_bank, a02_13_04_map_bin_bank, a02_13_05_map_bin_bank, a02_13_06_map_bin_bank, a02_13_07_map_bin_bank, a02_13_08_map_bin_bank, a02_13_09_map_bin_bank, a02_13_10_map_bin_bank, a02_13_11_map_bin_bank, a02_13_12_map_bin_bank, a02_13_13_map_bin_bank, a02_13_14_map_bin_bank, a02_13_15_map_bin_bank,
 };
 
 // Area 02 map bin pointers (Temp)
-const unsigned char* Area02MapBins[176] = {
+const unsigned char* Area02MapBins[224] = {
     a02_00_00_map_bin, a02_00_01_map_bin, a02_00_02_map_bin, a02_00_03_map_bin, a02_00_04_map_bin, a02_00_05_map_bin, a02_00_06_map_bin, a02_00_07_map_bin, a02_00_08_map_bin, a02_00_09_map_bin, a02_00_10_map_bin, a02_00_11_map_bin, a02_00_12_map_bin, a02_00_13_map_bin, a02_00_14_map_bin, a02_00_15_map_bin,
     a02_01_00_map_bin, a02_01_01_map_bin, a02_01_02_map_bin, a02_01_03_map_bin, a02_01_04_map_bin, a02_01_05_map_bin, a02_01_06_map_bin, a02_01_07_map_bin, a02_01_08_map_bin, a02_01_09_map_bin, a02_01_10_map_bin, a02_01_11_map_bin, a02_01_12_map_bin, a02_01_13_map_bin, a02_01_14_map_bin, a02_01_15_map_bin,
     a02_02_00_map_bin, a02_02_01_map_bin, a02_02_02_map_bin, a02_02_03_map_bin, a02_02_04_map_bin, a02_02_05_map_bin, a02_02_06_map_bin, a02_02_07_map_bin, a02_02_08_map_bin, a02_02_09_map_bin, a02_02_10_map_bin, a02_02_11_map_bin, a02_02_12_map_bin, a02_02_13_map_bin, a02_02_14_map_bin, a02_02_15_map_bin,
@@ -170,6 +178,9 @@ const unsigned char* Area02MapBins[176] = {
     a02_08_00_map_bin, a02_08_01_map_bin, a02_08_02_map_bin, a02_08_03_map_bin, a02_08_04_map_bin, a02_08_05_map_bin, a02_08_06_map_bin, a02_08_07_map_bin, a02_08_08_map_bin, a02_08_09_map_bin, a02_08_10_map_bin, a02_08_11_map_bin, a02_08_12_map_bin, a02_08_13_map_bin, a02_08_14_map_bin, a02_08_15_map_bin,
     a02_09_00_map_bin, a02_09_01_map_bin, a02_09_02_map_bin, a02_09_03_map_bin, a02_09_04_map_bin, a02_09_05_map_bin, a02_09_06_map_bin, a02_09_07_map_bin, a02_09_08_map_bin, a02_09_09_map_bin, a02_09_10_map_bin, a02_09_11_map_bin, a02_09_12_map_bin, a02_09_13_map_bin, a02_09_14_map_bin, a02_09_15_map_bin,
     a02_10_00_map_bin, a02_10_01_map_bin, a02_10_02_map_bin, a02_10_03_map_bin, a02_10_04_map_bin, a02_10_05_map_bin, a02_10_06_map_bin, a02_10_07_map_bin, a02_10_08_map_bin, a02_10_09_map_bin, a02_10_10_map_bin, a02_10_11_map_bin, a02_10_12_map_bin, a02_10_13_map_bin, a02_10_14_map_bin, a02_10_15_map_bin,
+    a02_11_00_map_bin, a02_11_01_map_bin, a02_11_02_map_bin, a02_11_03_map_bin, a02_11_04_map_bin, a02_11_05_map_bin, a02_11_06_map_bin, a02_11_07_map_bin, a02_11_08_map_bin, a02_11_09_map_bin, a02_11_10_map_bin, a02_11_11_map_bin, a02_11_12_map_bin, a02_11_13_map_bin, a02_11_14_map_bin, a02_11_15_map_bin,
+    a02_12_00_map_bin, a02_12_01_map_bin, a02_12_02_map_bin, a02_12_03_map_bin, a02_12_04_map_bin, a02_12_05_map_bin, a02_12_06_map_bin, a02_12_07_map_bin, a02_12_08_map_bin, a02_12_09_map_bin, a02_12_10_map_bin, a02_12_11_map_bin, a02_12_12_map_bin, a02_12_13_map_bin, a02_12_14_map_bin, a02_12_15_map_bin,
+    a02_13_00_map_bin, a02_13_01_map_bin, a02_13_02_map_bin, a02_13_03_map_bin, a02_13_04_map_bin, a02_13_05_map_bin, a02_13_06_map_bin, a02_13_07_map_bin, a02_13_08_map_bin, a02_13_09_map_bin, a02_13_10_map_bin, a02_13_11_map_bin, a02_13_12_map_bin, a02_13_13_map_bin, a02_13_14_map_bin, a02_13_15_map_bin,
 };
 
 // Area 03 map bin banks (Temp)
@@ -327,6 +338,10 @@ void UpdatePalette(void) {
                     SMS_mapROMBank(a02_catfishs_maw_01_bg_pal_bin_bank);
                     GG_loadBGPalette(a02_catfishs_maw_01_bg_pal_bin);
                 break;
+                case MAP_TYPE_A2_FACE_SHRINE_01:
+                    SMS_mapROMBank(a02_face_shrine_01_bg_pal_bin_bank);
+                    GG_loadBGPalette(a02_face_shrine_01_bg_pal_bin);
+                break;
             }
         break;
         case GAME_STATE_AREA_03:
@@ -463,6 +478,10 @@ void UpdateGameStateGraphics(void) {
                         SubStateMax2 = 3;
                         SMS_mapROMBank(a02_catfishs_maw_01_tiles_bin_bank);
                         SMS_loadTiles(a02_catfishs_maw_01_tiles_bin, 256, a02_catfishs_maw_01_tiles_bin_size);
+                    break;
+                    case MAP_TYPE_A2_FACE_SHRINE_01:
+                        SMS_mapROMBank(a02_face_shrine_01_tiles_bin_bank);
+                        SMS_loadTiles(a02_face_shrine_01_tiles_bin, 256, a02_face_shrine_01_tiles_bin_size);
                     break;
                 }
             }
@@ -656,15 +675,15 @@ void UpdateEnvironmentAnimations(void) {
             switch (MapType) {
                 case MAP_TYPE_A2_ANGLERS_TUNNEL_01:
                     if (IncrementTimer(TimerMax) == true) {
-                        SMS_mapROMBank(animation_torches_tiles_bin_bank);
-                        UNSAFE_SMS_VRAMmemcpy64(8224, &animation_torches_tiles_bin[SubState << 7]);
-                        SMS_mapROMBank(animation_torches_tiles_bin_bank);
-                        UNSAFE_SMS_VRAMmemcpy32(8288, &animation_torches_tiles_bin[(SubState << 7) + 64]);
+                        SMS_mapROMBank(animation_torches_01_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy64(8224, &animation_torches_01_tiles_bin[SubState << 7]);
+                        SMS_mapROMBank(animation_torches_01_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy32(8288, &animation_torches_01_tiles_bin[(SubState << 7) + 64]);
                         SubState++;
                     }
                     if (IncrementTimer2(TimerMax2) == true) {
-                        SMS_mapROMBank(animation_torches_tiles_bin_bank);
-                        UNSAFE_SMS_VRAMmemcpy32(8320, &animation_torches_tiles_bin[(SubState2 << 7) + 96]);
+                        SMS_mapROMBank(animation_torches_01_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy32(8320, &animation_torches_01_tiles_bin[(SubState2 << 7) + 96]);
                         SMS_mapROMBank(animation_water_01_tiles_bin_bank);
                         UNSAFE_SMS_VRAMmemcpy128(9280, &animation_water_01_tiles_bin[SubState2 << 7]);
                         SubState2++;
@@ -672,13 +691,13 @@ void UpdateEnvironmentAnimations(void) {
                 break;
                 case MAP_TYPE_A2_KEY_CAVERN_01:
                     if (IncrementTimer2(TimerMax2) == true) {
-                        SMS_mapROMBank(animation_belt_tiles_bin_bank);
-                        UNSAFE_SMS_VRAMmemcpy64(9408, &animation_belt_tiles_bin[SubState2 << 6]);
+                        SMS_mapROMBank(animation_belt_01_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy64(9408, &animation_belt_01_tiles_bin[SubState2 << 6]);
                         SubState2++;
                     }
                     if (IncrementTimer(TimerMax) == true) {
-                        SMS_mapROMBank(animation_torches_tiles_bin_bank);
-                        UNSAFE_SMS_VRAMmemcpy128(8224, &animation_torches_tiles_bin[SubState << 7]);
+                        SMS_mapROMBank(animation_torches_01_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy128(8224, &animation_torches_01_tiles_bin[SubState << 7]);
                         SubState++;
                     }
                 break;
@@ -689,16 +708,28 @@ void UpdateEnvironmentAnimations(void) {
                         SubState2++;
                     }
                     if (IncrementTimer(TimerMax) == true) {
-                        SMS_mapROMBank(animation_torches_tiles_bin_bank);
-                        UNSAFE_SMS_VRAMmemcpy128(8224, &animation_torches_tiles_bin[SubState << 7]);
+                        SMS_mapROMBank(animation_torches_01_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy128(8224, &animation_torches_01_tiles_bin[SubState << 7]);
+                        SubState++;
+                    }
+                break;
+                case MAP_TYPE_A2_FACE_SHRINE_01:
+                    if (IncrementTimer2(TimerMax2) == true) {
+                        SMS_mapROMBank(animation_belt_02_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy64(9280, &animation_belt_02_tiles_bin[SubState2 << 6]);
+                        SubState2++;
+                    }
+                    if (IncrementTimer(TimerMax) == true) {
+                        SMS_mapROMBank(animation_torches_02_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy128(8224, &animation_torches_02_tiles_bin[SubState << 7]);
                         SubState++;
                     }
                 break;
                 case MAP_TYPE_A2_BOTTLE_GROTTO_01:
                 case MAP_TYPE_A2_TAIL_CAVE_01:
                     if (IncrementTimer(TimerMax) == true) {
-                        SMS_mapROMBank(animation_torches_tiles_bin_bank);
-                        UNSAFE_SMS_VRAMmemcpy128(8224, &animation_torches_tiles_bin[SubState << 7]);
+                        SMS_mapROMBank(animation_torches_01_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy128(8224, &animation_torches_01_tiles_bin[SubState << 7]);
                         SubState++;
                     }
                 break;
