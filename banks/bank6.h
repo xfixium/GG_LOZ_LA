@@ -1,3 +1,12 @@
+extern const unsigned char	a01_tail_cave_tiles_bin[1536];
+#define				a01_tail_cave_tiles_bin_size 1536
+#define				a01_tail_cave_tiles_bin_bank 6
+extern const unsigned char	a01_turtle_rock_tiles_bin[1536];
+#define				a01_turtle_rock_tiles_bin_size 1536
+#define				a01_turtle_rock_tiles_bin_bank 6
+extern const unsigned char	a02_bottle_grotto_02_tiles_bin[1504];
+#define				a02_bottle_grotto_02_tiles_bin_size 1504
+#define				a02_bottle_grotto_02_tiles_bin_bank 6
 extern const unsigned char	house_zora_tiles_bin[1312];
 #define				house_zora_tiles_bin_size 1312
 #define				house_zora_tiles_bin_bank 6
@@ -46,30 +55,6 @@ extern const unsigned char	a01_00_11_map_bin[640];
 extern const unsigned char	a01_00_12_map_bin[640];
 #define				a01_00_12_map_bin_size 640
 #define				a01_00_12_map_bin_bank 6
-extern const unsigned char	a01_00_13_map_bin[640];
-#define				a01_00_13_map_bin_size 640
-#define				a01_00_13_map_bin_bank 6
-extern const unsigned char	a01_00_14_map_bin[640];
-#define				a01_00_14_map_bin_size 640
-#define				a01_00_14_map_bin_bank 6
-extern const unsigned char	a01_00_15_map_bin[640];
-#define				a01_00_15_map_bin_size 640
-#define				a01_00_15_map_bin_bank 6
-extern const unsigned char	a01_01_00_map_bin[640];
-#define				a01_01_00_map_bin_size 640
-#define				a01_01_00_map_bin_bank 6
-extern const unsigned char	a01_01_01_map_bin[640];
-#define				a01_01_01_map_bin_size 640
-#define				a01_01_01_map_bin_bank 6
-extern const unsigned char	a01_01_02_map_bin[640];
-#define				a01_01_02_map_bin_size 640
-#define				a01_01_02_map_bin_bank 6
-extern const unsigned char	a01_01_03_map_bin[640];
-#define				a01_01_03_map_bin_size 640
-#define				a01_01_03_map_bin_bank 6
-extern const unsigned char	a01_map_types_bin[256];
-#define				a01_map_types_bin_size 256
-#define				a01_map_types_bin_bank 6
-extern const unsigned char	a02_bottle_grotto_02_bg_pal_bin[32];
-#define				a02_bottle_grotto_02_bg_pal_bin_size 32
-#define				a02_bottle_grotto_02_bg_pal_bin_bank 6
+extern const unsigned char	animation_rooster_tiles_bin[192];
+#define				animation_rooster_tiles_bin_size 192
+#define				animation_rooster_tiles_bin_bank 6

@@ -1,3 +1,24 @@
+extern const unsigned char	a02_00_07_map_bin[640];
+#define				a02_00_07_map_bin_size 640
+#define				a02_00_07_map_bin_bank 17
+extern const unsigned char	a02_00_08_map_bin[640];
+#define				a02_00_08_map_bin_size 640
+#define				a02_00_08_map_bin_bank 17
+extern const unsigned char	a02_00_09_map_bin[640];
+#define				a02_00_09_map_bin_size 640
+#define				a02_00_09_map_bin_bank 17
+extern const unsigned char	a02_00_10_map_bin[640];
+#define				a02_00_10_map_bin_size 640
+#define				a02_00_10_map_bin_bank 17
+extern const unsigned char	a02_00_11_map_bin[640];
+#define				a02_00_11_map_bin_size 640
+#define				a02_00_11_map_bin_bank 17
+extern const unsigned char	a02_00_12_map_bin[640];
+#define				a02_00_12_map_bin_size 640
+#define				a02_00_12_map_bin_bank 17
+extern const unsigned char	a02_00_13_map_bin[640];
+#define				a02_00_13_map_bin_size 640
+#define				a02_00_13_map_bin_bank 17
 extern const unsigned char	a02_00_14_map_bin[640];
 #define				a02_00_14_map_bin_size 640
 #define				a02_00_14_map_bin_bank 17
@@ -52,24 +73,3 @@ extern const unsigned char	a02_01_14_map_bin[640];
 extern const unsigned char	a02_01_15_map_bin[640];
 #define				a02_01_15_map_bin_size 640
 #define				a02_01_15_map_bin_bank 17
-extern const unsigned char	a02_02_00_map_bin[640];
-#define				a02_02_00_map_bin_size 640
-#define				a02_02_00_map_bin_bank 17
-extern const unsigned char	a02_02_01_map_bin[640];
-#define				a02_02_01_map_bin_size 640
-#define				a02_02_01_map_bin_bank 17
-extern const unsigned char	a02_02_02_map_bin[640];
-#define				a02_02_02_map_bin_size 640
-#define				a02_02_02_map_bin_bank 17
-extern const unsigned char	a02_02_03_map_bin[640];
-#define				a02_02_03_map_bin_size 640
-#define				a02_02_03_map_bin_bank 17
-extern const unsigned char	a02_02_04_map_bin[640];
-#define				a02_02_04_map_bin_size 640
-#define				a02_02_04_map_bin_bank 17
-extern const unsigned char	a02_02_05_map_bin[640];
-#define				a02_02_05_map_bin_size 640
-#define				a02_02_05_map_bin_bank 17
-extern const unsigned char	a02_02_06_map_bin[640];
-#define				a02_02_06_map_bin_size 640
-#define				a02_02_06_map_bin_bank 17

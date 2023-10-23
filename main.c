@@ -27,6 +27,8 @@
 #include ".\banks\bank23.h"
 #include ".\banks\bank24.h"
 #include ".\banks\bank25.h"
+#include ".\banks\bank26.h"
+#include ".\banks\bank27.h"
 
 // Event types
 #define EVENT_BEFORE_VBLANK 0
@@ -70,6 +72,7 @@
 #define MAP_TYPE_A2_CATFISHS_MAW_02 27
 #define MAP_TYPE_A2_FACE_SHRINE_01 28
 #define MAP_TYPE_A2_FACE_SHRINE_02 29
+#define MAP_TYPE_A2_CAVES_01 30
 
 // Game states
 #define GAME_STATE_TITLE 1
@@ -109,46 +112,46 @@ unsigned int KeysHeld;              // Keys held down
 
 // Area 01 map bin banks (Temp)
 unsigned char Area01MapBanks[256] = {
-    a01_00_00_map_bin_bank, a01_01_00_map_bin_bank, a01_02_00_map_bin_bank, a01_03_00_map_bin_bank, a01_04_00_map_bin_bank, a01_05_00_map_bin_bank, a01_06_00_map_bin_bank, a01_07_00_map_bin_bank, a01_08_00_map_bin_bank, a01_09_00_map_bin_bank, a01_10_00_map_bin_bank, a01_11_00_map_bin_bank, a01_12_00_map_bin_bank, a01_13_00_map_bin_bank, a01_14_00_map_bin_bank, a01_15_00_map_bin_bank,
-    a01_00_01_map_bin_bank, a01_01_01_map_bin_bank, a01_02_01_map_bin_bank, a01_03_01_map_bin_bank, a01_04_01_map_bin_bank, a01_05_01_map_bin_bank, a01_06_01_map_bin_bank, a01_07_01_map_bin_bank, a01_08_01_map_bin_bank, a01_09_01_map_bin_bank, a01_10_01_map_bin_bank, a01_11_01_map_bin_bank, a01_12_01_map_bin_bank, a01_13_01_map_bin_bank, a01_14_01_map_bin_bank, a01_15_01_map_bin_bank,
-    a01_00_02_map_bin_bank, a01_01_02_map_bin_bank, a01_02_02_map_bin_bank, a01_03_02_map_bin_bank, a01_04_02_map_bin_bank, a01_05_02_map_bin_bank, a01_06_02_map_bin_bank, a01_07_02_map_bin_bank, a01_08_02_map_bin_bank, a01_09_02_map_bin_bank, a01_10_02_map_bin_bank, a01_11_02_map_bin_bank, a01_12_02_map_bin_bank, a01_13_02_map_bin_bank, a01_14_02_map_bin_bank, a01_15_02_map_bin_bank,
-    a01_00_03_map_bin_bank, a01_01_03_map_bin_bank, a01_02_03_map_bin_bank, a01_03_03_map_bin_bank, a01_04_03_map_bin_bank, a01_05_03_map_bin_bank, a01_06_03_map_bin_bank, a01_07_03_map_bin_bank, a01_08_03_map_bin_bank, a01_09_03_map_bin_bank, a01_10_03_map_bin_bank, a01_11_03_map_bin_bank, a01_12_03_map_bin_bank, a01_13_03_map_bin_bank, a01_14_03_map_bin_bank, a01_15_03_map_bin_bank,
-    a01_00_04_map_bin_bank, a01_01_04_map_bin_bank, a01_02_04_map_bin_bank, a01_03_04_map_bin_bank, a01_04_04_map_bin_bank, a01_05_04_map_bin_bank, a01_06_04_map_bin_bank, a01_07_04_map_bin_bank, a01_08_04_map_bin_bank, a01_09_04_map_bin_bank, a01_10_04_map_bin_bank, a01_11_04_map_bin_bank, a01_12_04_map_bin_bank, a01_13_04_map_bin_bank, a01_14_04_map_bin_bank, a01_15_04_map_bin_bank,
-    a01_00_05_map_bin_bank, a01_01_05_map_bin_bank, a01_02_05_map_bin_bank, a01_03_05_map_bin_bank, a01_04_05_map_bin_bank, a01_05_05_map_bin_bank, a01_06_05_map_bin_bank, a01_07_05_map_bin_bank, a01_08_05_map_bin_bank, a01_09_05_map_bin_bank, a01_10_05_map_bin_bank, a01_11_05_map_bin_bank, a01_12_05_map_bin_bank, a01_13_05_map_bin_bank, a01_14_05_map_bin_bank, a01_15_05_map_bin_bank,
-    a01_00_06_map_bin_bank, a01_01_06_map_bin_bank, a01_02_06_map_bin_bank, a01_03_06_map_bin_bank, a01_04_06_map_bin_bank, a01_05_06_map_bin_bank, a01_06_06_map_bin_bank, a01_07_06_map_bin_bank, a01_08_06_map_bin_bank, a01_09_06_map_bin_bank, a01_10_06_map_bin_bank, a01_11_06_map_bin_bank, a01_12_06_map_bin_bank, a01_13_06_map_bin_bank, a01_14_06_map_bin_bank, a01_15_06_map_bin_bank,
-    a01_00_07_map_bin_bank, a01_01_07_map_bin_bank, a01_02_07_map_bin_bank, a01_03_07_map_bin_bank, a01_04_07_map_bin_bank, a01_05_07_map_bin_bank, a01_06_07_map_bin_bank, a01_07_07_map_bin_bank, a01_08_07_map_bin_bank, a01_09_07_map_bin_bank, a01_10_07_map_bin_bank, a01_11_07_map_bin_bank, a01_12_07_map_bin_bank, a01_13_07_map_bin_bank, a01_14_07_map_bin_bank, a01_15_07_map_bin_bank,
-    a01_00_08_map_bin_bank, a01_01_08_map_bin_bank, a01_02_08_map_bin_bank, a01_03_08_map_bin_bank, a01_04_08_map_bin_bank, a01_05_08_map_bin_bank, a01_06_08_map_bin_bank, a01_07_08_map_bin_bank, a01_08_08_map_bin_bank, a01_09_08_map_bin_bank, a01_10_08_map_bin_bank, a01_11_08_map_bin_bank, a01_12_08_map_bin_bank, a01_13_08_map_bin_bank, a01_14_08_map_bin_bank, a01_15_08_map_bin_bank,
-    a01_00_09_map_bin_bank, a01_01_09_map_bin_bank, a01_02_09_map_bin_bank, a01_03_09_map_bin_bank, a01_04_09_map_bin_bank, a01_05_09_map_bin_bank, a01_06_09_map_bin_bank, a01_07_09_map_bin_bank, a01_08_09_map_bin_bank, a01_09_09_map_bin_bank, a01_10_09_map_bin_bank, a01_11_09_map_bin_bank, a01_12_09_map_bin_bank, a01_13_09_map_bin_bank, a01_14_09_map_bin_bank, a01_15_09_map_bin_bank,
-    a01_00_10_map_bin_bank, a01_01_10_map_bin_bank, a01_02_10_map_bin_bank, a01_03_10_map_bin_bank, a01_04_10_map_bin_bank, a01_05_10_map_bin_bank, a01_06_10_map_bin_bank, a01_07_10_map_bin_bank, a01_08_10_map_bin_bank, a01_09_10_map_bin_bank, a01_10_10_map_bin_bank, a01_11_10_map_bin_bank, a01_12_10_map_bin_bank, a01_13_10_map_bin_bank, a01_14_10_map_bin_bank, a01_15_10_map_bin_bank,
-    a01_00_11_map_bin_bank, a01_01_11_map_bin_bank, a01_02_11_map_bin_bank, a01_03_11_map_bin_bank, a01_04_11_map_bin_bank, a01_05_11_map_bin_bank, a01_06_11_map_bin_bank, a01_07_11_map_bin_bank, a01_08_11_map_bin_bank, a01_09_11_map_bin_bank, a01_10_11_map_bin_bank, a01_11_11_map_bin_bank, a01_12_11_map_bin_bank, a01_13_11_map_bin_bank, a01_14_11_map_bin_bank, a01_15_11_map_bin_bank,
-    a01_00_12_map_bin_bank, a01_01_12_map_bin_bank, a01_02_12_map_bin_bank, a01_03_12_map_bin_bank, a01_04_12_map_bin_bank, a01_05_12_map_bin_bank, a01_06_12_map_bin_bank, a01_07_12_map_bin_bank, a01_08_12_map_bin_bank, a01_09_12_map_bin_bank, a01_10_12_map_bin_bank, a01_11_12_map_bin_bank, a01_12_12_map_bin_bank, a01_13_12_map_bin_bank, a01_14_12_map_bin_bank, a01_15_12_map_bin_bank,
-    a01_00_13_map_bin_bank, a01_01_13_map_bin_bank, a01_02_13_map_bin_bank, a01_03_13_map_bin_bank, a01_04_13_map_bin_bank, a01_05_13_map_bin_bank, a01_06_13_map_bin_bank, a01_07_13_map_bin_bank, a01_08_13_map_bin_bank, a01_09_13_map_bin_bank, a01_10_13_map_bin_bank, a01_11_13_map_bin_bank, a01_12_13_map_bin_bank, a01_13_13_map_bin_bank, a01_14_13_map_bin_bank, a01_15_13_map_bin_bank,
-    a01_00_14_map_bin_bank, a01_01_14_map_bin_bank, a01_02_14_map_bin_bank, a01_03_14_map_bin_bank, a01_04_14_map_bin_bank, a01_05_14_map_bin_bank, a01_06_14_map_bin_bank, a01_07_14_map_bin_bank, a01_08_14_map_bin_bank, a01_09_14_map_bin_bank, a01_10_14_map_bin_bank, a01_11_14_map_bin_bank, a01_12_14_map_bin_bank, a01_13_14_map_bin_bank, a01_14_14_map_bin_bank, a01_15_14_map_bin_bank,
-    a01_00_15_map_bin_bank, a01_01_15_map_bin_bank, a01_02_15_map_bin_bank, a01_03_15_map_bin_bank, a01_04_15_map_bin_bank, a01_05_15_map_bin_bank, a01_06_15_map_bin_bank, a01_07_15_map_bin_bank, a01_08_15_map_bin_bank, a01_09_15_map_bin_bank, a01_10_15_map_bin_bank, a01_11_15_map_bin_bank, a01_12_15_map_bin_bank, a01_13_15_map_bin_bank, a01_14_15_map_bin_bank, a01_15_15_map_bin_bank
+    a01_00_00_map_bin_bank, a01_00_01_map_bin_bank, a01_00_02_map_bin_bank, a01_00_03_map_bin_bank, a01_00_04_map_bin_bank, a01_00_05_map_bin_bank, a01_00_06_map_bin_bank, a01_00_07_map_bin_bank, a01_00_08_map_bin_bank, a01_00_09_map_bin_bank, a01_00_10_map_bin_bank, a01_00_11_map_bin_bank, a01_00_12_map_bin_bank, a01_00_13_map_bin_bank, a01_00_14_map_bin_bank, a01_00_15_map_bin_bank,
+    a01_01_00_map_bin_bank, a01_01_01_map_bin_bank, a01_01_02_map_bin_bank, a01_01_03_map_bin_bank, a01_01_04_map_bin_bank, a01_01_05_map_bin_bank, a01_01_06_map_bin_bank, a01_01_07_map_bin_bank, a01_01_08_map_bin_bank, a01_01_09_map_bin_bank, a01_01_10_map_bin_bank, a01_01_11_map_bin_bank, a01_01_12_map_bin_bank, a01_01_13_map_bin_bank, a01_01_14_map_bin_bank, a01_01_15_map_bin_bank,
+    a01_02_00_map_bin_bank, a01_02_01_map_bin_bank, a01_02_02_map_bin_bank, a01_02_03_map_bin_bank, a01_02_04_map_bin_bank, a01_02_05_map_bin_bank, a01_02_06_map_bin_bank, a01_02_07_map_bin_bank, a01_02_08_map_bin_bank, a01_02_09_map_bin_bank, a01_02_10_map_bin_bank, a01_02_11_map_bin_bank, a01_02_12_map_bin_bank, a01_02_13_map_bin_bank, a01_02_14_map_bin_bank, a01_02_15_map_bin_bank,
+    a01_03_00_map_bin_bank, a01_03_01_map_bin_bank, a01_03_02_map_bin_bank, a01_03_03_map_bin_bank, a01_03_04_map_bin_bank, a01_03_05_map_bin_bank, a01_03_06_map_bin_bank, a01_03_07_map_bin_bank, a01_03_08_map_bin_bank, a01_03_09_map_bin_bank, a01_03_10_map_bin_bank, a01_03_11_map_bin_bank, a01_03_12_map_bin_bank, a01_03_13_map_bin_bank, a01_03_14_map_bin_bank, a01_03_15_map_bin_bank,
+    a01_04_00_map_bin_bank, a01_04_01_map_bin_bank, a01_04_02_map_bin_bank, a01_04_03_map_bin_bank, a01_04_04_map_bin_bank, a01_04_05_map_bin_bank, a01_04_06_map_bin_bank, a01_04_07_map_bin_bank, a01_04_08_map_bin_bank, a01_04_09_map_bin_bank, a01_04_10_map_bin_bank, a01_04_11_map_bin_bank, a01_04_12_map_bin_bank, a01_04_13_map_bin_bank, a01_04_14_map_bin_bank, a01_04_15_map_bin_bank,
+    a01_05_00_map_bin_bank, a01_05_01_map_bin_bank, a01_05_02_map_bin_bank, a01_05_03_map_bin_bank, a01_05_04_map_bin_bank, a01_05_05_map_bin_bank, a01_05_06_map_bin_bank, a01_05_07_map_bin_bank, a01_05_08_map_bin_bank, a01_05_09_map_bin_bank, a01_05_10_map_bin_bank, a01_05_11_map_bin_bank, a01_05_12_map_bin_bank, a01_05_13_map_bin_bank, a01_05_14_map_bin_bank, a01_05_15_map_bin_bank,
+    a01_06_00_map_bin_bank, a01_06_01_map_bin_bank, a01_06_02_map_bin_bank, a01_06_03_map_bin_bank, a01_06_04_map_bin_bank, a01_06_05_map_bin_bank, a01_06_06_map_bin_bank, a01_06_07_map_bin_bank, a01_06_08_map_bin_bank, a01_06_09_map_bin_bank, a01_06_10_map_bin_bank, a01_06_11_map_bin_bank, a01_06_12_map_bin_bank, a01_06_13_map_bin_bank, a01_06_14_map_bin_bank, a01_06_15_map_bin_bank,
+    a01_07_00_map_bin_bank, a01_07_01_map_bin_bank, a01_07_02_map_bin_bank, a01_07_03_map_bin_bank, a01_07_04_map_bin_bank, a01_07_05_map_bin_bank, a01_07_06_map_bin_bank, a01_07_07_map_bin_bank, a01_07_08_map_bin_bank, a01_07_09_map_bin_bank, a01_07_10_map_bin_bank, a01_07_11_map_bin_bank, a01_07_12_map_bin_bank, a01_07_13_map_bin_bank, a01_07_14_map_bin_bank, a01_07_15_map_bin_bank,
+    a01_08_00_map_bin_bank, a01_08_01_map_bin_bank, a01_08_02_map_bin_bank, a01_08_03_map_bin_bank, a01_08_04_map_bin_bank, a01_08_05_map_bin_bank, a01_08_06_map_bin_bank, a01_08_07_map_bin_bank, a01_08_08_map_bin_bank, a01_08_09_map_bin_bank, a01_08_10_map_bin_bank, a01_08_11_map_bin_bank, a01_08_12_map_bin_bank, a01_08_13_map_bin_bank, a01_08_14_map_bin_bank, a01_08_15_map_bin_bank,
+    a01_09_00_map_bin_bank, a01_09_01_map_bin_bank, a01_09_02_map_bin_bank, a01_09_03_map_bin_bank, a01_09_04_map_bin_bank, a01_09_05_map_bin_bank, a01_09_06_map_bin_bank, a01_09_07_map_bin_bank, a01_09_08_map_bin_bank, a01_09_09_map_bin_bank, a01_09_10_map_bin_bank, a01_09_11_map_bin_bank, a01_09_12_map_bin_bank, a01_09_13_map_bin_bank, a01_09_14_map_bin_bank, a01_09_15_map_bin_bank,
+    a01_10_00_map_bin_bank, a01_10_01_map_bin_bank, a01_10_02_map_bin_bank, a01_10_03_map_bin_bank, a01_10_04_map_bin_bank, a01_10_05_map_bin_bank, a01_10_06_map_bin_bank, a01_10_07_map_bin_bank, a01_10_08_map_bin_bank, a01_10_09_map_bin_bank, a01_10_10_map_bin_bank, a01_10_11_map_bin_bank, a01_10_12_map_bin_bank, a01_10_13_map_bin_bank, a01_10_14_map_bin_bank, a01_10_15_map_bin_bank,
+    a01_11_00_map_bin_bank, a01_11_01_map_bin_bank, a01_11_02_map_bin_bank, a01_11_03_map_bin_bank, a01_11_04_map_bin_bank, a01_11_05_map_bin_bank, a01_11_06_map_bin_bank, a01_11_07_map_bin_bank, a01_11_08_map_bin_bank, a01_11_09_map_bin_bank, a01_11_10_map_bin_bank, a01_11_11_map_bin_bank, a01_11_12_map_bin_bank, a01_11_13_map_bin_bank, a01_11_14_map_bin_bank, a01_11_15_map_bin_bank,
+    a01_12_00_map_bin_bank, a01_12_01_map_bin_bank, a01_12_02_map_bin_bank, a01_12_03_map_bin_bank, a01_12_04_map_bin_bank, a01_12_05_map_bin_bank, a01_12_06_map_bin_bank, a01_12_07_map_bin_bank, a01_12_08_map_bin_bank, a01_12_09_map_bin_bank, a01_12_10_map_bin_bank, a01_12_11_map_bin_bank, a01_12_12_map_bin_bank, a01_12_13_map_bin_bank, a01_12_14_map_bin_bank, a01_12_15_map_bin_bank,
+    a01_13_00_map_bin_bank, a01_13_01_map_bin_bank, a01_13_02_map_bin_bank, a01_13_03_map_bin_bank, a01_13_04_map_bin_bank, a01_13_05_map_bin_bank, a01_13_06_map_bin_bank, a01_13_07_map_bin_bank, a01_13_08_map_bin_bank, a01_13_09_map_bin_bank, a01_13_10_map_bin_bank, a01_13_11_map_bin_bank, a01_13_12_map_bin_bank, a01_13_13_map_bin_bank, a01_13_14_map_bin_bank, a01_13_15_map_bin_bank,
+    a01_14_00_map_bin_bank, a01_14_01_map_bin_bank, a01_14_02_map_bin_bank, a01_14_03_map_bin_bank, a01_14_04_map_bin_bank, a01_14_05_map_bin_bank, a01_14_06_map_bin_bank, a01_14_07_map_bin_bank, a01_14_08_map_bin_bank, a01_14_09_map_bin_bank, a01_14_10_map_bin_bank, a01_14_11_map_bin_bank, a01_14_12_map_bin_bank, a01_14_13_map_bin_bank, a01_14_14_map_bin_bank, a01_14_15_map_bin_bank,
+    a01_15_00_map_bin_bank, a01_15_01_map_bin_bank, a01_15_02_map_bin_bank, a01_15_03_map_bin_bank, a01_15_04_map_bin_bank, a01_15_05_map_bin_bank, a01_15_06_map_bin_bank, a01_15_07_map_bin_bank, a01_15_08_map_bin_bank, a01_15_09_map_bin_bank, a01_15_10_map_bin_bank, a01_15_11_map_bin_bank, a01_15_12_map_bin_bank, a01_15_13_map_bin_bank, a01_15_14_map_bin_bank, a01_15_15_map_bin_bank
 };
 
 // Area 01 map bin pointers (Temp)
 const unsigned char* Area01MapBins[256] = {
-    a01_00_00_map_bin, a01_01_00_map_bin, a01_02_00_map_bin, a01_03_00_map_bin, a01_04_00_map_bin, a01_05_00_map_bin, a01_06_00_map_bin, a01_07_00_map_bin, a01_08_00_map_bin, a01_09_00_map_bin, a01_10_00_map_bin, a01_11_00_map_bin, a01_12_00_map_bin, a01_13_00_map_bin, a01_14_00_map_bin, a01_15_00_map_bin,
-    a01_00_01_map_bin, a01_01_01_map_bin, a01_02_01_map_bin, a01_03_01_map_bin, a01_04_01_map_bin, a01_05_01_map_bin, a01_06_01_map_bin, a01_07_01_map_bin, a01_08_01_map_bin, a01_09_01_map_bin, a01_10_01_map_bin, a01_11_01_map_bin, a01_12_01_map_bin, a01_13_01_map_bin, a01_14_01_map_bin, a01_15_01_map_bin,
-    a01_00_02_map_bin, a01_01_02_map_bin, a01_02_02_map_bin, a01_03_02_map_bin, a01_04_02_map_bin, a01_05_02_map_bin, a01_06_02_map_bin, a01_07_02_map_bin, a01_08_02_map_bin, a01_09_02_map_bin, a01_10_02_map_bin, a01_11_02_map_bin, a01_12_02_map_bin, a01_13_02_map_bin, a01_14_02_map_bin, a01_15_02_map_bin,
-    a01_00_03_map_bin, a01_01_03_map_bin, a01_02_03_map_bin, a01_03_03_map_bin, a01_04_03_map_bin, a01_05_03_map_bin, a01_06_03_map_bin, a01_07_03_map_bin, a01_08_03_map_bin, a01_09_03_map_bin, a01_10_03_map_bin, a01_11_03_map_bin, a01_12_03_map_bin, a01_13_03_map_bin, a01_14_03_map_bin, a01_15_03_map_bin,
-    a01_00_04_map_bin, a01_01_04_map_bin, a01_02_04_map_bin, a01_03_04_map_bin, a01_04_04_map_bin, a01_05_04_map_bin, a01_06_04_map_bin, a01_07_04_map_bin, a01_08_04_map_bin, a01_09_04_map_bin, a01_10_04_map_bin, a01_11_04_map_bin, a01_12_04_map_bin, a01_13_04_map_bin, a01_14_04_map_bin, a01_15_04_map_bin,
-    a01_00_05_map_bin, a01_01_05_map_bin, a01_02_05_map_bin, a01_03_05_map_bin, a01_04_05_map_bin, a01_05_05_map_bin, a01_06_05_map_bin, a01_07_05_map_bin, a01_08_05_map_bin, a01_09_05_map_bin, a01_10_05_map_bin, a01_11_05_map_bin, a01_12_05_map_bin, a01_13_05_map_bin, a01_14_05_map_bin, a01_15_05_map_bin,
-    a01_00_06_map_bin, a01_01_06_map_bin, a01_02_06_map_bin, a01_03_06_map_bin, a01_04_06_map_bin, a01_05_06_map_bin, a01_06_06_map_bin, a01_07_06_map_bin, a01_08_06_map_bin, a01_09_06_map_bin, a01_10_06_map_bin, a01_11_06_map_bin, a01_12_06_map_bin, a01_13_06_map_bin, a01_14_06_map_bin, a01_15_06_map_bin,
-    a01_00_07_map_bin, a01_01_07_map_bin, a01_02_07_map_bin, a01_03_07_map_bin, a01_04_07_map_bin, a01_05_07_map_bin, a01_06_07_map_bin, a01_07_07_map_bin, a01_08_07_map_bin, a01_09_07_map_bin, a01_10_07_map_bin, a01_11_07_map_bin, a01_12_07_map_bin, a01_13_07_map_bin, a01_14_07_map_bin, a01_15_07_map_bin,
-    a01_00_08_map_bin, a01_01_08_map_bin, a01_02_08_map_bin, a01_03_08_map_bin, a01_04_08_map_bin, a01_05_08_map_bin, a01_06_08_map_bin, a01_07_08_map_bin, a01_08_08_map_bin, a01_09_08_map_bin, a01_10_08_map_bin, a01_11_08_map_bin, a01_12_08_map_bin, a01_13_08_map_bin, a01_14_08_map_bin, a01_15_08_map_bin,
-    a01_00_09_map_bin, a01_01_09_map_bin, a01_02_09_map_bin, a01_03_09_map_bin, a01_04_09_map_bin, a01_05_09_map_bin, a01_06_09_map_bin, a01_07_09_map_bin, a01_08_09_map_bin, a01_09_09_map_bin, a01_10_09_map_bin, a01_11_09_map_bin, a01_12_09_map_bin, a01_13_09_map_bin, a01_14_09_map_bin, a01_15_09_map_bin,
-    a01_00_10_map_bin, a01_01_10_map_bin, a01_02_10_map_bin, a01_03_10_map_bin, a01_04_10_map_bin, a01_05_10_map_bin, a01_06_10_map_bin, a01_07_10_map_bin, a01_08_10_map_bin, a01_09_10_map_bin, a01_10_10_map_bin, a01_11_10_map_bin, a01_12_10_map_bin, a01_13_10_map_bin, a01_14_10_map_bin, a01_15_10_map_bin,
-    a01_00_11_map_bin, a01_01_11_map_bin, a01_02_11_map_bin, a01_03_11_map_bin, a01_04_11_map_bin, a01_05_11_map_bin, a01_06_11_map_bin, a01_07_11_map_bin, a01_08_11_map_bin, a01_09_11_map_bin, a01_10_11_map_bin, a01_11_11_map_bin, a01_12_11_map_bin, a01_13_11_map_bin, a01_14_11_map_bin, a01_15_11_map_bin,
-    a01_00_12_map_bin, a01_01_12_map_bin, a01_02_12_map_bin, a01_03_12_map_bin, a01_04_12_map_bin, a01_05_12_map_bin, a01_06_12_map_bin, a01_07_12_map_bin, a01_08_12_map_bin, a01_09_12_map_bin, a01_10_12_map_bin, a01_11_12_map_bin, a01_12_12_map_bin, a01_13_12_map_bin, a01_14_12_map_bin, a01_15_12_map_bin,
-    a01_00_13_map_bin, a01_01_13_map_bin, a01_02_13_map_bin, a01_03_13_map_bin, a01_04_13_map_bin, a01_05_13_map_bin, a01_06_13_map_bin, a01_07_13_map_bin, a01_08_13_map_bin, a01_09_13_map_bin, a01_10_13_map_bin, a01_11_13_map_bin, a01_12_13_map_bin, a01_13_13_map_bin, a01_14_13_map_bin, a01_15_13_map_bin,
-    a01_00_14_map_bin, a01_01_14_map_bin, a01_02_14_map_bin, a01_03_14_map_bin, a01_04_14_map_bin, a01_05_14_map_bin, a01_06_14_map_bin, a01_07_14_map_bin, a01_08_14_map_bin, a01_09_14_map_bin, a01_10_14_map_bin, a01_11_14_map_bin, a01_12_14_map_bin, a01_13_14_map_bin, a01_14_14_map_bin, a01_15_14_map_bin,
-    a01_00_15_map_bin, a01_01_15_map_bin, a01_02_15_map_bin, a01_03_15_map_bin, a01_04_15_map_bin, a01_05_15_map_bin, a01_06_15_map_bin, a01_07_15_map_bin, a01_08_15_map_bin, a01_09_15_map_bin, a01_10_15_map_bin, a01_11_15_map_bin, a01_12_15_map_bin, a01_13_15_map_bin, a01_14_15_map_bin, a01_15_15_map_bin
+    a01_00_00_map_bin, a01_00_01_map_bin, a01_00_02_map_bin, a01_00_03_map_bin, a01_00_04_map_bin, a01_00_05_map_bin, a01_00_06_map_bin, a01_00_07_map_bin, a01_00_08_map_bin, a01_00_09_map_bin, a01_00_10_map_bin, a01_00_11_map_bin, a01_00_12_map_bin, a01_00_13_map_bin, a01_00_14_map_bin, a01_00_15_map_bin,
+    a01_01_00_map_bin, a01_01_01_map_bin, a01_01_02_map_bin, a01_01_03_map_bin, a01_01_04_map_bin, a01_01_05_map_bin, a01_01_06_map_bin, a01_01_07_map_bin, a01_01_08_map_bin, a01_01_09_map_bin, a01_01_10_map_bin, a01_01_11_map_bin, a01_01_12_map_bin, a01_01_13_map_bin, a01_01_14_map_bin, a01_01_15_map_bin,
+    a01_02_00_map_bin, a01_02_01_map_bin, a01_02_02_map_bin, a01_02_03_map_bin, a01_02_04_map_bin, a01_02_05_map_bin, a01_02_06_map_bin, a01_02_07_map_bin, a01_02_08_map_bin, a01_02_09_map_bin, a01_02_10_map_bin, a01_02_11_map_bin, a01_02_12_map_bin, a01_02_13_map_bin, a01_02_14_map_bin, a01_02_15_map_bin,
+    a01_03_00_map_bin, a01_03_01_map_bin, a01_03_02_map_bin, a01_03_03_map_bin, a01_03_04_map_bin, a01_03_05_map_bin, a01_03_06_map_bin, a01_03_07_map_bin, a01_03_08_map_bin, a01_03_09_map_bin, a01_03_10_map_bin, a01_03_11_map_bin, a01_03_12_map_bin, a01_03_13_map_bin, a01_03_14_map_bin, a01_03_15_map_bin,
+    a01_04_00_map_bin, a01_04_01_map_bin, a01_04_02_map_bin, a01_04_03_map_bin, a01_04_04_map_bin, a01_04_05_map_bin, a01_04_06_map_bin, a01_04_07_map_bin, a01_04_08_map_bin, a01_04_09_map_bin, a01_04_10_map_bin, a01_04_11_map_bin, a01_04_12_map_bin, a01_04_13_map_bin, a01_04_14_map_bin, a01_04_15_map_bin,
+    a01_05_00_map_bin, a01_05_01_map_bin, a01_05_02_map_bin, a01_05_03_map_bin, a01_05_04_map_bin, a01_05_05_map_bin, a01_05_06_map_bin, a01_05_07_map_bin, a01_05_08_map_bin, a01_05_09_map_bin, a01_05_10_map_bin, a01_05_11_map_bin, a01_05_12_map_bin, a01_05_13_map_bin, a01_05_14_map_bin, a01_05_15_map_bin,
+    a01_06_00_map_bin, a01_06_01_map_bin, a01_06_02_map_bin, a01_06_03_map_bin, a01_06_04_map_bin, a01_06_05_map_bin, a01_06_06_map_bin, a01_06_07_map_bin, a01_06_08_map_bin, a01_06_09_map_bin, a01_06_10_map_bin, a01_06_11_map_bin, a01_06_12_map_bin, a01_06_13_map_bin, a01_06_14_map_bin, a01_06_15_map_bin,
+    a01_07_00_map_bin, a01_07_01_map_bin, a01_07_02_map_bin, a01_07_03_map_bin, a01_07_04_map_bin, a01_07_05_map_bin, a01_07_06_map_bin, a01_07_07_map_bin, a01_07_08_map_bin, a01_07_09_map_bin, a01_07_10_map_bin, a01_07_11_map_bin, a01_07_12_map_bin, a01_07_13_map_bin, a01_07_14_map_bin, a01_07_15_map_bin,
+    a01_08_00_map_bin, a01_08_01_map_bin, a01_08_02_map_bin, a01_08_03_map_bin, a01_08_04_map_bin, a01_08_05_map_bin, a01_08_06_map_bin, a01_08_07_map_bin, a01_08_08_map_bin, a01_08_09_map_bin, a01_08_10_map_bin, a01_08_11_map_bin, a01_08_12_map_bin, a01_08_13_map_bin, a01_08_14_map_bin, a01_08_15_map_bin,
+    a01_09_00_map_bin, a01_09_01_map_bin, a01_09_02_map_bin, a01_09_03_map_bin, a01_09_04_map_bin, a01_09_05_map_bin, a01_09_06_map_bin, a01_09_07_map_bin, a01_09_08_map_bin, a01_09_09_map_bin, a01_09_10_map_bin, a01_09_11_map_bin, a01_09_12_map_bin, a01_09_13_map_bin, a01_09_14_map_bin, a01_09_15_map_bin,
+    a01_10_00_map_bin, a01_10_01_map_bin, a01_10_02_map_bin, a01_10_03_map_bin, a01_10_04_map_bin, a01_10_05_map_bin, a01_10_06_map_bin, a01_10_07_map_bin, a01_10_08_map_bin, a01_10_09_map_bin, a01_10_10_map_bin, a01_10_11_map_bin, a01_10_12_map_bin, a01_10_13_map_bin, a01_10_14_map_bin, a01_10_15_map_bin,
+    a01_11_00_map_bin, a01_11_01_map_bin, a01_11_02_map_bin, a01_11_03_map_bin, a01_11_04_map_bin, a01_11_05_map_bin, a01_11_06_map_bin, a01_11_07_map_bin, a01_11_08_map_bin, a01_11_09_map_bin, a01_11_10_map_bin, a01_11_11_map_bin, a01_11_12_map_bin, a01_11_13_map_bin, a01_11_14_map_bin, a01_11_15_map_bin,
+    a01_12_00_map_bin, a01_12_01_map_bin, a01_12_02_map_bin, a01_12_03_map_bin, a01_12_04_map_bin, a01_12_05_map_bin, a01_12_06_map_bin, a01_12_07_map_bin, a01_12_08_map_bin, a01_12_09_map_bin, a01_12_10_map_bin, a01_12_11_map_bin, a01_12_12_map_bin, a01_12_13_map_bin, a01_12_14_map_bin, a01_12_15_map_bin,
+    a01_13_00_map_bin, a01_13_01_map_bin, a01_13_02_map_bin, a01_13_03_map_bin, a01_13_04_map_bin, a01_13_05_map_bin, a01_13_06_map_bin, a01_13_07_map_bin, a01_13_08_map_bin, a01_13_09_map_bin, a01_13_10_map_bin, a01_13_11_map_bin, a01_13_12_map_bin, a01_13_13_map_bin, a01_13_14_map_bin, a01_13_15_map_bin,
+    a01_14_00_map_bin, a01_14_01_map_bin, a01_14_02_map_bin, a01_14_03_map_bin, a01_14_04_map_bin, a01_14_05_map_bin, a01_14_06_map_bin, a01_14_07_map_bin, a01_14_08_map_bin, a01_14_09_map_bin, a01_14_10_map_bin, a01_14_11_map_bin, a01_14_12_map_bin, a01_14_13_map_bin, a01_14_14_map_bin, a01_14_15_map_bin,
+    a01_15_00_map_bin, a01_15_01_map_bin, a01_15_02_map_bin, a01_15_03_map_bin, a01_15_04_map_bin, a01_15_05_map_bin, a01_15_06_map_bin, a01_15_07_map_bin, a01_15_08_map_bin, a01_15_09_map_bin, a01_15_10_map_bin, a01_15_11_map_bin, a01_15_12_map_bin, a01_15_13_map_bin, a01_15_14_map_bin, a01_15_15_map_bin
 };
 
 // Area 02 map bin banks (Temp)
-unsigned char Area02MapBanks[224] = {
+unsigned char Area02MapBanks[256] = {
     a02_00_00_map_bin_bank, a02_00_01_map_bin_bank, a02_00_02_map_bin_bank, a02_00_03_map_bin_bank, a02_00_04_map_bin_bank, a02_00_05_map_bin_bank, a02_00_06_map_bin_bank, a02_00_07_map_bin_bank, a02_00_08_map_bin_bank, a02_00_09_map_bin_bank, a02_00_10_map_bin_bank, a02_00_11_map_bin_bank, a02_00_12_map_bin_bank, a02_00_13_map_bin_bank, a02_00_14_map_bin_bank, a02_00_15_map_bin_bank,
     a02_01_00_map_bin_bank, a02_01_01_map_bin_bank, a02_01_02_map_bin_bank, a02_01_03_map_bin_bank, a02_01_04_map_bin_bank, a02_01_05_map_bin_bank, a02_01_06_map_bin_bank, a02_01_07_map_bin_bank, a02_01_08_map_bin_bank, a02_01_09_map_bin_bank, a02_01_10_map_bin_bank, a02_01_11_map_bin_bank, a02_01_12_map_bin_bank, a02_01_13_map_bin_bank, a02_01_14_map_bin_bank, a02_01_15_map_bin_bank,
     a02_02_00_map_bin_bank, a02_02_01_map_bin_bank, a02_02_02_map_bin_bank, a02_02_03_map_bin_bank, a02_02_04_map_bin_bank, a02_02_05_map_bin_bank, a02_02_06_map_bin_bank, a02_02_07_map_bin_bank, a02_02_08_map_bin_bank, a02_02_09_map_bin_bank, a02_02_10_map_bin_bank, a02_02_11_map_bin_bank, a02_02_12_map_bin_bank, a02_02_13_map_bin_bank, a02_02_14_map_bin_bank, a02_02_15_map_bin_bank,
@@ -163,10 +166,12 @@ unsigned char Area02MapBanks[224] = {
     a02_11_00_map_bin_bank, a02_11_01_map_bin_bank, a02_11_02_map_bin_bank, a02_11_03_map_bin_bank, a02_11_04_map_bin_bank, a02_11_05_map_bin_bank, a02_11_06_map_bin_bank, a02_11_07_map_bin_bank, a02_11_08_map_bin_bank, a02_11_09_map_bin_bank, a02_11_10_map_bin_bank, a02_11_11_map_bin_bank, a02_11_12_map_bin_bank, a02_11_13_map_bin_bank, a02_11_14_map_bin_bank, a02_11_15_map_bin_bank,
     a02_12_00_map_bin_bank, a02_12_01_map_bin_bank, a02_12_02_map_bin_bank, a02_12_03_map_bin_bank, a02_12_04_map_bin_bank, a02_12_05_map_bin_bank, a02_12_06_map_bin_bank, a02_12_07_map_bin_bank, a02_12_08_map_bin_bank, a02_12_09_map_bin_bank, a02_12_10_map_bin_bank, a02_12_11_map_bin_bank, a02_12_12_map_bin_bank, a02_12_13_map_bin_bank, a02_12_14_map_bin_bank, a02_12_15_map_bin_bank,
     a02_13_00_map_bin_bank, a02_13_01_map_bin_bank, a02_13_02_map_bin_bank, a02_13_03_map_bin_bank, a02_13_04_map_bin_bank, a02_13_05_map_bin_bank, a02_13_06_map_bin_bank, a02_13_07_map_bin_bank, a02_13_08_map_bin_bank, a02_13_09_map_bin_bank, a02_13_10_map_bin_bank, a02_13_11_map_bin_bank, a02_13_12_map_bin_bank, a02_13_13_map_bin_bank, a02_13_14_map_bin_bank, a02_13_15_map_bin_bank,
+    a02_14_00_map_bin_bank, a02_14_01_map_bin_bank, a02_14_02_map_bin_bank, a02_14_03_map_bin_bank, a02_14_04_map_bin_bank, a02_14_05_map_bin_bank, a02_14_06_map_bin_bank, a02_14_07_map_bin_bank, a02_14_08_map_bin_bank, a02_14_09_map_bin_bank, a02_14_10_map_bin_bank, a02_14_11_map_bin_bank, a02_14_12_map_bin_bank, a02_14_13_map_bin_bank, a02_14_14_map_bin_bank, a02_14_15_map_bin_bank,
+    a02_15_00_map_bin_bank, a02_15_01_map_bin_bank, a02_15_02_map_bin_bank, a02_15_03_map_bin_bank, a02_15_04_map_bin_bank, a02_15_05_map_bin_bank, a02_15_06_map_bin_bank, a02_15_07_map_bin_bank, a02_15_08_map_bin_bank, a02_15_09_map_bin_bank, a02_15_10_map_bin_bank, a02_15_11_map_bin_bank, a02_15_12_map_bin_bank, a02_15_13_map_bin_bank, a02_15_14_map_bin_bank, a02_15_15_map_bin_bank
 };
 
 // Area 02 map bin pointers (Temp)
-const unsigned char* Area02MapBins[224] = {
+const unsigned char* Area02MapBins[256] = {
     a02_00_00_map_bin, a02_00_01_map_bin, a02_00_02_map_bin, a02_00_03_map_bin, a02_00_04_map_bin, a02_00_05_map_bin, a02_00_06_map_bin, a02_00_07_map_bin, a02_00_08_map_bin, a02_00_09_map_bin, a02_00_10_map_bin, a02_00_11_map_bin, a02_00_12_map_bin, a02_00_13_map_bin, a02_00_14_map_bin, a02_00_15_map_bin,
     a02_01_00_map_bin, a02_01_01_map_bin, a02_01_02_map_bin, a02_01_03_map_bin, a02_01_04_map_bin, a02_01_05_map_bin, a02_01_06_map_bin, a02_01_07_map_bin, a02_01_08_map_bin, a02_01_09_map_bin, a02_01_10_map_bin, a02_01_11_map_bin, a02_01_12_map_bin, a02_01_13_map_bin, a02_01_14_map_bin, a02_01_15_map_bin,
     a02_02_00_map_bin, a02_02_01_map_bin, a02_02_02_map_bin, a02_02_03_map_bin, a02_02_04_map_bin, a02_02_05_map_bin, a02_02_06_map_bin, a02_02_07_map_bin, a02_02_08_map_bin, a02_02_09_map_bin, a02_02_10_map_bin, a02_02_11_map_bin, a02_02_12_map_bin, a02_02_13_map_bin, a02_02_14_map_bin, a02_02_15_map_bin,
@@ -181,6 +186,8 @@ const unsigned char* Area02MapBins[224] = {
     a02_11_00_map_bin, a02_11_01_map_bin, a02_11_02_map_bin, a02_11_03_map_bin, a02_11_04_map_bin, a02_11_05_map_bin, a02_11_06_map_bin, a02_11_07_map_bin, a02_11_08_map_bin, a02_11_09_map_bin, a02_11_10_map_bin, a02_11_11_map_bin, a02_11_12_map_bin, a02_11_13_map_bin, a02_11_14_map_bin, a02_11_15_map_bin,
     a02_12_00_map_bin, a02_12_01_map_bin, a02_12_02_map_bin, a02_12_03_map_bin, a02_12_04_map_bin, a02_12_05_map_bin, a02_12_06_map_bin, a02_12_07_map_bin, a02_12_08_map_bin, a02_12_09_map_bin, a02_12_10_map_bin, a02_12_11_map_bin, a02_12_12_map_bin, a02_12_13_map_bin, a02_12_14_map_bin, a02_12_15_map_bin,
     a02_13_00_map_bin, a02_13_01_map_bin, a02_13_02_map_bin, a02_13_03_map_bin, a02_13_04_map_bin, a02_13_05_map_bin, a02_13_06_map_bin, a02_13_07_map_bin, a02_13_08_map_bin, a02_13_09_map_bin, a02_13_10_map_bin, a02_13_11_map_bin, a02_13_12_map_bin, a02_13_13_map_bin, a02_13_14_map_bin, a02_13_15_map_bin,
+    a02_14_00_map_bin, a02_14_01_map_bin, a02_14_02_map_bin, a02_14_03_map_bin, a02_14_04_map_bin, a02_14_05_map_bin, a02_14_06_map_bin, a02_14_07_map_bin, a02_14_08_map_bin, a02_14_09_map_bin, a02_14_10_map_bin, a02_14_11_map_bin, a02_14_12_map_bin, a02_14_13_map_bin, a02_14_14_map_bin, a02_14_15_map_bin,
+    a02_15_00_map_bin, a02_15_01_map_bin, a02_15_02_map_bin, a02_15_03_map_bin, a02_15_04_map_bin, a02_15_05_map_bin, a02_15_06_map_bin, a02_15_07_map_bin, a02_15_08_map_bin, a02_15_09_map_bin, a02_15_10_map_bin, a02_15_11_map_bin, a02_15_12_map_bin, a02_15_13_map_bin, a02_15_14_map_bin, a02_15_15_map_bin
 };
 
 // Area 03 map bin banks (Temp)
@@ -342,6 +349,10 @@ void UpdatePalette(void) {
                     SMS_mapROMBank(a02_face_shrine_01_bg_pal_bin_bank);
                     GG_loadBGPalette(a02_face_shrine_01_bg_pal_bin);
                 break;
+                case MAP_TYPE_A2_CAVES_01:
+                    SMS_mapROMBank(a02_caves_01_bg_pal_bin_bank);
+                    GG_loadBGPalette(a02_caves_01_bg_pal_bin);
+                break;
             }
         break;
         case GAME_STATE_AREA_03:
@@ -482,6 +493,10 @@ void UpdateGameStateGraphics(void) {
                     case MAP_TYPE_A2_FACE_SHRINE_01:
                         SMS_mapROMBank(a02_face_shrine_01_tiles_bin_bank);
                         SMS_loadTiles(a02_face_shrine_01_tiles_bin, 256, a02_face_shrine_01_tiles_bin_size);
+                    break;
+                    case MAP_TYPE_A2_CAVES_01:
+                        SMS_mapROMBank(a02_caves_01_tiles_bin_bank);
+                        SMS_loadTiles(a02_caves_01_tiles_bin, 256, a02_caves_01_tiles_bin_size);
                     break;
                 }
             }
@@ -722,6 +737,13 @@ void UpdateEnvironmentAnimations(void) {
                     if (IncrementTimer(TimerMax) == true) {
                         SMS_mapROMBank(animation_torches_02_tiles_bin_bank);
                         UNSAFE_SMS_VRAMmemcpy128(8224, &animation_torches_02_tiles_bin[SubState << 7]);
+                        SubState++;
+                    }
+                break;
+                case MAP_TYPE_A2_CAVES_01:
+                    if (IncrementTimer(TimerMax) == true) {
+                        SMS_mapROMBank(animation_torches_03_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy128(8224, &animation_torches_03_tiles_bin[SubState << 7]);
                         SubState++;
                     }
                 break;
