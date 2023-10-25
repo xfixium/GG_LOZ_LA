@@ -73,6 +73,6 @@ extern const unsigned char	a01_06_15_map_bin[640];
 extern const unsigned char	a01_07_00_map_bin[640];
 #define				a01_07_00_map_bin_size 640
 #define				a01_07_00_map_bin_bank 10
-extern const unsigned char	animation_water_01_tiles_bin[384];
-#define				animation_water_01_tiles_bin_size 384
-#define				animation_water_01_tiles_bin_bank 10
+extern const unsigned char	animation_torches_03_tiles_bin[384];
+#define				animation_torches_03_tiles_bin_size 384
+#define				animation_torches_03_tiles_bin_bank 10

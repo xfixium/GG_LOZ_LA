@@ -73,6 +73,9 @@ extern const unsigned char	a01_11_10_map_bin[640];
 extern const unsigned char	a01_11_11_map_bin[640];
 #define				a01_11_11_map_bin_size 640
 #define				a01_11_11_map_bin_bank 13
+extern const unsigned char	animation_water_02_tiles_bin[192];
+#define				animation_water_02_tiles_bin_size 192
+#define				animation_water_02_tiles_bin_bank 13
 extern const unsigned char	hud_map_bin[80];
 #define				hud_map_bin_size 80
 #define				hud_map_bin_bank 13
@@ -85,21 +88,3 @@ extern const unsigned char	a02_bottle_grotto_01_bg_pal_bin[32];
 extern const unsigned char	a02_bottle_grotto_02_bg_pal_bin[32];
 #define				a02_bottle_grotto_02_bg_pal_bin_size 32
 #define				a02_bottle_grotto_02_bg_pal_bin_bank 13
-extern const unsigned char	a02_catfishs_maw_01_bg_pal_bin[32];
-#define				a02_catfishs_maw_01_bg_pal_bin_size 32
-#define				a02_catfishs_maw_01_bg_pal_bin_bank 13
-extern const unsigned char	a02_caves_01_bg_pal_bin[32];
-#define				a02_caves_01_bg_pal_bin_size 32
-#define				a02_caves_01_bg_pal_bin_bank 13
-extern const unsigned char	a02_face_shrine_01_bg_pal_bin[32];
-#define				a02_face_shrine_01_bg_pal_bin_size 32
-#define				a02_face_shrine_01_bg_pal_bin_bank 13
-extern const unsigned char	a02_key_cavern_01_bg_pal_bin[32];
-#define				a02_key_cavern_01_bg_pal_bin_size 32
-#define				a02_key_cavern_01_bg_pal_bin_bank 13
-extern const unsigned char	a02_tail_cave_01_bg_pal_bin[32];
-#define				a02_tail_cave_01_bg_pal_bin_size 32
-#define				a02_tail_cave_01_bg_pal_bin_bank 13
-extern const unsigned char	a02_tail_cave_02_bg_pal_bin[32];
-#define				a02_tail_cave_02_bg_pal_bin_size 32
-#define				a02_tail_cave_02_bg_pal_bin_bank 13

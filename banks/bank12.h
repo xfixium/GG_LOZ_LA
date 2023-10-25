@@ -73,12 +73,12 @@ extern const unsigned char	a01_10_01_map_bin[640];
 extern const unsigned char	a01_10_02_map_bin[640];
 #define				a01_10_02_map_bin_size 640
 #define				a01_10_02_map_bin_bank 12
-extern const unsigned char	animation_water_02_tiles_bin[192];
-#define				animation_water_02_tiles_bin_size 192
-#define				animation_water_02_tiles_bin_bank 12
-extern const unsigned char	animation_small_gem_tiles_bin[96];
-#define				animation_small_gem_tiles_bin_size 96
-#define				animation_small_gem_tiles_bin_bank 12
+extern const unsigned char	a02_map_types_bin[256];
+#define				a02_map_types_bin_size 256
+#define				a02_map_types_bin_bank 12
 extern const unsigned char	animation_swamp_flower_tiles_bin[96];
 #define				animation_swamp_flower_tiles_bin_size 96
 #define				animation_swamp_flower_tiles_bin_bank 12
+extern const unsigned char	a01_overworld_04_bg_pal_bin[32];
+#define				a01_overworld_04_bg_pal_bin_size 32
+#define				a01_overworld_04_bg_pal_bin_bank 12

@@ -301,7 +301,7 @@ void UpdatePalette(void) {
             } else if (MapType == MAP_TYPE_A1_BEACH || MapType == MAP_TYPE_A1_DESERT) {
                 SMS_mapROMBank(a01_overworld_02_bg_pal_bin_bank);
                 GG_loadBGPalette(a01_overworld_02_bg_pal_bin);
-            } else if (MapType == MAP_TYPE_A1_CEMETARY) {
+            } else if (MapType == MAP_TYPE_A1_CEMETARY || MapType == MAP_TYPE_A1_SHOPS) {
                 SMS_mapROMBank(a01_overworld_04_bg_pal_bin_bank);
                 GG_loadBGPalette(a01_overworld_04_bg_pal_bin);
             } else {
@@ -376,73 +376,73 @@ void UpdateGameStateGraphics(void) {
                 TimerMax = 10;
                 PrevMapType = MapType;
                 SMS_mapROMBank(a01_base_tiles_bin_bank);
-                SMS_loadTiles(a01_base_tiles_bin, 304, 3584);
+                SMS_loadTiles(a01_base_tiles_bin, 256, 3584);
                 switch (MapType) {
                     case MAP_TYPE_A1_ANGLERS_TUNNEL:
                         SMS_mapROMBank(a01_anglers_tunnel_tiles_bin_bank);
-                        SMS_loadTiles(a01_anglers_tunnel_tiles_bin, 256, 1536);
+                        SMS_loadTiles(a01_anglers_tunnel_tiles_bin, 368, 1536);
                     break;
                     case MAP_TYPE_A1_ANIMAL_VILLAGE:
                         SMS_mapROMBank(a01_animal_village_tiles_bin_bank);
-                        SMS_loadTiles(a01_animal_village_tiles_bin, 256, 1536);
+                        SMS_loadTiles(a01_animal_village_tiles_bin, 368, 1536);
                     break;
                     case MAP_TYPE_A1_BEACH:
                         SubState = 0;
                         SubStateMax = 8;
                         SMS_mapROMBank(a01_beach_tiles_bin_bank);
-                        SMS_loadTiles(a01_beach_tiles_bin, 256, 1536);
+                        SMS_loadTiles(a01_beach_tiles_bin, 368, 1536);
                     break;
                     case MAP_TYPE_A1_BOTTLE_GROTTO:
                         SMS_mapROMBank(a01_bottle_grotto_tiles_bin_bank);
-                        SMS_loadTiles(a01_bottle_grotto_tiles_bin, 256, 1536);
+                        SMS_loadTiles(a01_bottle_grotto_tiles_bin, 368, 1536);
                     break;
                     case MAP_TYPE_A1_CATFISH_MAW:
-                        SMS_mapROMBank(a01_catfish_maw_tiles_bin_bank);
-                        SMS_loadTiles(a01_catfish_maw_tiles_bin, 256, 1536);
+                        SMS_mapROMBank(a01_catfishs_maw_tiles_bin_bank);
+                        SMS_loadTiles(a01_catfishs_maw_tiles_bin, 368, 1536);
                     break;
                     case MAP_TYPE_A1_CEMETARY:
                         SMS_mapROMBank(a01_cemetary_tiles_bin_bank);
-                        SMS_loadTiles(a01_cemetary_tiles_bin, 256, 1536);
+                        SMS_loadTiles(a01_cemetary_tiles_bin, 368, 1536);
                     break;
                     case MAP_TYPE_A1_DESERT:
                         SMS_mapROMBank(a01_desert_tiles_bin_bank);
-                        SMS_loadTiles(a01_desert_tiles_bin, 256, 1536);
+                        SMS_loadTiles(a01_desert_tiles_bin, 368, 1536);
                     break;
                     case MAP_TYPE_A1_EAGLES_TOWER:
                         SMS_mapROMBank(a01_eagles_tower_tiles_bin_bank);
-                        SMS_loadTiles(a01_eagles_tower_tiles_bin, 256, 1536);
+                        SMS_loadTiles(a01_eagles_tower_tiles_bin, 368, 1536);
                     break;
                     case MAP_TYPE_A1_EGG:
                         SMS_mapROMBank(a01_egg_tiles_bin_bank);
-                        SMS_loadTiles(a01_egg_tiles_bin, 256, 1536);
+                        SMS_loadTiles(a01_egg_tiles_bin, 368, 1536);
                     break;
                     case MAP_TYPE_A1_FOREST:
                         SMS_mapROMBank(a01_forest_tiles_bin_bank);
-                        SMS_loadTiles(a01_forest_tiles_bin, 256, 1536);
+                        SMS_loadTiles(a01_forest_tiles_bin, 368, 1536);
                     break;
                     case MAP_TYPE_A1_MABE_VILLAGE:
                         SMS_mapROMBank(a01_mabe_village_tiles_bin_bank);
-                        SMS_loadTiles(a01_mabe_village_tiles_bin, 256, 1536);
+                        SMS_loadTiles(a01_mabe_village_tiles_bin, 368, 1536);
                     break;
                     case MAP_TYPE_A1_MANSION:
                         SMS_mapROMBank(a01_mansion_tiles_bin_bank);
-                        SMS_loadTiles(a01_mansion_tiles_bin, 256, 1536);
+                        SMS_loadTiles(a01_mansion_tiles_bin, 368, 1536);
                     break;
                     case MAP_TYPE_A1_SHOPS:
                         SMS_mapROMBank(a01_shops_tiles_bin_bank);
-                        SMS_loadTiles(a01_shops_tiles_bin, 256, 1536);
+                        SMS_loadTiles(a01_shops_tiles_bin, 368, 1536);
                     break;
                     case MAP_TYPE_A1_SWAMP:
                         SMS_mapROMBank(a01_swamp_tiles_bin_bank);
-                        SMS_loadTiles(a01_swamp_tiles_bin, 256, 1536);
+                        SMS_loadTiles(a01_swamp_tiles_bin, 368, 1536);
                     break;
                     case MAP_TYPE_A1_TAIL_CAVE:
                         SMS_mapROMBank(a01_tail_cave_tiles_bin_bank);
-                        SMS_loadTiles(a01_tail_cave_tiles_bin, 256, 1536);
+                        SMS_loadTiles(a01_tail_cave_tiles_bin, 368, 1536);
                     break;
                     case MAP_TYPE_A1_TURTLE_ROCK:
                         SMS_mapROMBank(a01_turtle_rock_tiles_bin_bank);
-                        SMS_loadTiles(a01_turtle_rock_tiles_bin, 256, 1536);
+                        SMS_loadTiles(a01_turtle_rock_tiles_bin, 368, 1536);
                     break;
                 }
             }
@@ -645,43 +645,43 @@ void UpdateEnvironmentAnimations(void) {
             switch (MapType) {
                 case MAP_TYPE_A1_BASE:
                     SMS_mapROMBank(animation_flower_tiles_bin_bank);
-                    UNSAFE_SMS_VRAMmemcpy32(8384, &animation_flower_tiles_bin[SubState << 5]);
+                    UNSAFE_SMS_VRAMmemcpy32(8192, &animation_flower_tiles_bin[SubState << 5]);
+                    SMS_mapROMBank(animation_gem_tiles_bin_bank);
+                    UNSAFE_SMS_VRAMmemcpy128(8256, &animation_gem_tiles_bin[SubState << 7]);
                     SubState++;
                 break;
                 case MAP_TYPE_A1_BOTTLE_GROTTO:
                     SMS_mapROMBank(animation_forest_flower_tiles_bin_bank);
-                    UNSAFE_SMS_VRAMmemcpy32(10176, &animation_forest_flower_tiles_bin[SubState << 5]);
+                    UNSAFE_SMS_VRAMmemcpy32(13248, &animation_forest_flower_tiles_bin[SubState << 5]);
                     SubState++;
                 break;
                 case MAP_TYPE_A1_BEACH:
                     SMS_mapROMBank(animation_shore_tiles_bin_bank);
-                    UNSAFE_SMS_VRAMmemcpy128(10112, &animation_shore_tiles_bin[SubState << 7]);
+                    UNSAFE_SMS_VRAMmemcpy128(13184, &animation_shore_tiles_bin[SubState << 7]);
                     SubState++;
                 break;
                 case MAP_TYPE_A1_FOREST:
                     SMS_mapROMBank(animation_flower_tiles_bin_bank);
-                    UNSAFE_SMS_VRAMmemcpy32(8384, &animation_flower_tiles_bin[SubState << 5]);
+                    UNSAFE_SMS_VRAMmemcpy32(8192, &animation_flower_tiles_bin[SubState << 5]);
                     SMS_mapROMBank(animation_forest_flower_tiles_bin_bank);
-                    UNSAFE_SMS_VRAMmemcpy32(10176, &animation_forest_flower_tiles_bin[SubState << 5]);
+                    UNSAFE_SMS_VRAMmemcpy32(13248, &animation_forest_flower_tiles_bin[SubState << 5]);
                     SubState++;
                 break;
                 case MAP_TYPE_A1_MABE_VILLAGE:
                     SMS_mapROMBank(animation_flower_tiles_bin_bank);
-                    UNSAFE_SMS_VRAMmemcpy32(8384, &animation_flower_tiles_bin[SubState << 5]);
+                    UNSAFE_SMS_VRAMmemcpy32(8192, &animation_flower_tiles_bin[SubState << 5]);
                     SMS_mapROMBank(animation_rooster_tiles_bin_bank);
-                    UNSAFE_SMS_VRAMmemcpy64(8704, &animation_rooster_tiles_bin[SubState << 6]);
+                    UNSAFE_SMS_VRAMmemcpy64(11776, &animation_rooster_tiles_bin[SubState << 6]);
                     SubState++;
                 break;
                 case MAP_TYPE_A1_SWAMP:
                     SMS_mapROMBank(animation_swamp_flower_tiles_bin_bank);
-                    UNSAFE_SMS_VRAMmemcpy32(10176, &animation_swamp_flower_tiles_bin[SubState << 5]);
+                    UNSAFE_SMS_VRAMmemcpy32(13248, &animation_swamp_flower_tiles_bin[SubState << 5]);
                     SubState++;
                 break;
                 case MAP_TYPE_A1_TURTLE_ROCK:
-                    SMS_mapROMBank(animation_big_gem_tiles_bin_bank);
-                    UNSAFE_SMS_VRAMmemcpy32(12384, &animation_big_gem_tiles_bin[SubState << 5]);
-                    SMS_mapROMBank(animation_small_gem_tiles_bin_bank);
-                    UNSAFE_SMS_VRAMmemcpy32(12896, &animation_small_gem_tiles_bin[SubState << 5]);
+                    SMS_mapROMBank(animation_gem_tiles_bin_bank);
+                    UNSAFE_SMS_VRAMmemcpy128(8256, &animation_gem_tiles_bin[SubState << 7]);
                     SubState++;
                 break;
             }
@@ -945,7 +945,7 @@ void HandleGameEvent(unsigned char event) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void main(void) {
-	SetGameState(GAME_STATE_AREA_02);
+	SetGameState(GAME_STATE_AREA_01);
     MapId = 0;
     for (;;) {
         PollInput();

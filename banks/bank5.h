@@ -1,6 +1,6 @@
-extern const unsigned char	a01_catfish_maw_tiles_bin[1536];
-#define				a01_catfish_maw_tiles_bin_size 1536
-#define				a01_catfish_maw_tiles_bin_bank 5
+extern const unsigned char	a01_catfishs_maw_tiles_bin[1536];
+#define				a01_catfishs_maw_tiles_bin_size 1536
+#define				a01_catfishs_maw_tiles_bin_bank 5
 extern const unsigned char	a01_cemetary_tiles_bin[1536];
 #define				a01_cemetary_tiles_bin_size 1536
 #define				a01_cemetary_tiles_bin_bank 5

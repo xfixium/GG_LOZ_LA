@@ -73,6 +73,24 @@ extern const unsigned char	a01_13_03_map_bin[640];
 extern const unsigned char	a01_13_04_map_bin[640];
 #define				a01_13_04_map_bin_size 640
 #define				a01_13_04_map_bin_bank 14
+extern const unsigned char	a02_catfishs_maw_01_bg_pal_bin[32];
+#define				a02_catfishs_maw_01_bg_pal_bin_size 32
+#define				a02_catfishs_maw_01_bg_pal_bin_bank 14
+extern const unsigned char	a02_caves_01_bg_pal_bin[32];
+#define				a02_caves_01_bg_pal_bin_size 32
+#define				a02_caves_01_bg_pal_bin_bank 14
+extern const unsigned char	a02_face_shrine_01_bg_pal_bin[32];
+#define				a02_face_shrine_01_bg_pal_bin_size 32
+#define				a02_face_shrine_01_bg_pal_bin_bank 14
+extern const unsigned char	a02_key_cavern_01_bg_pal_bin[32];
+#define				a02_key_cavern_01_bg_pal_bin_size 32
+#define				a02_key_cavern_01_bg_pal_bin_bank 14
+extern const unsigned char	a02_tail_cave_01_bg_pal_bin[32];
+#define				a02_tail_cave_01_bg_pal_bin_size 32
+#define				a02_tail_cave_01_bg_pal_bin_bank 14
+extern const unsigned char	a02_tail_cave_02_bg_pal_bin[32];
+#define				a02_tail_cave_02_bg_pal_bin_size 32
+#define				a02_tail_cave_02_bg_pal_bin_bank 14
 extern const unsigned char	house_marin_bg_pal_bin[32];
 #define				house_marin_bg_pal_bin_size 32
 #define				house_marin_bg_pal_bin_bank 14
