@@ -70,9 +70,12 @@
 #define MAP_TYPE_A2_ANGLERS_TUNNEL_02 25
 #define MAP_TYPE_A2_CATFISHS_MAW_01 26
 #define MAP_TYPE_A2_CATFISHS_MAW_02 27
-#define MAP_TYPE_A2_FACE_SHRINE_01 28
-#define MAP_TYPE_A2_FACE_SHRINE_02 29
-#define MAP_TYPE_A2_CAVES_01 30
+#define MAP_TYPE_A2_CATFISHS_MAW_03 28
+#define MAP_TYPE_A2_CATFISHS_MAW_04 29
+#define MAP_TYPE_A2_CATFISHS_MAW_05 30
+#define MAP_TYPE_A2_FACE_SHRINE_01 31
+#define MAP_TYPE_A2_FACE_SHRINE_02 32
+#define MAP_TYPE_A2_CAVES_01 33
 
 // Game states
 #define GAME_STATE_TITLE 1
@@ -82,11 +85,10 @@
 #define GAME_STATE_AREA_03 5
 
 // Global variables
-unsigned char Map[1280];            // Current and previous map data
-unsigned char ScrollIndex;          // Map scroll index
-unsigned char ScrollDir;            // Map scroll direction
 unsigned char MapId;                // Current map id
 unsigned char PrevMapId;            // Previous map id
+unsigned char ScrollIndex;          // Map scroll index
+unsigned char ScrollDir;            // Map scroll direction
 unsigned char MapType;              // Current map type
 unsigned char PrevMapType;          // Previous map type
 unsigned char AreaBank;             // Current area array bank
@@ -105,6 +107,7 @@ unsigned short TimerMax2;           // Timer threshold
 unsigned char AudioCurrentBank;     // Current audio bank
 unsigned int KeysPressed;           // Keys pressed
 unsigned int KeysHeld;              // Keys held down
+unsigned char Map[1280];            // Current and previous map data
 
 // NOTE: Looks like the original game put all maps within 3 areas (256 byte arrays), sans color dungeon
 // https://github.com/zladx/LADX-Disassembly/tree/main/docs
@@ -341,13 +344,33 @@ void UpdatePalette(void) {
                     SMS_mapROMBank(a02_anglers_tunnel_01_bg_pal_bin_bank);
                     GG_loadBGPalette(a02_anglers_tunnel_01_bg_pal_bin);
                 break;
+                case MAP_TYPE_A2_ANGLERS_TUNNEL_02:
+                    SMS_mapROMBank(a02_anglers_tunnel_02_bg_pal_bin_bank);
+                    GG_loadBGPalette(a02_anglers_tunnel_02_bg_pal_bin);
+                break;
                 case MAP_TYPE_A2_CATFISHS_MAW_01:
                     SMS_mapROMBank(a02_catfishs_maw_01_bg_pal_bin_bank);
                     GG_loadBGPalette(a02_catfishs_maw_01_bg_pal_bin);
                 break;
+                case MAP_TYPE_A2_CATFISHS_MAW_02:
+                    SMS_mapROMBank(a02_catfishs_maw_02_bg_pal_bin_bank);
+                    GG_loadBGPalette(a02_catfishs_maw_02_bg_pal_bin);
+                break;
+                case MAP_TYPE_A2_CATFISHS_MAW_03:
+                    SMS_mapROMBank(a02_catfishs_maw_03_bg_pal_bin_bank);
+                    GG_loadBGPalette(a02_catfishs_maw_03_bg_pal_bin);
+                break;
+                case MAP_TYPE_A2_CATFISHS_MAW_04:
+                    SMS_mapROMBank(a02_catfishs_maw_04_bg_pal_bin_bank);
+                    GG_loadBGPalette(a02_catfishs_maw_04_bg_pal_bin);
+                break;
                 case MAP_TYPE_A2_FACE_SHRINE_01:
                     SMS_mapROMBank(a02_face_shrine_01_bg_pal_bin_bank);
                     GG_loadBGPalette(a02_face_shrine_01_bg_pal_bin);
+                break;
+                case MAP_TYPE_A2_FACE_SHRINE_02:
+                    SMS_mapROMBank(a02_face_shrine_02_bg_pal_bin_bank);
+                    GG_loadBGPalette(a02_face_shrine_02_bg_pal_bin);
                 break;
                 case MAP_TYPE_A2_CAVES_01:
                     SMS_mapROMBank(a02_caves_01_bg_pal_bin_bank);
@@ -484,15 +507,35 @@ void UpdateGameStateGraphics(void) {
                         SMS_mapROMBank(a02_anglers_tunnel_01_tiles_bin_bank);
                         SMS_loadTiles(a02_anglers_tunnel_01_tiles_bin, 256, a02_anglers_tunnel_01_tiles_bin_size);
                     break;
+                    case MAP_TYPE_A2_ANGLERS_TUNNEL_02:
+                        SMS_mapROMBank(a02_anglers_tunnel_02_tiles_bin_bank);
+                        SMS_loadTiles(a02_anglers_tunnel_02_tiles_bin, 256, a02_anglers_tunnel_02_tiles_bin_size);
+                    break;
                     case MAP_TYPE_A2_CATFISHS_MAW_01:
                         TimerMax2 = 15;
                         SubStateMax2 = 3;
                         SMS_mapROMBank(a02_catfishs_maw_01_tiles_bin_bank);
                         SMS_loadTiles(a02_catfishs_maw_01_tiles_bin, 256, a02_catfishs_maw_01_tiles_bin_size);
                     break;
+                    case MAP_TYPE_A2_CATFISHS_MAW_02:
+                        SMS_mapROMBank(a02_catfishs_maw_02_tiles_bin_bank);
+                        SMS_loadTiles(a02_catfishs_maw_02_tiles_bin, 256, a02_catfishs_maw_02_tiles_bin_size);
+                    break;
+                    case MAP_TYPE_A2_CATFISHS_MAW_03:
+                        SMS_mapROMBank(a02_catfishs_maw_03_tiles_bin_bank);
+                        SMS_loadTiles(a02_catfishs_maw_03_tiles_bin, 256, a02_catfishs_maw_03_tiles_bin_size);
+                    break;
+                    case MAP_TYPE_A2_CATFISHS_MAW_04:
+                        SMS_mapROMBank(a02_catfishs_maw_04_tiles_bin_bank);
+                        SMS_loadTiles(a02_catfishs_maw_04_tiles_bin, 256, a02_catfishs_maw_04_tiles_bin_size);
+                    break;
                     case MAP_TYPE_A2_FACE_SHRINE_01:
                         SMS_mapROMBank(a02_face_shrine_01_tiles_bin_bank);
                         SMS_loadTiles(a02_face_shrine_01_tiles_bin, 256, a02_face_shrine_01_tiles_bin_size);
+                    break;
+                    case MAP_TYPE_A2_FACE_SHRINE_02:
+                        SMS_mapROMBank(a02_face_shrine_02_tiles_bin_bank);
+                        SMS_loadTiles(a02_face_shrine_02_tiles_bin, 256, a02_face_shrine_02_tiles_bin_size);
                     break;
                     case MAP_TYPE_A2_CAVES_01:
                         SMS_mapROMBank(a02_caves_01_tiles_bin_bank);
@@ -945,7 +988,7 @@ void HandleGameEvent(unsigned char event) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void main(void) {
-	SetGameState(GAME_STATE_AREA_01);
+	SetGameState(GAME_STATE_AREA_02);
     MapId = 0;
     for (;;) {
         PollInput();
