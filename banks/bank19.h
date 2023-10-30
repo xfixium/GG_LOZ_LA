@@ -1,3 +1,21 @@
+extern const unsigned char	a02_02_09_map_bin[640];
+#define				a02_02_09_map_bin_size 640
+#define				a02_02_09_map_bin_bank 19
+extern const unsigned char	a02_02_10_map_bin[640];
+#define				a02_02_10_map_bin_size 640
+#define				a02_02_10_map_bin_bank 19
+extern const unsigned char	a02_02_11_map_bin[640];
+#define				a02_02_11_map_bin_size 640
+#define				a02_02_11_map_bin_bank 19
+extern const unsigned char	a02_02_12_map_bin[640];
+#define				a02_02_12_map_bin_size 640
+#define				a02_02_12_map_bin_bank 19
+extern const unsigned char	a02_02_13_map_bin[640];
+#define				a02_02_13_map_bin_size 640
+#define				a02_02_13_map_bin_bank 19
+extern const unsigned char	a02_02_14_map_bin[640];
+#define				a02_02_14_map_bin_size 640
+#define				a02_02_14_map_bin_bank 19
 extern const unsigned char	a02_02_15_map_bin[640];
 #define				a02_02_15_map_bin_size 640
 #define				a02_02_15_map_bin_bank 19
@@ -55,21 +73,12 @@ extern const unsigned char	a02_04_00_map_bin[640];
 extern const unsigned char	a02_04_01_map_bin[640];
 #define				a02_04_01_map_bin_size 640
 #define				a02_04_01_map_bin_bank 19
-extern const unsigned char	a02_04_02_map_bin[640];
-#define				a02_04_02_map_bin_size 640
-#define				a02_04_02_map_bin_bank 19
-extern const unsigned char	a02_04_03_map_bin[640];
-#define				a02_04_03_map_bin_size 640
-#define				a02_04_03_map_bin_bank 19
-extern const unsigned char	a02_04_04_map_bin[640];
-#define				a02_04_04_map_bin_size 640
-#define				a02_04_04_map_bin_bank 19
-extern const unsigned char	a02_04_05_map_bin[640];
-#define				a02_04_05_map_bin_size 640
-#define				a02_04_05_map_bin_bank 19
-extern const unsigned char	a02_04_06_map_bin[640];
-#define				a02_04_06_map_bin_size 640
-#define				a02_04_06_map_bin_bank 19
-extern const unsigned char	a02_04_07_map_bin[640];
-#define				a02_04_07_map_bin_size 640
-#define				a02_04_07_map_bin_bank 19
+extern const unsigned char	inventory_bg_pal_bin[32];
+#define				inventory_bg_pal_bin_size 32
+#define				inventory_bg_pal_bin_bank 19
+extern const unsigned char	inventory_spr_pal_bin[32];
+#define				inventory_spr_pal_bin_size 32
+#define				inventory_spr_pal_bin_bank 19
+extern const unsigned char	main_spr_pal_bin[32];
+#define				main_spr_pal_bin_size 32
+#define				main_spr_pal_bin_bank 19

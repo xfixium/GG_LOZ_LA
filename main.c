@@ -60,6 +60,7 @@
 #define MAP_TYPE_A1_SWAMP 15
 #define MAP_TYPE_A1_TAIL_CAVE 16
 #define MAP_TYPE_A1_TURTLE_ROCK 17
+
 #define MAP_TYPE_A2_TAIL_CAVE_01 18
 #define MAP_TYPE_A2_TAIL_CAVE_02 19
 #define MAP_TYPE_A2_BOTTLE_GROTTO_01 20
@@ -76,6 +77,20 @@
 #define MAP_TYPE_A2_FACE_SHRINE_01 31
 #define MAP_TYPE_A2_FACE_SHRINE_02 32
 #define MAP_TYPE_A2_CAVES_01 33
+#define MAP_TYPE_A2_CAVES_02 34
+
+#define MAP_TYPE_A3_EAGLES_TOWER_01 35
+#define MAP_TYPE_A3_EAGLES_TOWER_02 36
+#define MAP_TYPE_A3_TURTLE_ROCK_01 37
+#define MAP_TYPE_A3_TURTLE_ROCK_02 38
+#define MAP_TYPE_A3_CAVES 39
+#define MAP_TYPE_A3_HOUSES_01 40
+#define MAP_TYPE_A3_HOUSES_02 41
+#define MAP_TYPE_A3_FISHING_01 42
+#define MAP_TYPE_A3_FACE_SHRINE_01 43
+#define MAP_TYPE_A3_MANSION_01 44
+#define MAP_TYPE_A3_COLOR_DUNGEON_01 45
+#define MAP_TYPE_A3_EGG_01 46
 
 // Game states
 #define GAME_STATE_TITLE 1
@@ -340,6 +355,10 @@ void UpdatePalette(void) {
                     SMS_mapROMBank(a02_key_cavern_01_bg_pal_bin_bank);
                     GG_loadBGPalette(a02_key_cavern_01_bg_pal_bin);
                 break;
+                case MAP_TYPE_A2_KEY_CAVERN_02:
+                    SMS_mapROMBank(a02_key_cavern_02_bg_pal_bin_bank);
+                    GG_loadBGPalette(a02_key_cavern_02_bg_pal_bin);
+                break;
                 case MAP_TYPE_A2_ANGLERS_TUNNEL_01:
                     SMS_mapROMBank(a02_anglers_tunnel_01_bg_pal_bin_bank);
                     GG_loadBGPalette(a02_anglers_tunnel_01_bg_pal_bin);
@@ -364,6 +383,10 @@ void UpdatePalette(void) {
                     SMS_mapROMBank(a02_catfishs_maw_04_bg_pal_bin_bank);
                     GG_loadBGPalette(a02_catfishs_maw_04_bg_pal_bin);
                 break;
+                case MAP_TYPE_A2_CATFISHS_MAW_05:
+                    SMS_mapROMBank(a02_catfishs_maw_05_bg_pal_bin_bank);
+                    GG_loadBGPalette(a02_catfishs_maw_05_bg_pal_bin);
+                break;
                 case MAP_TYPE_A2_FACE_SHRINE_01:
                     SMS_mapROMBank(a02_face_shrine_01_bg_pal_bin_bank);
                     GG_loadBGPalette(a02_face_shrine_01_bg_pal_bin);
@@ -373,6 +396,7 @@ void UpdatePalette(void) {
                     GG_loadBGPalette(a02_face_shrine_02_bg_pal_bin);
                 break;
                 case MAP_TYPE_A2_CAVES_01:
+                case MAP_TYPE_A2_CAVES_02:
                     SMS_mapROMBank(a02_caves_01_bg_pal_bin_bank);
                     GG_loadBGPalette(a02_caves_01_bg_pal_bin);
                 break;
@@ -501,6 +525,10 @@ void UpdateGameStateGraphics(void) {
                         SMS_mapROMBank(a02_key_cavern_01_tiles_bin_bank);
                         SMS_loadTiles(a02_key_cavern_01_tiles_bin, 256, a02_key_cavern_01_tiles_bin_size);
                     break;
+                    case MAP_TYPE_A2_KEY_CAVERN_02:
+                        SMS_mapROMBank(a02_key_cavern_02_tiles_bin_bank);
+                        SMS_loadTiles(a02_key_cavern_02_tiles_bin, 256, a02_key_cavern_02_tiles_bin_size);
+                    break;
                     case MAP_TYPE_A2_ANGLERS_TUNNEL_01:
                         TimerMax2 = 15;
                         SubStateMax2 = 3;
@@ -529,6 +557,10 @@ void UpdateGameStateGraphics(void) {
                         SMS_mapROMBank(a02_catfishs_maw_04_tiles_bin_bank);
                         SMS_loadTiles(a02_catfishs_maw_04_tiles_bin, 256, a02_catfishs_maw_04_tiles_bin_size);
                     break;
+                    case MAP_TYPE_A2_CATFISHS_MAW_05:
+                        SMS_mapROMBank(a02_catfishs_maw_05_tiles_bin_bank);
+                        SMS_loadTiles(a02_catfishs_maw_05_tiles_bin, 256, a02_catfishs_maw_05_tiles_bin_size);
+                    break;
                     case MAP_TYPE_A2_FACE_SHRINE_01:
                         SMS_mapROMBank(a02_face_shrine_01_tiles_bin_bank);
                         SMS_loadTiles(a02_face_shrine_01_tiles_bin, 256, a02_face_shrine_01_tiles_bin_size);
@@ -540,6 +572,10 @@ void UpdateGameStateGraphics(void) {
                     case MAP_TYPE_A2_CAVES_01:
                         SMS_mapROMBank(a02_caves_01_tiles_bin_bank);
                         SMS_loadTiles(a02_caves_01_tiles_bin, 256, a02_caves_01_tiles_bin_size);
+                    break;
+                    case MAP_TYPE_A2_CAVES_02:
+                        SMS_mapROMBank(a02_caves_02_tiles_bin_bank);
+                        SMS_loadTiles(a02_caves_02_tiles_bin, 256, a02_caves_02_tiles_bin_size);
                     break;
                 }
             }
