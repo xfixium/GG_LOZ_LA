@@ -19,24 +19,16 @@ Mermaid statue
 River raft waves
 Mabe Village green walls
 Cracks in Ganon rock head
-Face shrine gray statues?
 Quick sand tiles
 Animate skyline and clouds
 Revamp eagles tower tiles
-Redesign roofs
 
 Area 02:
-Change crystal colors in Tail Cave
-Make button switches spr palette
-Colorized cracked blocks
 Revamp some cracked floor tiles
-Unique entrance graphics?
-Blue outline for underwater rocks
 Wave animations
-Create base tileset for dungeons
 
 Area 03:
-(List pending first pass completion)
+Animations
 
 Test video (Tested on actual Game Gear as well):
 https://www.pyxosoft.com/projects/gg_zelda_la/videos/zelda_la_0004.mp4
