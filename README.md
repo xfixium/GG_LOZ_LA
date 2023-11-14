@@ -15,20 +15,19 @@ https://www.pyxosoft.com/projects/gg_zelda_la/rooms.png
 Todo list:
 
 Area 01:
-Mermaid statue
-River raft waves
-Mabe Village green walls
-Cracks in Ganon rock head
-Quick sand tiles
-Animate skyline and clouds
+Mermaid statue, 
+River raft waves, 
+Mabe Village green walls, 
+Cracks in Ganon rock head, 
+Quick sand tiles, 
+Animate skyline and clouds, 
 Revamp eagles tower tiles
 
 Area 02:
-Revamp some cracked floor tiles
-Wave animations
+Revamp some cracked floor tiles, Wave animations
 
 Area 03:
-Animations
+Animations, Shell Mansion map
 
 Test video (Tested on actual Game Gear as well):
 https://www.pyxosoft.com/projects/gg_zelda_la/videos/zelda_la_0004.mp4
