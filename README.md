@@ -27,7 +27,7 @@ Area 02:
 Revamp some cracked floor tiles, Wave animations
 
 Area 03:
-Animations, Shell Mansion map
+Animations
 
 Test video (Tested on actual Game Gear as well):
 https://www.pyxosoft.com/projects/gg_zelda_la/videos/zelda_la_0004.mp4
