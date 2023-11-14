@@ -1,4 +1,25 @@
 ==========
+2023-11-06
+==========
+- Added support for exception breakpoints via the remote debugger
+- Fixed a bug in the syntax highlighter that could cause graphical glitches (thanks to CeL)
+- Fixed that the new warning regarding missing source files did not take additionalSrcFolders into account
+
+==========
+2023-10-31
+==========
+- Added support for searching in HRAM and SRAM via RAM Search (thanks to Kadalyn)
+- Added support for debug messages with printf-like format specifiers (thanks to toxa)
+- Added an exception breakpoint for when a push instructions attempts to write to ROM
+- Added an option for big endian to RAM Search (thanks to Kadalyn)
+- Some UI improvements
+- Fixed that when sav files were saved to Emulicious's sav folder, they did not always get loaded from there (thanks to adac)
+- Fixed that when the status bar of the Memory Editor wrapped to a second line, it could cover the selected byte (thanks to Kadalyn)
+- Fixed that in RAM Search the last row could not be deleted manually (thanks to Kadalyn)
+- Fixed that locations did not workin conditions (thanks to QubixDS)
+- Fixed that some variables did not work in conditions (thanks ot QubixDS)
+
+==========
 2023-09-30
 ==========
 - Fixed an issue that could sometimes cause the cursor not to follow the current instruction (thanks to ISSOtm)

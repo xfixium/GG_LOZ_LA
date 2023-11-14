@@ -1,3 +1,15 @@
+extern const unsigned char	a02_14_12_map_bin[640];
+#define				a02_14_12_map_bin_size 640
+#define				a02_14_12_map_bin_bank 30
+extern const unsigned char	a02_14_13_map_bin[640];
+#define				a02_14_13_map_bin_size 640
+#define				a02_14_13_map_bin_bank 30
+extern const unsigned char	a02_14_14_map_bin[640];
+#define				a02_14_14_map_bin_size 640
+#define				a02_14_14_map_bin_bank 30
+extern const unsigned char	a02_14_15_map_bin[640];
+#define				a02_14_15_map_bin_size 640
+#define				a02_14_15_map_bin_bank 30
 extern const unsigned char	a02_15_00_map_bin[640];
 #define				a02_15_00_map_bin_size 640
 #define				a02_15_00_map_bin_bank 30
@@ -46,15 +58,18 @@ extern const unsigned char	a02_15_14_map_bin[640];
 extern const unsigned char	a02_15_15_map_bin[640];
 #define				a02_15_15_map_bin_size 640
 #define				a02_15_15_map_bin_bank 30
-extern const unsigned char	house_marin_map_bin[640];
-#define				house_marin_map_bin_size 640
-#define				house_marin_map_bin_bank 30
-extern const unsigned char	house_zora_map_bin[640];
-#define				house_zora_map_bin_size 640
-#define				house_zora_map_bin_bank 30
-extern const unsigned char	animation_belt_02_tiles_bin[512];
-#define				animation_belt_02_tiles_bin_size 512
-#define				animation_belt_02_tiles_bin_bank 30
-extern const unsigned char	hud_tiles_bin[480];
-#define				hud_tiles_bin_size 480
-#define				hud_tiles_bin_bank 30
+extern const unsigned char	a03_00_00_map_bin[640];
+#define				a03_00_00_map_bin_size 640
+#define				a03_00_00_map_bin_bank 30
+extern const unsigned char	a03_00_01_map_bin[640];
+#define				a03_00_01_map_bin_size 640
+#define				a03_00_01_map_bin_bank 30
+extern const unsigned char	a03_00_02_map_bin[640];
+#define				a03_00_02_map_bin_size 640
+#define				a03_00_02_map_bin_bank 30
+extern const unsigned char	a03_00_03_map_bin[640];
+#define				a03_00_03_map_bin_size 640
+#define				a03_00_03_map_bin_bank 30
+extern const unsigned char	a03_00_04_map_bin[640];
+#define				a03_00_04_map_bin_size 640
+#define				a03_00_04_map_bin_bank 30

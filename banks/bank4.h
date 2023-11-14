@@ -1,24 +1,21 @@
-extern const unsigned char	a02_bottle_grotto_01_tiles_bin[4160];
-#define				a02_bottle_grotto_01_tiles_bin_size 4160
+extern const unsigned char	a02_bottle_grotto_01_tiles_bin[4576];
+#define				a02_bottle_grotto_01_tiles_bin_size 4576
 #define				a02_bottle_grotto_01_tiles_bin_bank 4
-extern const unsigned char	a02_tail_cave_tiles_bin[3744];
-#define				a02_tail_cave_tiles_bin_size 3744
-#define				a02_tail_cave_tiles_bin_bank 4
-extern const unsigned char	a01_base_tiles_bin[3584];
-#define				a01_base_tiles_bin_size 3584
-#define				a01_base_tiles_bin_bank 4
-extern const unsigned char	inventory_tiles_bin[1760];
-#define				inventory_tiles_bin_size 1760
-#define				inventory_tiles_bin_bank 4
-extern const unsigned char	a01_anglers_tunnel_tiles_bin[1536];
-#define				a01_anglers_tunnel_tiles_bin_size 1536
-#define				a01_anglers_tunnel_tiles_bin_bank 4
-extern const unsigned char	a01_animal_village_tiles_bin[1536];
-#define				a01_animal_village_tiles_bin_size 1536
-#define				a01_animal_village_tiles_bin_bank 4
-extern const unsigned char	a01_overworld_01_bg_pal_bin[32];
-#define				a01_overworld_01_bg_pal_bin_size 32
-#define				a01_overworld_01_bg_pal_bin_bank 4
-extern const unsigned char	a01_overworld_02_bg_pal_bin[32];
-#define				a01_overworld_02_bg_pal_bin_size 32
-#define				a01_overworld_02_bg_pal_bin_bank 4
+extern const unsigned char	a02_catfishs_maw_01_tiles_bin[4416];
+#define				a02_catfishs_maw_01_tiles_bin_size 4416
+#define				a02_catfishs_maw_01_tiles_bin_bank 4
+extern const unsigned char	a02_tail_cave_01_tiles_bin[4416];
+#define				a02_tail_cave_01_tiles_bin_size 4416
+#define				a02_tail_cave_01_tiles_bin_bank 4
+extern const unsigned char	a02_anglers_tunnel_02_tiles_bin[2656];
+#define				a02_anglers_tunnel_02_tiles_bin_size 2656
+#define				a02_anglers_tunnel_02_tiles_bin_bank 4
+extern const unsigned char	a01_map_types_bin[256];
+#define				a01_map_types_bin_size 256
+#define				a01_map_types_bin_bank 4
+extern const unsigned char	a01_overworld_03_bg_pal_bin[32];
+#define				a01_overworld_03_bg_pal_bin_size 32
+#define				a01_overworld_03_bg_pal_bin_bank 4
+extern const unsigned char	a01_overworld_04_bg_pal_bin[32];
+#define				a01_overworld_04_bg_pal_bin_size 32
+#define				a01_overworld_04_bg_pal_bin_bank 4
