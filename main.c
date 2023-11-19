@@ -112,12 +112,27 @@
 
 // Game states
 #define GAME_STATE_TITLE 1
-#define GAME_STATE_INVENTORY 2
+#define GAME_STATE_PLAYER_SELECT 2
 #define GAME_STATE_AREA_01 3
 #define GAME_STATE_AREA_02 4
 #define GAME_STATE_AREA_03 5
+#define GAME_STATE_INVENTORY 6
+
+// Instance, lightweight entity
+typedef struct {
+    unsigned char x;                       // Horizontal position
+    unsigned char y;                       // Vertical position
+    unsigned char frame;                   // Current display frame
+    unsigned char frame_count;             // Frame count
+    unsigned char frame_timer;             // Frame display time
+    unsigned char frame_duration;          // Frame display time duration
+    unsigned char reserved_0;
+    unsigned char reserved_1;
+} Sprite;
+
 
 // Global variables
+Sprite Link;                        // Our dopey hero of time
 unsigned char MapId;                // Current map id
 unsigned char PrevMapId;            // Previous map id
 unsigned char ScrollIndex;          // Map scroll index
@@ -467,8 +482,8 @@ void UpdatePalette(void) {
                     GG_loadBGPalette(a03_dream_shrine_01_bg_pal_bin);
                 break;
                 case MAP_TYPE_A3_SHELL_MANSION_01:
-                    SMS_mapROMBank(a03_houses_03_bg_pal_bin_bank);
-                    GG_loadBGPalette(a03_houses_03_bg_pal_bin);
+                    SMS_mapROMBank(a03_shell_mansion_01_bg_pal_bin_bank);
+                    GG_loadBGPalette(a03_shell_mansion_01_bg_pal_bin);
                 break;
                 case MAP_TYPE_A3_UNDER_WATER_01:
                     SMS_mapROMBank(a03_under_water_01_bg_pal_bin_bank);
@@ -673,8 +688,12 @@ void UpdateGameStateGraphics(void) {
             MapType = a03_map_types_bin[MapId];
             UpdatePalette();
             if (MapType != PrevMapType) {
+                SubState = 0;
                 SubStateMax = 3;
                 TimerMax = 10;
+                SubState2 = 0;
+                SubStateMax2 = 8;
+                TimerMax2 = 3;
                 PrevMapType = MapType;
                 switch (MapType) {
                     case MAP_TYPE_A3_EAGLES_TOWER_01:
@@ -686,10 +705,14 @@ void UpdateGameStateGraphics(void) {
                         SMS_loadTiles(a03_eagles_tower_02_tiles_bin, 256, a03_eagles_tower_02_tiles_bin_size);
                     break;
                     case MAP_TYPE_A3_TURTLE_ROCK_01:
+                        TimerMax2 = 8;
+                        SubStateMax2 = 3;
                         SMS_mapROMBank(a03_turtle_rock_01_tiles_bin_bank);
                         SMS_loadTiles(a03_turtle_rock_01_tiles_bin, 256, a03_turtle_rock_01_tiles_bin_size);
                     break;
                     case MAP_TYPE_A3_TURTLE_ROCK_02:
+                        TimerMax = 15;
+                        SubStateMax = 4;
                         SMS_mapROMBank(a03_turtle_rock_02_tiles_bin_bank);
                         SMS_loadTiles(a03_turtle_rock_02_tiles_bin, 256, a03_turtle_rock_02_tiles_bin_size);
                     break;
@@ -698,10 +721,14 @@ void UpdateGameStateGraphics(void) {
                         SMS_loadTiles(a03_egg_01_tiles_bin, 256, a03_egg_01_tiles_bin_size);
                     break;
                     case MAP_TYPE_A3_CAVES_01:
+                        TimerMax2 = 15;
+                        SubStateMax2 = 3;
                         SMS_mapROMBank(a03_caves_01_tiles_bin_bank);
                         SMS_loadTiles(a03_caves_01_tiles_bin, 256, a03_caves_01_tiles_bin_size);
                     break;
                     case MAP_TYPE_A3_HOUSES_01:
+                        TimerMax2 = 15;
+                        SubStateMax2 = 3;
                         SMS_mapROMBank(a03_houses_01_tiles_bin_bank);
                         SMS_loadTiles(a03_houses_01_tiles_bin, 256, a03_houses_01_tiles_bin_size);
                     break;
@@ -718,8 +745,8 @@ void UpdateGameStateGraphics(void) {
                         SMS_loadTiles(a03_dream_shrine_01_tiles_bin, 256, a03_dream_shrine_01_tiles_bin_size);
                     break;
                     case MAP_TYPE_A3_SHELL_MANSION_01:
-                        SMS_mapROMBank(a03_houses_02_tiles_bin_bank);
-                        SMS_loadTiles(a03_houses_02_tiles_bin, 256, a03_houses_02_tiles_bin_size);
+                        SMS_mapROMBank(a03_shell_mansion_01_tiles_bin_bank);
+                        SMS_loadTiles(a03_shell_mansion_01_tiles_bin, 256, a03_shell_mansion_01_tiles_bin_size);
                     break;
                     case MAP_TYPE_A3_UNDER_WATER_01:
                         SMS_mapROMBank(a03_under_water_01_tiles_bin_bank);
@@ -738,6 +765,8 @@ void UpdateGameStateGraphics(void) {
                         SMS_loadTiles(a03_kanalet_castle_02_tiles_bin, 256, a03_kanalet_castle_02_tiles_bin_size);
                     break;
                     case MAP_TYPE_A3_COLOR_DUNGEON_01:
+                        TimerMax2 = 8;
+                        SubStateMax2 = 3;
                         SMS_mapROMBank(a03_color_dungeon_01_tiles_bin_bank);
                         SMS_loadTiles(a03_color_dungeon_01_tiles_bin, 256, a03_color_dungeon_01_tiles_bin_size);
                     break;
@@ -816,6 +845,18 @@ void LoadGameStateGraphics(void) {
             SMS_loadTiles(inventory_tiles_bin, 0, inventory_tiles_bin_size);
             SMS_mapROMBank(inventory_map_bin_bank);
             SMS_loadTileMapArea(6, 3, inventory_map_bin, 20, 18);
+        break;
+        case GAME_STATE_PLAYER_SELECT:
+            SMS_mapROMBank(player_select_bg_pal_bin_bank);
+            GG_loadBGPalette(player_select_bg_pal_bin);
+            SMS_mapROMBank(main_spr_pal_bin_bank);
+            GG_loadSpritePalette(main_spr_pal_bin);
+            SMS_mapROMBank(player_select_tiles_bin_bank);
+            SMS_loadTiles(player_select_tiles_bin, 256, player_select_tiles_bin_size);
+            SMS_mapROMBank(spr_link_walk_down_tiles_bin_bank);
+            SMS_loadTiles(spr_link_walk_down_tiles_bin, 2, spr_link_walk_down_tiles_bin_size);
+            SMS_mapROMBank(player_select_map_bin_bank);
+            SMS_loadTileMapArea(6, 3, player_select_map_bin, 20, 18);
         break;
         case GAME_STATE_AREA_01:
             UpdateGameStateGraphics();
@@ -991,14 +1032,107 @@ void UpdateEnvironmentAnimations(void) {
             }
         break;
         case GAME_STATE_AREA_03:
-            if (IncrementTimer(TimerMax) == false)
-                return;
-                
             switch (MapType) {
+                case MAP_TYPE_A3_EAGLES_TOWER_01:
+                    if (IncrementTimer(TimerMax) == true) {
+                        SMS_mapROMBank(animation_torches_01_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy128(8224, &animation_torches_01_tiles_bin[SubState << 7]);
+                        SubState++;
+                    }
+                    if (IncrementTimer2(TimerMax2) == true) {
+                        SMS_mapROMBank(animation_belt_03_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy64(8352, &animation_belt_03_tiles_bin[SubState2 << 6]);
+                        SubState2++;
+                    }
+                break;
+                case MAP_TYPE_A3_TURTLE_ROCK_01:
+                    if (IncrementTimer(TimerMax) == true) {
+                        SMS_mapROMBank(animation_torches_01_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy64(8224, &animation_torches_01_tiles_bin[SubState << 7]);
+                        UNSAFE_SMS_VRAMmemcpy32(8288, &animation_torches_01_tiles_bin[(SubState << 7) + 64]);
+                        SubState++;
+                    }
+                    if (IncrementTimer2(TimerMax2) == true) {
+                        SMS_mapROMBank(animation_lava_01_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy128(8352, &animation_lava_01_tiles_bin[SubState2 << 7]);
+                        SubState2++;
+                    }
+                break;
+                case MAP_TYPE_A3_TURTLE_ROCK_02:
+                    if (IncrementTimer(TimerMax) == true) {
+                        SMS_mapROMBank(animation_gem_02_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy128(8224, &animation_gem_02_tiles_bin[SubState << 7]);
+                        SubState++;
+                    }
+                break;
                 case MAP_TYPE_A3_EGG_01:
-                    SMS_mapROMBank(animation_egg_torches_tiles_bin_bank);
-                    UNSAFE_SMS_VRAMmemcpy32(8224, &animation_egg_torches_tiles_bin[SubState << 5]);
-                    SubState++;
+                    if (IncrementTimer(TimerMax) == true) {
+                        SMS_mapROMBank(animation_egg_torches_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy32(8288, &animation_egg_torches_tiles_bin[SubState << 5]);
+                        SubState++;
+                    }
+                break;
+                case MAP_TYPE_A3_CAVES_01:
+                    if (IncrementTimer(TimerMax) == true) {
+                        SMS_mapROMBank(animation_torches_01_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy128(8224, &animation_torches_01_tiles_bin[SubState << 7]);
+                        SubState++;
+                    }
+                    if (IncrementTimer2(TimerMax2) == true) {
+                        SMS_mapROMBank(animation_water_03_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy64(8352, &animation_water_03_tiles_bin[SubState2 << 6]);
+                        SubState2++;
+                    }
+                break;
+                case MAP_TYPE_A3_HOUSES_01:
+                    if (IncrementTimer(TimerMax) == true) {
+                        SMS_mapROMBank(animation_torches_01_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy64(8224, &animation_torches_01_tiles_bin[SubState << 7]);
+                        UNSAFE_SMS_VRAMmemcpy32(8288, &animation_torches_01_tiles_bin[(SubState << 7) + 64]);
+                        SubState++;
+                    }
+                    if (IncrementTimer2(TimerMax2) == true) {
+                        SMS_mapROMBank(animation_water_03_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy32(8320, &animation_water_03_tiles_bin[SubState2 << 6]);
+                        SubState2++;
+                    }
+                break;
+                case MAP_TYPE_A3_HOUSES_02:
+                    if (IncrementTimer(TimerMax) == true) {
+                        SMS_mapROMBank(animation_torches_01_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy64(8224, &animation_torches_01_tiles_bin[SubState << 7]);
+                        UNSAFE_SMS_VRAMmemcpy32(8288, &animation_torches_01_tiles_bin[(SubState << 7) + 64]);
+                        SubState++;
+                    }
+                break;
+                case MAP_TYPE_A3_DREAM_SHRINE_01:
+                    if (IncrementTimer(TimerMax) == true) {
+                        SMS_mapROMBank(animation_torches_01_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy64(8224, &animation_torches_01_tiles_bin[SubState << 7]);
+                        SMS_mapROMBank(animation_egg_torches_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy32(8288, &animation_egg_torches_tiles_bin[SubState << 5]);
+                        SubState++;
+                    }
+                break;
+                case MAP_TYPE_A3_FACE_SHRINE_01:
+                case MAP_TYPE_A3_KANALET_CASTLE_01:
+                    if (IncrementTimer(TimerMax) == true) {
+                        SMS_mapROMBank(animation_torches_01_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy128(8224, &animation_torches_01_tiles_bin[SubState << 7]);
+                        SubState++;
+                    }
+                break;
+                case MAP_TYPE_A3_COLOR_DUNGEON_01:
+                    if (IncrementTimer(TimerMax) == true) {
+                        SMS_mapROMBank(animation_torches_01_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy128(8224, &animation_torches_01_tiles_bin[SubState << 7]);
+                        SubState++;
+                    }
+                    if (IncrementTimer2(TimerMax2) == true) {
+                        SMS_mapROMBank(animation_water_04_tiles_bin_bank);
+                        UNSAFE_SMS_VRAMmemcpy128(8352, &animation_water_04_tiles_bin[SubState2 << 7]);
+                        SubState2++;
+                    }
                 break;
             }
         break;
@@ -1051,6 +1185,18 @@ void UpdateMapScroll(void) {
     }
 }
 
+// Updates basic player sprite animation
+void UpdatePlayerSprite(void) {
+    Link.frame_timer++;
+    if (Link.frame_timer >= Link.frame_duration) {
+        Link.frame++;
+        Link.frame_timer = 0;
+    }
+    if (Link.frame >= Link.frame_count) {
+        Link.frame = 0;
+    }
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Input ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1073,9 +1219,16 @@ bool IsHoldingUpAndDown(void) {
 	return KeysHeld & PORT_A_KEY_DOWN && KeysHeld & PORT_A_KEY_UP;
 }
 
-// // Handles player input
-// void HandlePlayerInput(void) {
-// }
+// Handles player input
+void HandlePlayerInput(void) {
+    if (KeysPressed == PORT_A_KEY_1) {
+        GameState++;
+        PSGStop();
+    }
+    if (GameState > GAME_STATE_AREA_03) {
+        GameState = GAME_STATE_AREA_01;
+    }
+}
 
 // Checks if player 1 start button is pressed, and sets the given next state, returns if key pressed
 bool PollNextState(unsigned char game_state) {
@@ -1133,10 +1286,19 @@ void TestScroll(void) {
 // Line IRQ Handler
 void LineIRQhandler (void) {
     SMS_disableLineInterrupt();
-    SMS_displayOff();
-    UpdateEnvironmentAnimations();
-    SMS_displayOn();
-    TestScroll();
+    switch (GameState)
+    {
+        case GAME_STATE_PLAYER_SELECT:
+            SMS_mapROMBank(bgm_file_select_psg_bank);
+	        PSGFrame();
+        break;
+        default:
+            SMS_displayOff();
+            UpdateEnvironmentAnimations();
+            SMS_displayOn();
+            TestScroll();
+        break;
+    }
 }
 
 // Handles main game loop event logic
@@ -1153,12 +1315,36 @@ void HandleGameEvent(unsigned char event) {
                 break;
             }
         break;
+        case GAME_STATE_PLAYER_SELECT:
+            switch (event) {
+                case EVENT_VBLANK_LOAD:
+                    ResetGlobalVariables();
+                    LoadGameStateGraphics();
+                    SMS_setLineInterruptHandler(LineIRQhandler);
+					SMS_setLineCounter(168);
+                    SMS_mapROMBank(bgm_file_select_psg_bank);
+	                PSGPlay(bgm_file_select_psg);
+                    SMS_setSpriteMode (SPRITEMODE_TALL);
+	                SMS_useFirstHalfTilesforSprites(true);
+                    Link.frame_count = 2;
+                    Link.frame_duration = 10;
+                break;
+                case EVENT_AFTER_VBLANK:
+                    SMS_enableLineInterrupt();
+                    SMS_copySpritestoSAT();
+                    UpdatePlayerSprite();
+                    SMS_initSprites();
+                    SMS_addTwoAdjoiningSprites(64, 66, (Link.frame << 2) + 2);
+                break;
+            }
+        break;
         case GAME_STATE_AREA_01:
         case GAME_STATE_AREA_02:
         case GAME_STATE_AREA_03:
             switch (event) {
                 case EVENT_VBLANK_LOAD:
                     ResetGlobalVariables();
+                    ClearVRAM();
                     LoadGameStateGraphics();
                     SMS_setLineInterruptHandler(LineIRQhandler);
 					SMS_setLineCounter(168);
@@ -1181,17 +1367,16 @@ void HandleGameEvent(unsigned char event) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void main(void) {
-	SetGameState(GAME_STATE_AREA_03);
+	SetGameState(GAME_STATE_PLAYER_SELECT);
     MapId = 0;
     for (;;) {
         PollInput();
+        HandlePlayerInput();
 		HandleGameEvent(EVENT_BEFORE_VBLANK);
 		SMS_waitForVBlank();
         FrameCounter++;
 		HandleGameEvent(EVENT_VBLANK_LOAD);
 		HandleGameEvent(EVENT_AFTER_VBLANK);
-        SMS_mapROMBank(AudioCurrentBank);
-		PSGFrame();
 	}
 }
 
