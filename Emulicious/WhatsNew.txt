@@ -1,4 +1,115 @@
 ==========
+2024-08-06
+==========
+- Fixed truncated values in the dropdowns of the Tile and Tilemap Viewers on some Linux window managers (thanks to bbbbbr)
+
+==========
+2024-07-31
+==========
+- Improved the UI for some window managers on Linux (thanks to ISSOtm, lidnariq, neon, armixer24)
+- Improved the layout of the Tilemap Viewer (thanks to ISSOtm)
+- Fixed that for Game Boy Color reads from palettes always triggered inaccessible access exception (thanks to DNFan86555)
+- Fixed flickering in the status bar of the debugger when it takes more than 1 line (thanks to Kabcorp)
+
+==========
+2024-06-30
+==========
+- Added support for YM2413's phase hold test mode bit (thanks to 2Tie)
+- Fixed that for MSX emulation the tracer printed some addresses incorrectly (thanks to djogopatrao)
+- Fixed that the new keyboard shortcut for MSX defaulted to SPACE like on other systems
+
+==========
+2024-05-31
+==========
+- Added value formatting for strings used in expressions and messages
+- Fixed the priority of the RAM registers of the Master Everdrive (thanks to toxa)
+- Fixed an issue with video encoding set to use FLAC with older versions of FFMPEG (thanks to bbbbbr)
+- Fixed an issue that prevented includes with absolute paths to work in the source code parser (thanks to Sono)
+- Fixed an issue with adding breakpoints on ports/hardware registers (e.g. rSCX) in the Breakpoints tab
+- Report progress of video encoding in the titlebar and when Emulicious is closed
+- Made key shortcuts for Toggle Fullscreen and Toggle Turbo configurable (thanks to Disk Poppy Ninja and DEFENSE MECHANISM)
+
+==========
+2024-04-30
+==========
+- Fixed flickering screen in A Bug's Life and Men in Black for Game Boy Colr (thanks to Scott Nash)
+- Fixed the palette displayed in the Sprite Viewer when emulating the original Game Boy/DMG (thanks to widge)
+- Fixed a glitch in the Variables tab that could render a checkbox for the name of a boolean value
+- Fixed issues with the Input variable of the Mastersystem
+
+==========
+2024-04-21
+==========
+- Added some more options for video recording
+- Fixed that recording of longer videos could result in corrupted or missing videos (thanks to Revo)
+- Fixed handling of %s in formatted debug messages (thanks to aoineko and wimpie3)
+- Fixed reading from joystick on MSX returned bogus values which confused joystick detection in some games (thanks to Revo and theNestruo)
+
+==========
+2024-03-31
+==========
+- Added video recording
+- Fixed that the Profiler window couldn't open on Linux with GTK theme (thanks to Under4MHz and lidnariq)
+- Fixed a bug that could cause a crash when editing GB sound registers repeatedly (thanks to Sono)
+- Fixed a bug that prevented to load MEKA Savestates older than version 8
+- Fixed a regression that made the Tile Viewer have issues with modes where tiles have a width of 6 pixels (thanks to aoineko)
+- Fixed sprite cursor position for Game Gear (thanks to toxa)
+- Fixed reading back values from the MSX PSG (thanks to joe)
+- Fixed turbo shortcut in fullscreen mode for MSX
+
+==========
+2024-03-05
+==========
+- Fixed a bug in RAM Search that could make it crash for games with SRAM (thanks to razTonyWhatever)
+
+==========
+2024-02-29
+==========
+- Fixed a bug that could make the debugger cause high cpu load (thanks to _256_)
+- Fixed that Advance Frame while paused with the debugger open could crash Emulicious (thanks to pw_32x)
+
+==========
+2024-01-31
+==========
+- Added -turbo commandline flag to start Emulicious with turbo enabled (thanks to aoineko)
+- Added option to emulate the Everdrive without an SD card inserted
+- Added option to crop borders from screenshots (thanks to Kaisaan)
+- Added support for the MSX NEO Mapper (thanks to aoineko)
+- Fixed incorrect number of meassurements in General Profiler if start and end address match (thanks to sverx)
+- Fixed that a future timestamp in a .sav file caused the RTC time to change (thanks to beware)
+
+==========
+2023-12-30
+==========
+- Added 16x16 mode to Tile Viewer for display modes that support it (thanks to Jan Willem van Helden and aoineko)
+- Improved MSX mapper detection (thanks to bengalack)
+- Fixed a false-positive of data execution exception with C debugging (thanks to wimpie3)
+
+==========
+2023-12-08
+==========
+- Fixed loading of source code for Game Boy
+- Fixed that stepping backwards could turn the whole palette black on MSX1
+- Fixed that setting a breakpoint around the end of a very long C function could fail
+
+==========
+2023-12-06
+==========
+- Fixed that breakpoints didn't work anymore when attaching to a remote debugging instead of launch (thanks to Mallow)
+- Fixed values of local variables displayed for MSX for remote debugging of C code (thanks to Mallow)
+- Fixed that the video viewers did not work anymore for Game Gear (thanks to Revo)
+- Fixed that Run/Jump to line from the Run menu sometimes did not work
+
+==========
+2023-11-30
+==========
+- Improved how coverage is visualized in the debugger (thanks to Sanqui)
+- Improved sourcefile discovery (thanks to Nadia Holmquist)
+- Fixed an issue with the disassembly of an MSX cartridge without a mapper (thanks to aoineko)
+- Fixed an issue that could cause a breakpoint for MSX set from a remote debugger to not work (thanks to Mallow)
+- Fixed assembling of z80 instructions with displacement
+
+==========
 2023-11-06
 ==========
 - Added support for exception breakpoints via the remote debugger
