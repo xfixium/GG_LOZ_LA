@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "C:\\Program Files\\SDCC\\include",
+                "${workspaceFolder}/libs",
+                "${workspaceFolder}/src"
+            ],
+            "defines": [
+                "__critical=",
+                "__banked=",
+                "__at(x)=",
+                "__sfr=char",
+                "__z88dk_fastcall=",
+                "TARGET_GG"
+            ],
+            "compilerPath": "C:\\Program Files\\SDCC\\bin\\sdcc.exe"
+        }
+    ],
+    "version": 4
+}

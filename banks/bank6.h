@@ -7,15 +7,9 @@ extern const unsigned char	a02_tail_cave_tiles_bin[3744];
 extern const unsigned char	a01_base_tiles_bin[3584];
 #define				a01_base_tiles_bin_size 3584
 #define				a01_base_tiles_bin_bank 6
-extern const unsigned char	a03_face_shrine_01_tiles_bin[3296];
-#define				a03_face_shrine_01_tiles_bin_size 3296
-#define				a03_face_shrine_01_tiles_bin_bank 6
-extern const unsigned char	a01_anglers_tunnel_tiles_bin[1536];
-#define				a01_anglers_tunnel_tiles_bin_size 1536
-#define				a01_anglers_tunnel_tiles_bin_bank 6
-extern const unsigned char	a02_anglers_tunnel_01_bg_pal_bin[32];
-#define				a02_anglers_tunnel_01_bg_pal_bin_size 32
-#define				a02_anglers_tunnel_01_bg_pal_bin_bank 6
-extern const unsigned char	a02_anglers_tunnel_02_bg_pal_bin[32];
-#define				a02_anglers_tunnel_02_bg_pal_bin_size 32
-#define				a02_anglers_tunnel_02_bg_pal_bin_bank 6
+extern const unsigned char	bgm_overworld_psg[3582];
+#define				bgm_overworld_psg_size 3582
+#define				bgm_overworld_psg_bank 6
+extern const unsigned char	house_zora_tiles_bin[1312];
+#define				house_zora_tiles_bin_size 1312
+#define				house_zora_tiles_bin_bank 6

@@ -1,3 +1,18 @@
+extern const unsigned char	a01_14_07_map_bin[640];
+#define				a01_14_07_map_bin_size 640
+#define				a01_14_07_map_bin_bank 20
+extern const unsigned char	a01_14_08_map_bin[640];
+#define				a01_14_08_map_bin_size 640
+#define				a01_14_08_map_bin_bank 20
+extern const unsigned char	a01_14_09_map_bin[640];
+#define				a01_14_09_map_bin_size 640
+#define				a01_14_09_map_bin_bank 20
+extern const unsigned char	a01_14_10_map_bin[640];
+#define				a01_14_10_map_bin_size 640
+#define				a01_14_10_map_bin_bank 20
+extern const unsigned char	a01_14_11_map_bin[640];
+#define				a01_14_11_map_bin_size 640
+#define				a01_14_11_map_bin_bank 20
 extern const unsigned char	a01_14_12_map_bin[640];
 #define				a01_14_12_map_bin_size 640
 #define				a01_14_12_map_bin_bank 20
@@ -58,27 +73,12 @@ extern const unsigned char	a01_15_14_map_bin[640];
 extern const unsigned char	a01_15_15_map_bin[640];
 #define				a01_15_15_map_bin_size 640
 #define				a01_15_15_map_bin_bank 20
-extern const unsigned char	a02_00_00_map_bin[640];
-#define				a02_00_00_map_bin_size 640
-#define				a02_00_00_map_bin_bank 20
-extern const unsigned char	a02_00_01_map_bin[640];
-#define				a02_00_01_map_bin_size 640
-#define				a02_00_01_map_bin_bank 20
-extern const unsigned char	a02_00_02_map_bin[640];
-#define				a02_00_02_map_bin_size 640
-#define				a02_00_02_map_bin_bank 20
-extern const unsigned char	a02_00_03_map_bin[640];
-#define				a02_00_03_map_bin_size 640
-#define				a02_00_03_map_bin_bank 20
-extern const unsigned char	a02_00_04_map_bin[640];
-#define				a02_00_04_map_bin_size 640
-#define				a02_00_04_map_bin_bank 20
-extern const unsigned char	spr_link_walk_down_tiles_bin[256];
-#define				spr_link_walk_down_tiles_bin_size 256
-#define				spr_link_walk_down_tiles_bin_bank 20
+extern const unsigned char	a03_map_types_bin[256];
+#define				a03_map_types_bin_size 256
+#define				a03_map_types_bin_bank 20
 extern const unsigned char	hud_map_bin[80];
 #define				hud_map_bin_size 80
 #define				hud_map_bin_bank 20
-extern const unsigned char	a02_caves_01_bg_pal_bin[32];
-#define				a02_caves_01_bg_pal_bin_size 32
-#define				a02_caves_01_bg_pal_bin_bank 20
+extern const unsigned char	a02_catfishs_maw_02_bg_pal_bin[32];
+#define				a02_catfishs_maw_02_bg_pal_bin_size 32
+#define				a02_catfishs_maw_02_bg_pal_bin_bank 20

@@ -1,3 +1,9 @@
+extern const unsigned char	a01_egg_tiles_bin[1536];
+#define				a01_egg_tiles_bin_size 1536
+#define				a01_egg_tiles_bin_bank 9
+extern const unsigned char	a01_forest_tiles_bin[1536];
+#define				a01_forest_tiles_bin_size 1536
+#define				a01_forest_tiles_bin_bank 9
 extern const unsigned char	a01_mabe_village_tiles_bin[1536];
 #define				a01_mabe_village_tiles_bin_size 1536
 #define				a01_mabe_village_tiles_bin_bank 9
@@ -22,18 +28,6 @@ extern const unsigned char	player_select_tiles_bin[1536];
 extern const unsigned char	a02_bottle_grotto_02_tiles_bin[1504];
 #define				a02_bottle_grotto_02_tiles_bin_size 1504
 #define				a02_bottle_grotto_02_tiles_bin_bank 9
-extern const unsigned char	a02_catfishs_maw_04_tiles_bin[1504];
-#define				a02_catfishs_maw_04_tiles_bin_size 1504
-#define				a02_catfishs_maw_04_tiles_bin_bank 9
-extern const unsigned char	a03_houses_03_tiles_bin[1472];
-#define				a03_houses_03_tiles_bin_size 1472
-#define				a03_houses_03_tiles_bin_bank 9
-extern const unsigned char	animation_shore_tiles_bin[1024];
-#define				animation_shore_tiles_bin_size 1024
-#define				animation_shore_tiles_bin_bank 9
-extern const unsigned char	animation_flower_tiles_bin[96];
-#define				animation_flower_tiles_bin_size 96
-#define				animation_flower_tiles_bin_bank 9
-extern const unsigned char	a02_catfishs_maw_03_bg_pal_bin[32];
-#define				a02_catfishs_maw_03_bg_pal_bin_size 32
-#define				a02_catfishs_maw_03_bg_pal_bin_bank 9
+extern const unsigned char	bgm_file_select_psg[1055];
+#define				bgm_file_select_psg_size 1055
+#define				bgm_file_select_psg_bank 9

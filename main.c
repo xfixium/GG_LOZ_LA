@@ -1,5 +1,5 @@
-#include "lib\SMSlib.h"
-#include "lib\PSGlib.h"
+#include "libs/SMSlib.h"
+#include "libs/PSGlib.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -120,49 +120,51 @@
 
 // Instance, lightweight entity
 typedef struct {
-    unsigned char x;                       // Horizontal position
-    unsigned char y;                       // Vertical position
-    unsigned char frame;                   // Current display frame
-    unsigned char frame_count;             // Frame count
-    unsigned char frame_timer;             // Frame display time
-    unsigned char frame_duration;          // Frame display time duration
+    unsigned char x;                        // Horizontal position
+    unsigned char y;                        // Vertical position
+    unsigned char frame;                    // Current display frame
+    unsigned char frame_count;              // Frame count
+    unsigned char frame_timer;              // Frame display time
+    unsigned char frame_duration;           // Frame display time duration
     unsigned char reserved_0;
     unsigned char reserved_1;
 } Sprite;
 
 
 // Global variables
-Sprite Link;                        // Our dopey hero of time
-unsigned char MapId;                // Current map id
-unsigned char PrevMapId;            // Previous map id
-unsigned char ScrollIndex;          // Map scroll index
-unsigned char ScrollDir;            // Map scroll direction
-unsigned char MapType;              // Current map type
-unsigned char PrevMapType;          // Previous map type
-unsigned char AreaBank;             // Current area array bank
-const unsigned char* AreaBin;       // Current area array
-unsigned char GameState;            // Overall program flow
-unsigned char PrevGameState;        // Previous loaded state
-unsigned char SubState;             // A game state's sub state, for managed flow of a game state
-unsigned char SubStateMax;          // Substate threshold
-unsigned char SubState2;            // A game state's sub state, for managed flow of a game state
-unsigned char SubStateMax2;         // Substate threshold
-unsigned char FrameCounter;         // Frame counter, used for various things
-unsigned short Timer;               // General timer
-unsigned short TimerMax;            // Timer threshold
-unsigned short Timer2;              // General timer
-unsigned short TimerMax2;           // Timer threshold
-unsigned char AudioCurrentBank;     // Current audio bank
-unsigned int KeysPressed;           // Keys pressed
-unsigned int KeysHeld;              // Keys held down
-unsigned char Map[1280];            // Current and previous map data
+Sprite Link;                                // Our dopey hero of time
+unsigned char MapId;                        // Current map id
+unsigned char PrevMapId;                    // Previous map id
+unsigned char ScrollIndex;                  // Map scroll index
+unsigned char ScrollX;                      // Map horizontal scroll offset (HUD is not scrolled)
+unsigned char ScrollDir;                    // Map scroll direction
+unsigned char MapType;                      // Current map type
+unsigned char PrevMapType;                  // Previous map type
+unsigned char AreaBank;                     // Current area array bank
+const unsigned char* AreaBin;               // Current area array
+unsigned char GameState;                    // Overall program flow
+unsigned char PrevGameState;                // Previous loaded state
+unsigned char SubState;                     // A game state's sub state, for managed flow of a game state
+unsigned char SubStateMax;                  // Substate threshold
+unsigned char SubState2;                    // A game state's sub state, for managed flow of a game state
+unsigned char SubStateMax2;                 // Substate threshold
+unsigned char FrameCounter;                 // Frame counter, used for various things
+unsigned char Timer;                        // General timer
+unsigned char TimerMax;                     // Timer threshold
+unsigned char Timer2;                       // General timer
+unsigned char TimerMax2;                    // Timer threshold
+unsigned char AudioCurrentBank;             // Current audio bank
+unsigned int KeysPressed;                   // Keys pressed
+unsigned int KeysHeld;                      // Keys held down
+unsigned char AudioBank;                    // 
+unsigned char Map[1280];                    // Current and previous map data
 
 // NOTE: Looks like the original game put all maps within 3 areas (256 byte arrays), sans color dungeon
 // https://github.com/zladx/LADX-Disassembly/tree/main/docs
 // TODO: Make the areas into bin files, instead of using RAM
 
 // Area 01 map bin banks (Temp)
-unsigned char Area01MapBanks[256] = {
+const unsigned char Area01MapBanks[256] = {
     a01_00_00_map_bin_bank, a01_00_01_map_bin_bank, a01_00_02_map_bin_bank, a01_00_03_map_bin_bank, a01_00_04_map_bin_bank, a01_00_05_map_bin_bank, a01_00_06_map_bin_bank, a01_00_07_map_bin_bank, a01_00_08_map_bin_bank, a01_00_09_map_bin_bank, a01_00_10_map_bin_bank, a01_00_11_map_bin_bank, a01_00_12_map_bin_bank, a01_00_13_map_bin_bank, a01_00_14_map_bin_bank, a01_00_15_map_bin_bank,
     a01_01_00_map_bin_bank, a01_01_01_map_bin_bank, a01_01_02_map_bin_bank, a01_01_03_map_bin_bank, a01_01_04_map_bin_bank, a01_01_05_map_bin_bank, a01_01_06_map_bin_bank, a01_01_07_map_bin_bank, a01_01_08_map_bin_bank, a01_01_09_map_bin_bank, a01_01_10_map_bin_bank, a01_01_11_map_bin_bank, a01_01_12_map_bin_bank, a01_01_13_map_bin_bank, a01_01_14_map_bin_bank, a01_01_15_map_bin_bank,
     a01_02_00_map_bin_bank, a01_02_01_map_bin_bank, a01_02_02_map_bin_bank, a01_02_03_map_bin_bank, a01_02_04_map_bin_bank, a01_02_05_map_bin_bank, a01_02_06_map_bin_bank, a01_02_07_map_bin_bank, a01_02_08_map_bin_bank, a01_02_09_map_bin_bank, a01_02_10_map_bin_bank, a01_02_11_map_bin_bank, a01_02_12_map_bin_bank, a01_02_13_map_bin_bank, a01_02_14_map_bin_bank, a01_02_15_map_bin_bank,
@@ -182,7 +184,7 @@ unsigned char Area01MapBanks[256] = {
 };
 
 // Area 01 map bin pointers (Temp)
-const unsigned char* Area01MapBins[256] = {
+const unsigned char* const Area01MapBins[256] = {
     a01_00_00_map_bin, a01_00_01_map_bin, a01_00_02_map_bin, a01_00_03_map_bin, a01_00_04_map_bin, a01_00_05_map_bin, a01_00_06_map_bin, a01_00_07_map_bin, a01_00_08_map_bin, a01_00_09_map_bin, a01_00_10_map_bin, a01_00_11_map_bin, a01_00_12_map_bin, a01_00_13_map_bin, a01_00_14_map_bin, a01_00_15_map_bin,
     a01_01_00_map_bin, a01_01_01_map_bin, a01_01_02_map_bin, a01_01_03_map_bin, a01_01_04_map_bin, a01_01_05_map_bin, a01_01_06_map_bin, a01_01_07_map_bin, a01_01_08_map_bin, a01_01_09_map_bin, a01_01_10_map_bin, a01_01_11_map_bin, a01_01_12_map_bin, a01_01_13_map_bin, a01_01_14_map_bin, a01_01_15_map_bin,
     a01_02_00_map_bin, a01_02_01_map_bin, a01_02_02_map_bin, a01_02_03_map_bin, a01_02_04_map_bin, a01_02_05_map_bin, a01_02_06_map_bin, a01_02_07_map_bin, a01_02_08_map_bin, a01_02_09_map_bin, a01_02_10_map_bin, a01_02_11_map_bin, a01_02_12_map_bin, a01_02_13_map_bin, a01_02_14_map_bin, a01_02_15_map_bin,
@@ -202,7 +204,7 @@ const unsigned char* Area01MapBins[256] = {
 };
 
 // Area 02 map bin banks (Temp)
-unsigned char Area02MapBanks[256] = {
+const unsigned char Area02MapBanks[256] = {
     a02_00_00_map_bin_bank, a02_00_01_map_bin_bank, a02_00_02_map_bin_bank, a02_00_03_map_bin_bank, a02_00_04_map_bin_bank, a02_00_05_map_bin_bank, a02_00_06_map_bin_bank, a02_00_07_map_bin_bank, a02_00_08_map_bin_bank, a02_00_09_map_bin_bank, a02_00_10_map_bin_bank, a02_00_11_map_bin_bank, a02_00_12_map_bin_bank, a02_00_13_map_bin_bank, a02_00_14_map_bin_bank, a02_00_15_map_bin_bank,
     a02_01_00_map_bin_bank, a02_01_01_map_bin_bank, a02_01_02_map_bin_bank, a02_01_03_map_bin_bank, a02_01_04_map_bin_bank, a02_01_05_map_bin_bank, a02_01_06_map_bin_bank, a02_01_07_map_bin_bank, a02_01_08_map_bin_bank, a02_01_09_map_bin_bank, a02_01_10_map_bin_bank, a02_01_11_map_bin_bank, a02_01_12_map_bin_bank, a02_01_13_map_bin_bank, a02_01_14_map_bin_bank, a02_01_15_map_bin_bank,
     a02_02_00_map_bin_bank, a02_02_01_map_bin_bank, a02_02_02_map_bin_bank, a02_02_03_map_bin_bank, a02_02_04_map_bin_bank, a02_02_05_map_bin_bank, a02_02_06_map_bin_bank, a02_02_07_map_bin_bank, a02_02_08_map_bin_bank, a02_02_09_map_bin_bank, a02_02_10_map_bin_bank, a02_02_11_map_bin_bank, a02_02_12_map_bin_bank, a02_02_13_map_bin_bank, a02_02_14_map_bin_bank, a02_02_15_map_bin_bank,
@@ -222,7 +224,7 @@ unsigned char Area02MapBanks[256] = {
 };
 
 // Area 02 map bin pointers (Temp)
-const unsigned char* Area02MapBins[256] = {
+const unsigned char* const Area02MapBins[256] = {
     a02_00_00_map_bin, a02_00_01_map_bin, a02_00_02_map_bin, a02_00_03_map_bin, a02_00_04_map_bin, a02_00_05_map_bin, a02_00_06_map_bin, a02_00_07_map_bin, a02_00_08_map_bin, a02_00_09_map_bin, a02_00_10_map_bin, a02_00_11_map_bin, a02_00_12_map_bin, a02_00_13_map_bin, a02_00_14_map_bin, a02_00_15_map_bin,
     a02_01_00_map_bin, a02_01_01_map_bin, a02_01_02_map_bin, a02_01_03_map_bin, a02_01_04_map_bin, a02_01_05_map_bin, a02_01_06_map_bin, a02_01_07_map_bin, a02_01_08_map_bin, a02_01_09_map_bin, a02_01_10_map_bin, a02_01_11_map_bin, a02_01_12_map_bin, a02_01_13_map_bin, a02_01_14_map_bin, a02_01_15_map_bin,
     a02_02_00_map_bin, a02_02_01_map_bin, a02_02_02_map_bin, a02_02_03_map_bin, a02_02_04_map_bin, a02_02_05_map_bin, a02_02_06_map_bin, a02_02_07_map_bin, a02_02_08_map_bin, a02_02_09_map_bin, a02_02_10_map_bin, a02_02_11_map_bin, a02_02_12_map_bin, a02_02_13_map_bin, a02_02_14_map_bin, a02_02_15_map_bin,
@@ -242,7 +244,7 @@ const unsigned char* Area02MapBins[256] = {
 };
 
 // Area 03 map bin banks (Temp)
-unsigned char Area03MapBanks[256] = {
+const unsigned char Area03MapBanks[256] = {
     a03_00_00_map_bin_bank, a03_00_01_map_bin_bank, a03_00_02_map_bin_bank, a03_00_03_map_bin_bank, a03_00_04_map_bin_bank, a03_00_05_map_bin_bank, a03_00_06_map_bin_bank, a03_00_07_map_bin_bank, a03_00_08_map_bin_bank, a03_00_09_map_bin_bank, a03_00_10_map_bin_bank, a03_00_11_map_bin_bank, a03_00_12_map_bin_bank, a03_00_13_map_bin_bank, a03_00_14_map_bin_bank, a03_00_15_map_bin_bank,
     a03_01_00_map_bin_bank, a03_01_01_map_bin_bank, a03_01_02_map_bin_bank, a03_01_03_map_bin_bank, a03_01_04_map_bin_bank, a03_01_05_map_bin_bank, a03_01_06_map_bin_bank, a03_01_07_map_bin_bank, a03_01_08_map_bin_bank, a03_01_09_map_bin_bank, a03_01_10_map_bin_bank, a03_01_11_map_bin_bank, a03_01_12_map_bin_bank, a03_01_13_map_bin_bank, a03_01_14_map_bin_bank, a03_01_15_map_bin_bank,
     a03_02_00_map_bin_bank, a03_02_01_map_bin_bank, a03_02_02_map_bin_bank, a03_02_03_map_bin_bank, a03_02_04_map_bin_bank, a03_02_05_map_bin_bank, a03_02_06_map_bin_bank, a03_02_07_map_bin_bank, a03_02_08_map_bin_bank, a03_02_09_map_bin_bank, a03_02_10_map_bin_bank, a03_02_11_map_bin_bank, a03_02_12_map_bin_bank, a03_02_13_map_bin_bank, a03_02_14_map_bin_bank, a03_02_15_map_bin_bank,
@@ -262,7 +264,7 @@ unsigned char Area03MapBanks[256] = {
 };
 
 // Area 02 map bin pointers (Temp)
-const unsigned char* Area03MapBins[256] = {
+const unsigned char* const Area03MapBins[256] = {
     a03_00_00_map_bin, a03_00_01_map_bin, a03_00_02_map_bin, a03_00_03_map_bin, a03_00_04_map_bin, a03_00_05_map_bin, a03_00_06_map_bin, a03_00_07_map_bin, a03_00_08_map_bin, a03_00_09_map_bin, a03_00_10_map_bin, a03_00_11_map_bin, a03_00_12_map_bin, a03_00_13_map_bin, a03_00_14_map_bin, a03_00_15_map_bin,
     a03_01_00_map_bin, a03_01_01_map_bin, a03_01_02_map_bin, a03_01_03_map_bin, a03_01_04_map_bin, a03_01_05_map_bin, a03_01_06_map_bin, a03_01_07_map_bin, a03_01_08_map_bin, a03_01_09_map_bin, a03_01_10_map_bin, a03_01_11_map_bin, a03_01_12_map_bin, a03_01_13_map_bin, a03_01_14_map_bin, a03_01_15_map_bin,
     a03_02_00_map_bin, a03_02_01_map_bin, a03_02_02_map_bin, a03_02_03_map_bin, a03_02_04_map_bin, a03_02_05_map_bin, a03_02_06_map_bin, a03_02_07_map_bin, a03_02_08_map_bin, a03_02_09_map_bin, a03_02_10_map_bin, a03_02_11_map_bin, a03_02_12_map_bin, a03_02_13_map_bin, a03_02_14_map_bin, a03_02_15_map_bin,
@@ -280,6 +282,15 @@ const unsigned char* Area03MapBins[256] = {
     a03_14_00_map_bin, a03_14_01_map_bin, a03_14_02_map_bin, a03_14_03_map_bin, a03_14_04_map_bin, a03_14_05_map_bin, a03_14_06_map_bin, a03_14_07_map_bin, a03_14_08_map_bin, a03_14_09_map_bin, a03_14_10_map_bin, a03_14_11_map_bin, a03_14_12_map_bin, a03_14_13_map_bin, a03_14_14_map_bin, a03_14_15_map_bin,
     a03_15_00_map_bin, a03_15_01_map_bin, a03_15_02_map_bin, a03_15_03_map_bin, a03_15_04_map_bin, a03_15_05_map_bin, a03_15_06_map_bin, a03_15_07_map_bin, a03_15_08_map_bin, a03_15_09_map_bin, a03_15_10_map_bin, a03_15_11_map_bin, a03_15_12_map_bin, a03_15_13_map_bin, a03_15_14_map_bin, a03_15_15_map_bin
 };
+
+// Row pre-multiplier
+const unsigned int row_lut[20] = { 0, 40, 80, 120, 160, 200, 240, 280, 320, 360, 400, 440, 480, 520, 560, 600, 640, 680, 720, 760 };
+
+// Link cursor meta sprite definition
+const unsigned char cursor_00[] = { 0, 0, 2, 8, 0, 4, METASPRITE_END };
+const unsigned char cursor_01[] = { 0, 0, 6, 8, 0, 8, METASPRITE_END };
+const unsigned char *cursor[] = { cursor_00, cursor_01 };
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // General /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -293,6 +304,7 @@ void ClearVRAM(void) {
     SMS_initSprites();
     SMS_copySpritestoSAT();
     SMS_displayOn();
+    PrevMapType = 0;
 }
 
 // Resets commonly used variables for program flow
@@ -304,10 +316,11 @@ void ResetGlobalVariables(void) {
 	Timer = 0;
     Timer2 = 0;
     FrameCounter = 0;
+    ScrollX = 0;
 }
 
 // Sets game state, resets global variables
-void SetGameState(unsigned short game_state) {
+void SetGameState(unsigned char game_state) {
     SMS_disableLineInterrupt();
     GameState = game_state;
     ResetGlobalVariables();
@@ -316,7 +329,7 @@ void SetGameState(unsigned short game_state) {
 
 // Increments timer to the given threshold, then resets it
 // Returns true, if timer hit threshold
-bool IncrementTimer(unsigned short threshold) {
+bool IncrementTimer(unsigned char threshold) {
     Timer++;
     if (Timer >= threshold) {
         Timer = 0;
@@ -327,7 +340,7 @@ bool IncrementTimer(unsigned short threshold) {
 
 // Increments timer to the given threshold, then resets it
 // Returns true, if timer hit threshold
-bool IncrementTimer2(unsigned short threshold) {
+bool IncrementTimer2(unsigned char threshold) {
     Timer2++;
     if (Timer2 >= threshold) {
         Timer2 = 0;
@@ -520,9 +533,12 @@ void UpdateGameStateGraphics(void) {
             if (MapType != PrevMapType) {
                 SubStateMax = 3;
                 TimerMax = 10;
+                // Base tiles are shared by all area 01 map types, only load them when coming from outside area 01
+                if (PrevMapType < MAP_TYPE_A1_BASE || PrevMapType > MAP_TYPE_A1_TURTLE_ROCK) {
+                    SMS_mapROMBank(a01_base_tiles_bin_bank);
+                    SMS_loadTiles(a01_base_tiles_bin, 256, 3584);
+                }
                 PrevMapType = MapType;
-                SMS_mapROMBank(a01_base_tiles_bin_bank);
-                SMS_loadTiles(a01_base_tiles_bin, 256, 3584);
                 switch (MapType) {
                     case MAP_TYPE_A1_ANGLERS_TUNNEL:
                         SMS_mapROMBank(a01_anglers_tunnel_tiles_bin_bank);
@@ -794,10 +810,22 @@ void SetArea(unsigned char mapId) {
     }
 }
 
+// Copies the current area's tilemap into dst column by column (20 columns of 16 tiles), returns the end of the written data
+unsigned int* CopyVerticalMap(unsigned int* dst) {
+    const unsigned int* col_src = (const unsigned int*)AreaBin;
+    for (unsigned char col = 0; col < 20; col++) {
+        const unsigned int* src = col_src++;
+        for (unsigned char row = 0; row < 16; row++) {
+            *dst++ = *src;
+            src += 20;
+        }
+    }
+    return dst;
+}
+
 // Sets the tilemap indexes vertically orientated (Used for horizontal scrolling only)
 void SetVerticalMap(void) {
-    unsigned short index = 0;
-    unsigned short tile = 0;
+    unsigned int* dst = (unsigned int*)Map;
     unsigned char map_01;
     unsigned char map_02;
 
@@ -813,22 +841,10 @@ void SetVerticalMap(void) {
     // Fill map array with vertically aligned tiles
     SetArea(map_01);
     SMS_mapROMBank(AreaBank);
-    for (unsigned char col = 0; col < 20; col++) {
-        for (unsigned char row = 0; row < 16; row++) {
-            tile = (40 * row) + (col << 1);
-            Map[index++] = AreaBin[tile];
-            Map[index++] = AreaBin[tile + 1];
-        }
-    }
+    dst = CopyVerticalMap(dst);
     SetArea(map_02);
     SMS_mapROMBank(AreaBank);
-    for (unsigned char col = 0; col < 20; col++) {
-        for (unsigned char row = 0; row < 16; row++) {
-            tile = (40 * row) + (col << 1);
-            Map[index++] = AreaBin[tile];
-            Map[index++] = AreaBin[tile + 1];
-        }
-    }
+    CopyVerticalMap(dst);
     // Set back to current map id
     SetArea(MapId);
 }
@@ -1139,22 +1155,43 @@ void UpdateEnvironmentAnimations(void) {
     }
 }
 
+#ifdef TARGET_GG
+// Ends a horizontal scroll, redraws the current map at its default position and resets the scroll offset
+void EndHorizontalScroll(void) {
+    SMS_mapROMBank(AreaBank);
+    SMS_loadTileMapArea(6, 3, AreaBin, 20, 16);
+    ScrollX = 0;
+    ScrollIndex = 0;
+}
+#endif
+
 // Updates a map columns or rows based on scroll direction
+// Game Gear: horizontal scrolling uses the hardware scroll, only column is drawn each step
+// Master System: the whole tilemap is visible, so the map area is redrawn each step
 void UpdateMapScroll(void) {
     switch (ScrollDir) {
         case DIRECTION_RIGHT:
             ScrollIndex = ScrollIndex + 1;
+#ifdef TARGET_GG
+            if (ScrollIndex == 26) {
+                EndHorizontalScroll();
+            } else {
+                ScrollX -= 8;
+                SMS_loadTileMapColumn((ScrollIndex + 19) & 31, 3, &Map[(ScrollIndex + 13) << 5], 16);
+            }
+#else
             for (unsigned char i = 0; i < 20; i++) {
                 SMS_loadTileMapColumn(i + 6, 3, &Map[(ScrollIndex + i - 6) << 5], 16);
             }
             if (ScrollIndex == 26) {
                 ScrollIndex = 0;
             }
+#endif
         break;
         case DIRECTION_UP:
             ScrollIndex = ScrollIndex + 1;
             SMS_mapROMBank(AreaBank);
-            SMS_loadTileMapArea(6, 3, &AreaBin[640 - (40 * (ScrollIndex - 3))], 20, ScrollIndex - 3);
+            SMS_loadTileMapArea(6, 3, &AreaBin[640 - row_lut[ScrollIndex - 3]], 20, ScrollIndex - 3);
             if (19 - ScrollIndex != 0) {
                 SMS_loadTileMapArea(6, ScrollIndex, Map, 20, 19 - ScrollIndex);
             }
@@ -1164,19 +1201,25 @@ void UpdateMapScroll(void) {
         break;
         case DIRECTION_LEFT:
             ScrollIndex = ScrollIndex - 1;
+#ifdef TARGET_GG
+            if (ScrollIndex == 0) {
+                EndHorizontalScroll();
+            } else {
+                ScrollX += 8;
+                SMS_loadTileMapColumn((ScrollIndex + 18) & 31, 3, &Map[ScrollIndex << 5], 16);
+            }
+#else
             for (unsigned char i = 0; i < 20; i++) {
                 SMS_loadTileMapColumn(i + 6, 3, &Map[(ScrollIndex + i) << 5], 16);
             }
-            if (ScrollIndex == 26) {
-                ScrollIndex = 0;
-            }
+#endif
         break;
         case DIRECTION_DOWN:
             ScrollIndex = ScrollIndex - 1;
             SMS_mapROMBank(AreaBank);
             SMS_loadTileMapArea(6, ScrollIndex, AreaBin, 20, 19 - ScrollIndex);
             if (ScrollIndex - 3 != 0) {
-                SMS_loadTileMapArea(6, 3, &Map[640 - (40 * (ScrollIndex - 3))], 20, ScrollIndex - 3);
+                SMS_loadTileMapArea(6, 3, &Map[640 - row_lut[ScrollIndex - 3]], 20, ScrollIndex - 3);
             }
             if (ScrollIndex == 3) {
                 ScrollIndex = 0;
@@ -1286,19 +1329,15 @@ void TestScroll(void) {
 // Line IRQ Handler
 void LineIRQhandler (void) {
     SMS_disableLineInterrupt();
-    switch (GameState)
-    {
-        case GAME_STATE_PLAYER_SELECT:
-            SMS_mapROMBank(bgm_file_select_psg_bank);
-	        PSGFrame();
-        break;
-        default:
-            SMS_displayOff();
-            UpdateEnvironmentAnimations();
-            SMS_displayOn();
-            TestScroll();
-        break;
-    }
+    INLINE_SMS_setBGScrollX(0);
+}
+
+// Frame IRQ handler
+void FrameIRQhandler (void) {
+    SMS_saveROMBank();
+    SMS_mapROMBank(AudioBank);
+    PSGFrame();
+    SMS_restoreROMBank();
 }
 
 // Handles main game loop event logic
@@ -1322,7 +1361,8 @@ void HandleGameEvent(unsigned char event) {
                     LoadGameStateGraphics();
                     SMS_setLineInterruptHandler(LineIRQhandler);
 					SMS_setLineCounter(168);
-                    SMS_mapROMBank(bgm_file_select_psg_bank);
+                    AudioBank = bgm_file_select_psg_bank;
+                    SMS_mapROMBank(AudioBank);
 	                PSGPlay(bgm_file_select_psg);
                     SMS_setSpriteMode (SPRITEMODE_TALL);
 	                SMS_useFirstHalfTilesforSprites(true);
@@ -1334,7 +1374,7 @@ void HandleGameEvent(unsigned char event) {
                     SMS_copySpritestoSAT();
                     UpdatePlayerSprite();
                     SMS_initSprites();
-                    SMS_addTwoAdjoiningSprites(64, 66, (Link.frame << 2) + 2);
+                    SMS_addMetaSprite(64, 66, cursor[Link.frame]);
                 break;
             }
         break;
@@ -1346,10 +1386,19 @@ void HandleGameEvent(unsigned char event) {
                     ResetGlobalVariables();
                     ClearVRAM();
                     LoadGameStateGraphics();
+                    AudioBank = bgm_overworld_psg_bank;
+                    SMS_mapROMBank(AudioBank);
+                    PSGPlay(bgm_overworld_psg);
                     SMS_setLineInterruptHandler(LineIRQhandler);
-					SMS_setLineCounter(168);
+					SMS_setLineCounter(150);
                 break;
                 case EVENT_AFTER_VBLANK:
+                    SMS_displayOff();
+                    UpdateEnvironmentAnimations();
+                    SMS_displayOn();
+                    TestScroll();
+                    // Map scroll offset for this frame, the line interrupt resets it for the HUD
+                    SMS_setBGScrollX(ScrollX);
                     SMS_enableLineInterrupt();
                 break;
             }
@@ -1367,6 +1416,7 @@ void HandleGameEvent(unsigned char event) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void main(void) {
+    SMS_setFrameInterruptHandler(FrameIRQhandler);
 	SetGameState(GAME_STATE_PLAYER_SELECT);
     MapId = 0;
     for (;;) {
